@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workforce.Data.Housing.Domain", "Workforce.Data.Housing.Domain\Workforce.Data.Housing.Domain.csproj", "{0CDB4729-8DB0-46F4-8115-6CFE98262F82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workforce.Data.Housing.SOAP", "Workforce.Data.Housing.SOAP\Workforce.Data.Housing.SOAP.csproj", "{BEB22159-89FA-4E48-A442-65680FCFE036}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CDB4729-8DB0-46F4-8115-6CFE98262F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDB4729-8DB0-46F4-8115-6CFE98262F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDB4729-8DB0-46F4-8115-6CFE98262F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDB4729-8DB0-46F4-8115-6CFE98262F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB22159-89FA-4E48-A442-65680FCFE036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB22159-89FA-4E48-A442-65680FCFE036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB22159-89FA-4E48-A442-65680FCFE036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB22159-89FA-4E48-A442-65680FCFE036}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
