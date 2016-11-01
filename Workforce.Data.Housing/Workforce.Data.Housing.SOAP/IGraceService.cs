@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Workforce.Data.Housing.SOAP.ServiceModels;
 
 namespace Workforce.Data.Housing.SOAP
 {

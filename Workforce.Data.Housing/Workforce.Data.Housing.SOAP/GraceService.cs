@@ -4,6 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Workforce.Data.Housing.Domain;
+using Workforce.Data.Housing.SOAP.ServiceMapper;
+using Workforce.Data.Housing.SOAP.ServiceModels;
+using Workforce.Data.Housing.SOAP.Validators;
 
 namespace Workforce.Data.Housing.SOAP
 {
