@@ -89,6 +89,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\carousel.css" />
+    <Content Include="Content\d3Content.css" />
+    <Content Include="Content\dashboard.css" />
+    <Content Include="Content\myContent.css" />
+    <Content Include="Content\responsive.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\stylesheet.css" />
     <Content Include="Global.asax" />
     <Content Include="Libraries\angular-mocks.js" />
     <Content Include="Libraries\angular-route.js" />
