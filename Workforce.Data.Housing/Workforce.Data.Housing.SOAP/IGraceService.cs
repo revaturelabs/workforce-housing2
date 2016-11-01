@@ -11,7 +11,69 @@ namespace Workforce.Data.Housing.SOAP
   [ServiceContract]
   public interface IGraceService
   {
-    
+
+    /// <summary>
+    /// GETS
+    /// </summary>
+    /// <returns></returns>
+    [OperationContract]
+    List<HousingComplexDao> GetComplexes();
+
+    [OperationContract]
+    List<ApartmentDao> GetApartments();
+
+    [OperationContract]
+    List<HousingDataDao> GetHousingData();
+
+    [OperationContract]
+    List<StatusDao> GetStatuses();
+
+
+    /// <summary>
+    /// INSERTS
+    /// </summary>
+    /// <param name="newapt"></param>
+    /// <returns></returns>
+    [OperationContract]
+    bool InsertApartment(ApartmentDao newapt);
+
+    [OperationContract]
+    bool InsertHousingData(HousingDataDao newhdata);
+
+    [OperationContract]
+    bool InsertHousingComplex(HousingComplexDao newhcomplex);
+
+    [OperationContract]
+    bool InsertStatus(StatusDao newstatus);
+
+    /// <summary>
+    /// UPDATES
+    /// </summary>
+    /// <returns></returns>
+    [OperationContract]
+    bool UpdateApartment(ApartmentDao apt);
+
+    [OperationContract]
+    bool UpdateHousingData(HousingDataDao hdata);
+
+    [OperationContract]
+    bool UpdateHousingComplex(HousingComplexDao hcomplex);
+
+    [OperationContract]
+    bool UpdateStatus(StatusDao status);
+
+    [OperationContract]
+    bool DeleteApartment(ApartmentDao apt);
+
+    [OperationContract]
+    bool DeleteHousingData(HousingDataDao hdata);
+
+    [OperationContract]
+    bool DeleteHousingComplex(HousingComplexDao hcomplex);
+
+    [OperationContract]
+    bool DeleteStatus(StatusDao status);
+
   }
 
 }
