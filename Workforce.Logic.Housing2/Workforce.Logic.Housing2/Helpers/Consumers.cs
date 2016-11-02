@@ -1,12 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Workforce.Logic.Housing2.Helpers
 {
-   class Consumers
+   public class Consumers
    {
+
+      /// <summary>
+      /// this method consumes the associates from project Felice API
+      /// </summary>
+      /// <returns></returns>
+      public async Task<List<AssociateDto>> ConsumeAssociatesFromAPI()
+      {
+         using (var client = new HttpClient())
+         {
+            // New code:
+            client.BaseAddress = new Uri("http://ec2-54-173-46-251.compute-1.amazonaws.com/workforce-felice-rest/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync("api/associate");
+            List<AssociateDto> assoc = new List<AssociateDto>();
+            if (response.IsSuccessStatusCode)
+            {
+
+
+               string holdingString = await response.Content.ReadAsStringAsync();
+               assoc = JsonConvert.DeserializeObject<List<AssociateDto>>(holdingString);
+            }
+
+            return assoc;
+         }
+      }
    }
 }
