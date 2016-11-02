@@ -88,7 +88,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="Web.Config" />
     <None Include="HousingModel.edmx.diagram">
       <DependentUpon>HousingModel.edmx</DependentUpon>
     </None>
