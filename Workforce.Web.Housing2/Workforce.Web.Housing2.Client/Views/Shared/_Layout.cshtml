@@ -2,64 +2,65 @@
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/carousel.css" rel="stylesheet" />
-    <link href="~/Content/dashboard.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
-    <link href="~/Content/myContent.css" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="icon" />
-    <link href="~/Content/responsive.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="~/Content/carousel.css" rel="stylesheet" />
+  <link href="~/Content/dashboard.css" rel="stylesheet" />
+  <link href="~/Content/style.css" rel="stylesheet" />
+  <link href="~/Content/myContent.css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="icon" />
+  <link href="~/Content/responsive.css" rel="stylesheet" />
 
-    <title>Revature | Housing </title> 
+  <title>Revature | Housing </title>
 
-    <link href="https://revature.com/imgs/favicon_192.png" rel="icon" type="image/x-icon">
-    <script src="https://use.typekit.net/pvo4jdm.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link href="https://revature.com/imgs/favicon_192.png" rel="icon" type="image/x-icon">
+  <script src="https://use.typekit.net/pvo4jdm.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
-    <style type="text/css">
-        .wf-loading {
-            visibility: hidden;
-        }
-    </style>
-    <script src="https://use.fontawesome.com/8d8fa1da46.js"></script>
+  <style type="text/css">
+    .wf-loading {
+      visibility: hidden;
+    }
+  </style>
+  <script src="https://use.fontawesome.com/8d8fa1da46.js"></script>
 
 </head>
 <body>
-    <div class="navbar-wrapper hero-bm">
+  <div class="navbar-wrapper hero-bm">
+    <div class="container">
+      <nav class="navbar navbar-revature navbar-static-top navbar-bg">
         <div class="container">
-            <nav class="navbar navbar-revature navbar-static-top navbar-bg">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <div class="logo"><a href=""><img src="https://revature.com/imgs/logo.png" alt="Revature" /></a> </div>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse rev-menu">
-                        <ul class="nav navbar-nav">
-                            <li><a href="/workforce-felice/Associate/Index/"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
-                            <li><a href="/workforce-grace/"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
-                            <li><a href="/workforce-felice/Login/"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
-                        </ul>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="logo"><a href=""><img src="https://revature.com/imgs/logo.png" alt="Revature" /></a> </div>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse rev-menu">
+            <ul class="nav navbar-nav">
+              <li><a href="/workforce-felice/Associate/Index/"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
+              <li><a href="/workforce-grace/"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
+              <li><a href="/workforce-felice/Login/"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
+            </ul>
 
-                    </div>
-                </div>
-            </nav>
+          </div>
         </div>
+      </nav>
     </div>
-    @RenderBody()
+  </div>
+  @RenderBody()
 
-    <script src="~/Libraries/angular.min.js"></script>
-    <script src="~/Libraries/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/app.js"></script>
-    <script src="~/modules/Complexes/module.js"></script>
+  <script src="~/Libraries/angular.min.js"></script>
+  <script src="~/Libraries/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="~/Scripts/app.js"></script>
+  <script src="~/modules/Complexes/module.js"></script>
+  <script src="~/modules/Complexes/service.js"></script>
 </body>
 </html>

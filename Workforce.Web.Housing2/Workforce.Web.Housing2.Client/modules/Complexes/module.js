@@ -1,11 +1,22 @@
-﻿(function (ga) {
-    'use strict';
+﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
 
-    ga.complex = angular.module('gtComplex', []);
+(function (ga) {
+  'use strict';
 
-    ga.complex.controller('complexController', ['$scope', function ($scope) {
-   
-        $scope.test = 'hi there';
-    }])
+  ga.complex = angular.module('ahComplex', []);
 
-})(window.gtApp);
+  ga.complex.controller('complexController', ['$scope', 'complexGetService',
+  function ($scope, complexGetService) {
+    $scope.currentPage = 1;
+    $scope.numPerPage = 10;
+
+    $scope.get = function () {
+      complexGetService.get(function (response) {
+        var x = $scope.numPerPage;
+        $scope.complexes = response.data;
+        $scope.filteredComplexes = $scope.complexes.slice(0, x);
+      })
+    }
+
+  }]);
+})(window.ahApp);
