@@ -45,11 +45,16 @@
     <Compile Include="Helpers\Consumers.cs" />
     <Compile Include="Helpers\D3jsHelper.cs" />
     <Compile Include="Helpers\LogicHelper.cs" />
+    <Compile Include="Models\Apartment.cs" />
+    <Compile Include="Models\D3AptCapacity.cs" />
+    <Compile Include="Models\D3DateProjection.cs" />
+    <Compile Include="Models\HousingComplex.cs" />
+    <Compile Include="Models\HousingData.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mapper\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
