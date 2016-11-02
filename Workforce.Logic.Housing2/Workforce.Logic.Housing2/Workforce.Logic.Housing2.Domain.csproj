@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Helpers\AssociateHelper.cs" />
     <Compile Include="Helpers\Consumers.cs" />
     <Compile Include="Helpers\D3jsHelper.cs" />
@@ -52,6 +51,14 @@
     <Compile Include="Models\HousingData.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransferModels\ApartmentDto.cs" />
+    <Compile Include="TransferModels\AssociateDto.cs" />
+    <Compile Include="TransferModels\D3Projection.cs" />
+    <Compile Include="TransferModels\GraphAptCapacityDto.cs" />
+    <Compile Include="TransferModels\HousingComplexDto.cs" />
+    <Compile Include="TransferModels\HousingDataDto.cs" />
+    <Compile Include="TransferModels\InsertAssociateDto.cs" />
+    <Compile Include="TransferModels\StatusDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mapper\" />
