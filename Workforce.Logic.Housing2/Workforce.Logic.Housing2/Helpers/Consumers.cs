@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Workforce.Logic.Housing2.TransferModels;
 
 namespace Workforce.Logic.Housing2.Helpers
 {
@@ -27,7 +30,6 @@ namespace Workforce.Logic.Housing2.Helpers
             List<AssociateDto> assoc = new List<AssociateDto>();
             if (response.IsSuccessStatusCode)
             {
-
 
                string holdingString = await response.Content.ReadAsStringAsync();
                assoc = JsonConvert.DeserializeObject<List<AssociateDto>>(holdingString);

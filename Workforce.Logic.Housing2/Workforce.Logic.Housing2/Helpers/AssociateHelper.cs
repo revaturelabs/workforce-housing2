@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Workforce.Logic.Housing2.Helpers;
+using Workforce.Logic.Housing2.TransferModels;
 
 namespace Workforce.Logic.Housing2.Domain.Helpers
 {
