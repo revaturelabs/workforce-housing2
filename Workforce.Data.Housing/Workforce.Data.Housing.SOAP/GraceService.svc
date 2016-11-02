@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Workforce.Data.Housing.Soap.GraceService" CodeBehind="GraceService.svc.cs" %>
