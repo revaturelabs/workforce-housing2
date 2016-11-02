@@ -115,6 +115,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workforce.Logic.Housing2\Workforce.Logic.Housing2.Domain.csproj">
+      <Project>{82111F3B-A67E-4571-BA9B-2FC368F3956F}</Project>
+      <Name>Workforce.Logic.Housing2.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
