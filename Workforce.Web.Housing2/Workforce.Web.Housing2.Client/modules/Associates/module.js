@@ -1,7 +1,7 @@
 ﻿(function (ga) {
     'use strict';
 
-    ga.associate = angular.module('gtAssociate', []);
+    ga.associate = angular.module('ahAssociate', []);
 
     ga.associate.controller('associateController', ['$scope', function ($scope) {
                       
@@ -9,4 +9,4 @@
 
     }]);
 
-})(window.gtApp);
+})(window.ahApp);

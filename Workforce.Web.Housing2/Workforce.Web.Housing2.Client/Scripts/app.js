@@ -7,10 +7,11 @@
       controller: 'complexController',
       templateUrl: 'modules/Complexes/view.html'
     })
-    .otherwise({
-      controller: 'complexController',
-      templateUrl: 'modules/Complexes/view.html'
-    })
+        .when('/rooming', {
+            controller: 'associateController',
+            templateUrl: 'modules/Associates/view.html'
+        })
+    .otherwise({ redirectTo: '/' })
   }]);
 
 })(window.ahApp || (window.ahApp = {}));
