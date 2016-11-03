@@ -44,8 +44,10 @@ namespace Workforce.Logic.Housing2.Domain.Helpers
          {
             return false;
          }
+
          bool passed = false;
          bool passed2 = false;
+
          if (tt.Exists(id => id.AssociateID.Equals(data.AssociateID)))
          {
             passed2 = await logicHelper.UpdateHousingData(data);
@@ -54,11 +56,13 @@ namespace Workforce.Logic.Housing2.Domain.Helpers
          {
             passed2 = await logicHelper.AddHousingData(data);
          }
+         
          //bool passed2 = await logicHelper.AddHousingData(data);
          if (passed2)
          {
             passed = await logicHelper.UpdateApartment(aptDto);
          }
+         
          //bool passed = await logicHelper.UpdateApartment(aptDto);
          //bool passed2 = await logicHelper.AddHousingData(data);
 
@@ -151,10 +155,7 @@ namespace Workforce.Logic.Housing2.Domain.Helpers
             }
 
          }
-
-
          return returnList;
-
       }
 
       public async Task<bool> ChangeAssocToDifferentRoom(InsertAssociateDto associate)
