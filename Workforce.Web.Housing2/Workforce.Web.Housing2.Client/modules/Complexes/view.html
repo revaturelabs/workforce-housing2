@@ -1,1 +1,166 @@
-﻿{{test}}
+﻿<div class="row">
+  <section class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-md-6 col-lg-8">
+      <h1>
+        Apartment Complex
+      </h1>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="row">
+        <section class="col-md-2 col-lg-6">
+          <h1>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-plus"></span> Add a new Complex
+            </button>
+
+          </h1>
+        </section>
+        <!--<section class="col-md-2 col-lg-6">
+            <h1>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#chartModal">
+                    <span class="glyphicon glyphicon-plus"></span> View Chart
+                </button>
+
+            </h1>
+        </section>-->
+      </div>
+    </div>
+
+  </section>
+
+</div>
+<div class="row">
+  <section class="col-md-9 col-lg-9">
+    <hr />
+  </section>
+
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <span data-ng-init="get()"></span>
+    <section class="col-sm-12 col-md-12 col-lg-10">
+      <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="complex in filteredComplexes">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <a href="" style="color:black;" data-ng-click="go(complex, ('/apartment'))"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
+          </div>
+          <div class="panel-body">
+            <p class="list-group-item-text">Address: {{complex.Address}}</p>
+            <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+
+          </div>
+          <div class="panel-footer">
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Complex </button>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
+              <span class="glyphicon glyphicon-trash"></span> Remove Complex
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </section>
+    <div class="row">
+      <section class="col-md-9 col-lg-9">
+        <ul uib-pagination total-items="complexes.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!--Add Complex Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <form name="addForm" action="#" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel">Add a New Apartment Complex</h2>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group" ng-class="{ 'has-error': addForm.Name.$touched && addForm.Name.$invalid }">
+            <label for="ApartmentComplexName">Name of the Apartment Complex?</label>
+            <div>
+              <input type="text" class="form-control" id="complexName" data-ng-model="model.Name" name="Name" placeholder="New Apartment Complex" required>
+
+              <div class="help-block" ng-messages="addForm.Name.$error" ng-if="addForm.Name.$touched">
+                <p ng-message="required">Please input a complex name</p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Address">Apartment Complex Address</label>
+            <div>
+              <input type="text" class="form-control" data-ng-model="model.Address" id="address" name="model.Address" placeholder="Apartment Complex Address" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Contact">Contact Information?</label>
+            <div>
+              <input type="text" class="form-control" data-ng-model="model.PhoneNumber" id="MaxCap" name="model.PhoneNumber" placeholder="Phone #" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="genderSelection">Will this be a Hotel?</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="model.IsHotel" data-ng-model="model.IsHotel" id="optionsRadios1" data-ng-value="true" checked>
+                Yes
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="model.IsHotel" data-ng-model="model.IsHotel" id="optionsRadios1" data-ng-value="false">
+                No
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-ng-click="newComplex()">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Complex Remove modal -->
+
+<div class="modal fade" id="complexModal" tabindex="-1" role="dialog" aria-labelledby="complexModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Let's not be hasty...</h2>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to remove this apartment complex?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-ng-click="removeComplex()">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Let's not be hasty...</h2>
+      </div>
+      <div class="modal-body">
+        <section id='chart'></section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>
