@@ -102,6 +102,9 @@
     <Content Include="Libraries\angular-route.min.js" />
     <Content Include="Libraries\angular.js" />
     <Content Include="Libraries\angular.min.js" />
+    <Content Include="modules\apartment\module.js" />
+    <Content Include="modules\apartment\service.js" />
+    <Content Include="modules\apartment\view.html" />
     <Content Include="modules\Complexes\module.js" />
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
