@@ -109,7 +109,7 @@
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\AptToComplex.js" />
+    <Content Include="Scripts\complexToApt.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
