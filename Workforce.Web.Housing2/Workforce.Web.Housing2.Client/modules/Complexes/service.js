@@ -12,4 +12,21 @@
       }
     }
   }]);
+
+  ga.complex.factory('complexDeleteService', ['$http', function ($http) {
+    var url = '/workforce-grace-rest/api/housingcomplex';
+    return {
+      removeTheComplex: function (data, pass, fail) {
+        $http({
+          method: 'delete',
+          url: url,
+          data: data,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(pass, fail);
+      }
+    }
+  }]);
+
 })(window.ahApp);

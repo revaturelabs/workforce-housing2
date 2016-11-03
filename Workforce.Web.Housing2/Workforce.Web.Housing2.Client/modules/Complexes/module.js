@@ -5,8 +5,8 @@
 
   ga.complex = angular.module('ahComplex', []);
 
-  ga.complex.controller('complexController', ['$scope', 'complexGetService',
-  function ($scope, complexGetService) {
+  ga.complex.controller('complexController', ['$scope', '$location', 'complexGetService', 'complexToAptService',
+  function ($scope, $location, complexGetService, complexToAptService) {
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
 
@@ -17,6 +17,30 @@
         $scope.filteredComplexes = $scope.complexes.slice(0, x);
       })
     }
+
+    $scope.go = function (complex, path) {
+      complexToAptService.set(complex);
+      $location.path(path);
+    }
+
+    $scope.newComplex = function () {
+      complexPostService.addComplex($scope.model, function (result) {
+        $window.location.reload();
+      });
+    };
+
+    $scope.grab = function (data) {
+      complexToAptService.set(data);
+    }
+
+    $scope.removeComplex = function () {
+      var x = complexToAptService.get();
+      complexDeleteService.removeTheComplex(x, function (result) {
+        $window.location.reload();
+      });
+    };
+
+
 
   }]);
 })(window.ahApp);
