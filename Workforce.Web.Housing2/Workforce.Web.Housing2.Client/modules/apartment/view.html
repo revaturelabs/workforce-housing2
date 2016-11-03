@@ -1,10 +1,188 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<div class="row">
+  <section class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-md-6 col-lg-8">
+      <h1>
+        <button type="button" class="btn btn-default btn-lg invisButton" data-ng-click="back()">
+          <span class="glyphicon glyphicon-arrow-left">
+          </span>
+        </button>
+        {{info}}
 
-</body>
-</html>
+      </h1>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="row">
+        <section class="col-sm-1 col-md-1 col-lg-1">
+          <h1>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-plus"></span> Add a new Apartment
+            </button>
+          </h1>
+        </section>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+<div class="row">
+  <section class="col-md-8 col-lg-9">
+    <hr />
+  </section>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <span data-ng-init="get()"></span>
+    <section class="col-sm-12 col-md-12 col-lg-10">
+      <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="apt in filteredApartments">
+
+        <div ng-if="apt.CurrentCapacity === 0">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+            </div>
+            <div class="panel-body">
+              <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+              <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+            </div>
+            <div class="panel-footer">
+              <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
+                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              </button>
+            </div>
+          </div>
+        </div>
+        <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+            </div>
+            <div class="panel-body">
+              <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+              <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+            </div>
+            <div class="panel-footer">
+              <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              </button>
+            </div>
+          </div>
+        </div>
+        <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+            </div>
+            <div class="panel-body">
+              <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+              <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+            </div>
+            <div class="panel-footer">
+              <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+    <div class="row">
+      <section class="col-md-9 col-lg-9">
+        <ul uib-pagination total-items="apts.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <form action="#" method="post" enctype="application/x-www-form-urlencoded">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel">Add a New Apt at {{info}}</h2>
+        </div>
+        <div class="modal-body">
+
+          <!--<div class="form-group">
+              <label for="complexHere">Apartment Complex</label>
+              <div>
+                  <select class="form-control" data-ng-model="model.Hotel">
+                      <option data-ng-repeat="complex in complexes">{{complex.Name}}</option>
+                      <option>Hotel</option>
+                  </select>
+              </div>
+          </div>-->
+          <div class="form-group">
+            <label for="roomNumberHere">Room Number</label>
+            <div>
+              <input type="text" class="form-control" data-ng-model="model.RoomNumber" id="roomNum" name="model.RoomNumber" placeholder="Room Number">
+            </div>
+          </div>
+          <!--<div class="form-group">
+              <label for="currentCapacity">Current Capacity</label>
+              <div>
+                  <input type="number" class="form-control" data-ng-model="model.CurrentCapacity" id="MaxCap" name="model.CurrentCapacity" placeholder="Current Capacity">
+              </div>
+          </div>-->
+          <div class="form-group">
+            <label for="maxCapacity">Max Capacity</label>
+            <div>
+              <input type="number" class="form-control" data-ng-model="model.MaxCapacity" id="MaxCap" name="model.MaxCapacity" placeholder="Max Capacity">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="genderSelection">Will this be a Male or Female Apartment?</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="model.Gender" data-ng-model="model.Gender" id="optionsRadios1" value="Male" checked>
+                Male
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="model.Gender" data-ng-model="model.Gender" id="optionsRadios1" value="Female">
+                Female
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-ng-click="newApartment()">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Apt Remove modal -->
+
+
+<div class="modal fade" id="apartmentModal" tabindex="-1" role="dialog" aria-labelledby="apartmentModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Hold it right there!</h2>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to remove Apartment #: {{removedApt}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-ng-click="removeApartment()">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
