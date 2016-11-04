@@ -1,1 +1,179 @@
-﻿{{test}}
+﻿<div class="row">
+    <section class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-lg-8">
+            <h1>
+                <button type="button" class="btn btn-default btn-lg invisButton" data-ng-click="back()">
+                    <span class="glyphicon glyphicon-arrow-left">
+                    </span>
+                </button>
+                Apt #: {{info}}
+
+            </h1>
+        </div>
+
+
+    </section>
+
+</div>
+
+<div class="row">
+    <section class="col-md-8 col-lg-9">
+        <hr />
+    </section>
+
+</div>
+
+
+<div class="col-sm-2 col-md-2 col-lg-2 traineeSidebar">
+    <h1>Associate</h1>
+    <hr />
+    <span data-ng-init="get()"></span>
+    <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="trainee in filteredTrainees" data-ng-click="grab(trainee)">
+        <div ng-switch on="trainee.Gender">
+            <div ng-switch-when="Female">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
+                    </div>
+                    <div class="panel-body">
+                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
+                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
+                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
+                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="Male">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
+                    </div>
+                    <div class="panel-body">
+                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
+                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
+                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
+                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-default>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
+                    </div>
+                    <div class="panel-body">
+                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
+                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
+                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
+                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <section class="col-sm-12 col-md-12 col-lg-12">
+            <ul uib-pagination total-items="trainees.length" boundary-links="true" max-size="3" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+        </section>
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <span data-ng-init="living()"></span>
+        <section class="col-sm-12 col-md-12 col-lg-10">
+            <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="associate in livingAssoc">
+
+                <div ng-switch on="associate.Gender">
+                    <div ng-switch-when="Female">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                            </div>
+                            <div class="panel-body">
+                                <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
+                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="Male">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                            </div>
+                            <div class="panel-body">
+                                <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
+                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-default>
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                            </div>
+                            <div class="panel-body">
+                                <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
+                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+    </div>
+</div>
+
+<div class="col-sm-2 col-md-2 col-lg-2 traineeSidebarRight">
+    <h1>Associate Information</h1>
+    <hr />
+    <div>
+        <section class="col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <a href="" style="color:black;"> <h3 class="panel-title">{{traineeFirstName}} {{traineeLastName}}</h3> </a>
+                </div>
+                <div class="panel-body">
+                    <p class="list-group-item-text"> {{traineeGender}}</p>
+                    <p class="list-group-item-text">{{traineeEmail}}</p>
+
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-ng-click="moveIn()">
+                        <span class="glyphicon glyphicon-plus"></span> Add to Apartment
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
