@@ -5,11 +5,36 @@
 
   ga.apartment = angular.module('ahApartment', []);
 
-  ga.apartment.controller('apartmentController', ['$scope', 'complexGetService', function ($scope, complexGetService) {
+  ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'aptToRoomService',
+    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, aptToRoomService, aptGetService,
+      aptPostService, roomDeleteService) {
 
-    complexGetService.get(function (response) {
-      $scope.complexes = response.data;
-    });
+    $scope.get = function () {
+      aptGetService.get($scope.getModel, function (response) {
+        var x = $scope.numPerPage;
+        $scope.apts = response.data;
+        $scope.filteredApartments = $scope.apts.slice(0, x);
+      })
+    }
+
+    $scope.go = function (room, path) {
+      aptToRoomService.set(room);
+      $location.path(path);
+    }
+
+    $scope.newApartment = function () {
+      aptPostService.addApt($scope.model, function (result) {
+        $window.location.reload();
+      });
+    };
+
+    $scope.removeApartment = function () {
+      var x = aptToRoomService.get();
+      roomDeleteService.removeApt(x, function (result) {
+        $window.location.reload();
+      });
+    };
+
 
   }]);
 })(window.ahApp);
