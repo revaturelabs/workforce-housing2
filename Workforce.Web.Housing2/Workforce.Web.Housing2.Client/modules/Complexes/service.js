@@ -2,7 +2,7 @@
   'use strict';
 
   ga.complex.factory('complexGetService', ['$http', function ($http) {
-    var url = '/workforce-housing2-rest/api/housingcomplex';
+    var url = '/workforce-housing-rest/api/housingcomplex';
     return {
       get: function (pass, fail) {
         $http({
@@ -14,7 +14,7 @@
   }]);
 
   ga.complex.factory('complexDeleteService', ['$http', function ($http) {
-    var url = '/workforce-grace-rest/api/housingcomplex';
+    var url = '/workforce-housing-rest/api/housingcomplex';
     return {
       removeTheComplex: function (data, pass, fail) {
         $http({
