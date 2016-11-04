@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Workforce.Logic.Housing2.HousingReference;
 using Workforce.Logic.Housing2.TransferModels;
 
 namespace Workforce.Logic.Housing2.Models
@@ -17,7 +18,7 @@ namespace Workforce.Logic.Housing2.Models
       {
          HousingComplex mapper = new HousingComplex();
          List<GraphAptCapacityDto> returnGraph = new List<GraphAptCapacityDto>();
-         foreach (var item in await graceService.GetComplexesAsync())
+         foreach (var item in await houseService.GetComplexesAsync())
          {
             if (item.ActiveBit)
             {
@@ -34,7 +35,7 @@ namespace Workforce.Logic.Housing2.Models
          return returnGraph;
       }
 
-      private readonly GraceServiceClient graceService = new GraceServiceClient();
+      private readonly GraceServiceClient houseService = new GraceServiceClient();
 
       /// <summary>
       /// method to give the max capacity of the given apartment 
@@ -44,7 +45,7 @@ namespace Workforce.Logic.Housing2.Models
       public async Task<int> returnComplexCurCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {
@@ -62,7 +63,7 @@ namespace Workforce.Logic.Housing2.Models
       public async Task<int> returnComplexMaxCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {

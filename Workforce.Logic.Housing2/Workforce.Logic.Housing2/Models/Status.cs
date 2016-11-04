@@ -15,7 +15,7 @@ namespace Workforce.Logic.Housing2.Models
       //Have a method here to validate both the DAO's and DTO's
 
 
-      private readonly GraceServiceClient f = new GraceServiceClient();
+      //private readonly GraceServiceClient f = new GraceServiceClient();
       private readonly MapperConfiguration statusMapper = new MapperConfiguration(m => m.CreateMap<StatusDao, StatusDto>().ReverseMap());
 
 

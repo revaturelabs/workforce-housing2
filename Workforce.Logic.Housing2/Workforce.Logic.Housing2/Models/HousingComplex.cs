@@ -100,7 +100,7 @@ namespace Workforce.Logic.Housing2.Models
       }
 
 
-      private readonly GraceServiceClient graceService = new GraceServiceClient();
+      private readonly GraceServiceClient houseService = new GraceServiceClient();
 
 
       /// <summary>
@@ -111,7 +111,7 @@ namespace Workforce.Logic.Housing2.Models
       public async Task<int> returnComplexCurCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {
@@ -129,7 +129,7 @@ namespace Workforce.Logic.Housing2.Models
       public async Task<int> returnComplexMaxCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {

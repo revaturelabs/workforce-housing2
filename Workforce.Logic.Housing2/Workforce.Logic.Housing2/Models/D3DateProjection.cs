@@ -11,7 +11,7 @@ namespace Workforce.Logic.Housing2.Models
 {
    public class D3DateProjection
    {
-      private readonly GraceServiceClient graceService = new GraceServiceClient();
+      private readonly GraceServiceClient houseService = new GraceServiceClient();
       private readonly LogicHelper logicHelper = new LogicHelper();
 
       private readonly Consumers consumerHelper = new Consumers();
@@ -24,7 +24,7 @@ namespace Workforce.Logic.Housing2.Models
       public async Task<List<D3Projection>> getNewModel(DateTime projectionDate)
       {
          int totalMaxCapacity = 0;
-         int totalCurCapacity = 2;
+         //int totalCurCapacity = 2;
 
          foreach (var item in await logicHelper.HousingComplexsGetActive())
          {
@@ -100,7 +100,7 @@ namespace Workforce.Logic.Housing2.Models
       private async Task<int> returnComplexCurCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {
@@ -118,7 +118,7 @@ namespace Workforce.Logic.Housing2.Models
       private async Task<int> returnComplexMaxCap(HousingComplexDto hotApt)
       {
          int Total = 0;
-         foreach (var item in await graceService.GetApartmentsAsync())
+         foreach (var item in await houseService.GetApartmentsAsync())
          {
             if (item.ActiveBit && (item.HotelID == hotApt.HotelID))
             {

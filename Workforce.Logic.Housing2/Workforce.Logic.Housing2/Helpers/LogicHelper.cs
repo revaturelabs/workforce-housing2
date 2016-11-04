@@ -11,7 +11,7 @@ namespace Workforce.Logic.Housing2.Helpers
 {
    public class LogicHelper
    {
-      private readonly GraceServiceClient graceService = new GraceServiceClient();
+      private readonly GraceServiceClient houseService = new GraceServiceClient();
 
       #region GetAlls()
 
@@ -24,7 +24,7 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             Apartment apartmentVnM = new Apartment();
-            var daoApartments = await graceService.GetApartmentsAsync();
+            var daoApartments = await houseService.GetApartmentsAsync();
             var dtoApartments = apartmentVnM.getDtoList(daoApartments);
             //STILL NEED TO VALIDATE
             return dtoApartments;
@@ -43,8 +43,8 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             Apartment apartmentVnM = new Apartment();
-            //var daoApartments = await graceService.GetApartmentsAsync();
-            var dtoApartments = apartmentVnM.getActiveDtoList(await graceService.GetApartmentsAsync());
+            //var daoApartments = await houseService.GetApartmentsAsync();
+            var dtoApartments = apartmentVnM.getActiveDtoList(await houseService.GetApartmentsAsync());
             //STILL NEED TO VALIDATE
             return dtoApartments;
          }
@@ -62,7 +62,7 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             HousingComplex housingComplexVnM = new HousingComplex();
-            var daoComplexes = await graceService.GetComplexesAsync();
+            var daoComplexes = await houseService.GetComplexesAsync();
             var dtoComplexes = await housingComplexVnM.getDtoList(daoComplexes);
 
             //STILL NEED TO VALIDATE
@@ -83,7 +83,7 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             HousingComplex housingComplexVnM = new HousingComplex();
-            var dtoComplexes = await housingComplexVnM.getActiveDtoList(await graceService.GetComplexesAsync());
+            var dtoComplexes = await housingComplexVnM.getActiveDtoList(await houseService.GetComplexesAsync());
 
             //STILL NEED TO VALIDATE
             return dtoComplexes;
@@ -105,7 +105,7 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             HousingData housingDataVnM = new HousingData();
-            var daoDatas = await graceService.GetHousingDataAsync();
+            var daoDatas = await houseService.GetHousingDataAsync();
             var dtoDatas = housingDataVnM.getDtoList(daoDatas);
 
             //STILL NEED TO VALIDATE
@@ -126,7 +126,7 @@ namespace Workforce.Logic.Housing2.Helpers
          try
          {
             Status statusVnM = new Status();
-            var daoStatuses = await graceService.GetStatusesAsync();
+            var daoStatuses = await houseService.GetStatusesAsync();
             var dtoStatuses = statusVnM.getDtoList(daoStatuses);
 
             //STILL NEED TO VALIDATE
@@ -153,7 +153,7 @@ namespace Workforce.Logic.Housing2.Helpers
          //validate the incoming DTO first before converting into DAO
          //STILL NEED TO VALIDATE
 
-         return await graceService.UpdateApartmentAsync(apartmentVnM.MapToDao(fixApt));
+         return await houseService.UpdateApartmentAsync(apartmentVnM.MapToDao(fixApt));
       }
       /// <summary>
       /// this method updates the HousingComplexDto
@@ -167,7 +167,7 @@ namespace Workforce.Logic.Housing2.Helpers
          //validate the incoming DTO first before converting into DAO
          //STILL NEED TO VALIDATE
 
-         return await graceService.UpdateHousingComplexAsync(housingComplexVnM.MapToDao(fixComplex));
+         return await houseService.UpdateHousingComplexAsync(housingComplexVnM.MapToDao(fixComplex));
       }
       /// <summary>
       /// this method updates the StatusDto
@@ -178,7 +178,7 @@ namespace Workforce.Logic.Housing2.Helpers
       {
          Status statusVnM = new Status();
 
-         return await graceService.UpdateStatusAsync(statusVnM.MapToDao(fixStatus));
+         return await houseService.UpdateStatusAsync(statusVnM.MapToDao(fixStatus));
       }
       /// <summary>
       /// This method updates the HousingDataDto
@@ -189,7 +189,7 @@ namespace Workforce.Logic.Housing2.Helpers
       {
          HousingData dataVnM = new HousingData();
 
-         return await graceService.UpdateHousingDataAsync(dataVnM.MapToDao(fixData));
+         return await houseService.UpdateHousingDataAsync(dataVnM.MapToDao(fixData));
       }
       #endregion
 
@@ -199,7 +199,7 @@ namespace Workforce.Logic.Housing2.Helpers
 
       /// <summary>
       /// this method inserts a new apartment by calling on the soap service. 
-      /// The "graceService.insert" returns a bool value so we just return 
+      /// The "houseService.insert" returns a bool value so we just return 
       /// that since it depends on its pass or fail
       /// </summary>
       /// <param name="newApt"></param>
@@ -213,7 +213,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.InsertApartmentAsync(apartmentVnM.MapToDao(newApt));
+            return await houseService.InsertApartmentAsync(apartmentVnM.MapToDao(newApt));
 
          }
          catch (Exception)
@@ -223,7 +223,7 @@ namespace Workforce.Logic.Housing2.Helpers
       }
       /// <summary>
       /// this method inserts a new complex by calling on the soap service. 
-      /// The "graceService.insert" returns a bool value so we just return 
+      /// The "houseService.insert" returns a bool value so we just return 
       /// that since it depends on its pass or fail
       /// </summary>
       /// <param name="newComplex"></param>
@@ -237,7 +237,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.InsertHousingComplexAsync(housingComplexVnM.MapToDao(newComplex));
+            return await houseService.InsertHousingComplexAsync(housingComplexVnM.MapToDao(newComplex));
          }
          catch (Exception)
          {
@@ -246,7 +246,7 @@ namespace Workforce.Logic.Housing2.Helpers
       }
       /// <summary>
       /// this method inserts a new housingData by calling on the soap service. 
-      /// The "graceService.insert" returns a bool value so we just return 
+      /// The "houseService.insert" returns a bool value so we just return 
       /// that since it depends on its pass or fail
       /// </summary>
       /// <param name="newData"></param>
@@ -260,7 +260,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.InsertHousingDataAsync(housingDataVnM.MapToDao(newData));
+            return await houseService.InsertHousingDataAsync(housingDataVnM.MapToDao(newData));
          }
          catch (Exception)
          {
@@ -269,7 +269,7 @@ namespace Workforce.Logic.Housing2.Helpers
       }
       /// <summary>
       /// this method inserts a new status by calling on the soap service. 
-      /// The "graceService.insert" returns a bool value so we just return 
+      /// The "houseService.insert" returns a bool value so we just return 
       /// that since it depends on its pass or fail
       /// </summary>
       /// <param name="newStatus"></param>
@@ -283,7 +283,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.InsertStatusAsync(statusVnM.MapToDao(newStatus));
+            return await houseService.InsertStatusAsync(statusVnM.MapToDao(newStatus));
          }
          catch (Exception)
          {
@@ -310,7 +310,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.DeleteApartmentAsync(ApartmentVnM.MapToDao(oldApartment));
+            return await houseService.DeleteApartmentAsync(ApartmentVnM.MapToDao(oldApartment));
          }
          catch (Exception)
          {
@@ -331,7 +331,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.DeleteHousingComplexAsync(housingComplexVnM.MapToDao(oldComplex));
+            return await houseService.DeleteHousingComplexAsync(housingComplexVnM.MapToDao(oldComplex));
          }
          catch (Exception)
          {
@@ -353,7 +353,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //STILL NEED TO VALIDATE
 
 
-            return await graceService.DeleteHousingDataAsync(housingDataVnM.MapToDao(oldData));
+            return await houseService.DeleteHousingDataAsync(housingDataVnM.MapToDao(oldData));
          }
          catch (Exception)
          {
@@ -374,7 +374,7 @@ namespace Workforce.Logic.Housing2.Helpers
             //validate the incoming DTO first before converting into DAO
             //STILL NEED TO VALIDATE
 
-            return await graceService.DeleteStatusAsync(statusVnM.MapToDao(oldStatus));
+            return await houseService.DeleteStatusAsync(statusVnM.MapToDao(oldStatus));
          }
          catch (Exception)
          {
