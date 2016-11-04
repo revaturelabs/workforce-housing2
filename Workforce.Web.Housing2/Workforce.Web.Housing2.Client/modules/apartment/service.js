@@ -4,7 +4,7 @@
   'use strict';
 
   ga.apartment.factory('complexGetService', ['$http', function ($http) {
-    var url = '/workforce-grace-rest/api/housingcomplex';
+    var url = '/workforce-housing-rest/api/housingcomplex';
     return {
       get: function (pass, fail) {
         $http({
