@@ -1,22 +1,22 @@
 ﻿(function (ga) {
-  'use strict';
+    'use strict';
 
-  ga.angular.factory('complexToAptService', [function () {
+    ga.angular.factory('complexToAptService', [function () {
 
 
-    function set(data) {
-      sessionStorage.setItem('aComplex', JSON.stringify(data)); //stringified.  needs to be parse       
-    }
+        function set(data) {
+            sessionStorage.setItem('aComplex', JSON.stringify(data)); //stringified.  needs to be parse       
+        }
 
-    function get() {
-      var x = JSON.parse(sessionStorage.getItem('aComplex')); //using sessionstorage
-      return x;
-    }
+        function get() {
+            var x = JSON.parse(sessionStorage.getItem('aComplex')); //using sessionstorage
+            return x;
+        }
 
-    return {
+        return {
 
-      set: set,
-      get: get
-    };
-  }]);
+            set: set,
+            get: get
+        };
+    }]);
 })(window.ahApp);
