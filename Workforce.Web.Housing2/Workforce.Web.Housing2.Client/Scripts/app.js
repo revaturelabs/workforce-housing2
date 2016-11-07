@@ -1,15 +1,21 @@
-﻿
-(function (ga) {
-    'use strict';
+﻿(function (ga) {
+  'use strict';
 
-    ga.angular = angular.module('gtApt', ['ngRoute', 'gtComplex']);
-    ga.angular.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {
-            controller: 'complexController',
-            templateUrl: 'modules/complexes/view.html'
+  ga.angular = angular.module('ahApp', ['ngRoute', 'ahComplex', 'ahApartment', 'ahAssociate']);
+  ga.angular.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/', {
+      controller: 'complexController',
+      templateUrl: 'modules/Complexes/view.html'
+    })
+        .when('/apartments', {
+            controller: 'apartmentController',
+            templateUrl: 'modules/apartment/view.html'
         })
-            
-        .otherwise({ redirectTo: '/' })
-    }]);
+        .when('/rooming', {
+            controller: 'associateController',
+            templateUrl: 'modules/Associates/view.html'
+        })
+    .otherwise({ redirectTo: '/' })
+  }]);
 
-})(window.gtApp || (window.gtApp = {}));
+})(window.ahApp || (window.ahApp = {}));
