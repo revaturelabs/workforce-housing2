@@ -67,17 +67,17 @@ function chart(data) {
     var y = d3.scale.linear()
         .range([height, 0]);
 
-    //two colors of the graphs		
+    //two colors of the graphs
     var color = d3.scale.ordinal()
-        .range(["#21b200", "#dd2020"]);
+        .range(['#21b200', '#dd2020']);
 
     var xAxis = d3.svg.axis()
         .scale(x0)
-        .orient("bottom");
+        .orient('bottom');
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left");
+        .orient('left');
     //.tickFormat(d3.format(".2s"));
 
     var tip = d3.tip()
