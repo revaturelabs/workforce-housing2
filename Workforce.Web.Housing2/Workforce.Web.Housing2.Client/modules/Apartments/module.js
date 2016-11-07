@@ -3,11 +3,19 @@
 (function (ga) {
   'use strict';
 
-  ga.apartment = angular.module('ahApartment', []);
+  ga.apartment = angular.module('ahApartment', ['ui-boostrap']);
 
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'aptToRoomService',
     'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, aptToRoomService, aptGetService,
       aptPostService, roomDeleteService) {
+
+    $scope.filteredApartments = [];
+    $scope.currentPage = 1;
+    $scope.numPerPage = 10;
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    }
 
     $scope.get = function () {
       aptGetService.get($scope.getModel, function (response) {
@@ -16,6 +24,12 @@
         $scope.filteredApartments = $scope.apts.slice(0, x);
       })
     }
+    $scope.pageChanged = function () {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+        $scope.filteredApartments = $scope.apts.slice(begin, end);
+    };
 
     $scope.go = function (room, path) {
       aptToRoomService.set(room);
