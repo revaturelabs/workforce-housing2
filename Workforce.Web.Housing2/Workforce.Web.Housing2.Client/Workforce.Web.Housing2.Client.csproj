@@ -113,7 +113,9 @@
     <Content Include="modules\Complexes\view.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\AptToRoom.js" />
+    <Content Include="Scripts\associateData.js" />
     <Content Include="Scripts\ComplexToApt.js" />
+    <Content Include="Scripts\d3Chart.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

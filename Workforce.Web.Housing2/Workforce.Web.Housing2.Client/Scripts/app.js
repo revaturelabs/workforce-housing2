@@ -9,7 +9,7 @@
     })
         .when('/apartments', {
             controller: 'apartmentController',
-            templateUrl: 'modules/apartment/view.html'
+            templateUrl: 'modules/Apartments/view.html'
         })
         .when('/rooming', {
             controller: 'associateController',

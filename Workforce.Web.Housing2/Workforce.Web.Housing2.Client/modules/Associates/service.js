@@ -3,7 +3,7 @@
     'use strict';
 
     ga.associate.factory('traineeGetService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/associate/';
+        var url = '/workforce-housing-rest/api/associate/';
         return {
             get: function (data, pass, fail) {
                 $http({
@@ -16,7 +16,7 @@
     }]);
 
     ga.associate.factory('associateByAptService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/associate/';
+        var url = '/workforce-housing-rest/api/associate/';
         return {
             get: function (data, pass, fail) {
                 $http({
@@ -29,7 +29,7 @@
     }]);
 
     ga.associate.factory('associatePostService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/associate/';
+        var url = '/workforce-housing-rest/api/associate/';
         return {
             addAssoc: function (info, pass, fail) {
                 $http({
