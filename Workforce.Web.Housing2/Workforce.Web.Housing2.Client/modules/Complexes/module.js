@@ -3,12 +3,23 @@
 (function (ga) {
   'use strict';
 
-  ga.complex = angular.module('ahComplex', []);
+  ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
 
   ga.complex.controller('complexController', ['$scope', '$location', 'complexGetService', 'complexToAptService',
   function ($scope, $location, complexGetService, complexToAptService) {
+
+    $scope.filteredComplexes = [];
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    }
+    $scope.pageChanged = function () {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+        $scope.filteredComplexes = $scope.complexes.slice(begin, end);
+    };
 
     $scope.get = function () {
       complexGetService.get(function (response) {
@@ -22,6 +33,13 @@
       complexToAptService.set(complex);
       $location.path(path);
     }
+
+    $scope.model = {
+        Name: null,
+        Address: null,
+        IsHotel: null,
+        PhoneNumber: null
+    };
 
     $scope.newComplex = function () {
       complexPostService.addComplex($scope.model, function (result) {
