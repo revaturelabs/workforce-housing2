@@ -1,7 +1,7 @@
 ﻿(function (ga) {
   'use strict';
 
-  ga.angular = angular.module('ahApp', ['ngRoute', 'ahComplex', 'ahApartment', 'ahAssociate']);
+  ga.angular = angular.module('ahApp', ['ngRoute', 'ngMessages', 'ahComplex', 'ahApartment', 'ahAssociate']);
   ga.angular.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
       controller: 'complexController',
