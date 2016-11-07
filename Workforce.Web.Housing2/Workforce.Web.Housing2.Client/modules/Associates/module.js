@@ -1,7 +1,7 @@
 ﻿(function (ga) {
     'use strict';
 
-    ga.associate = angular.module('ahAssociate', []);
+    ga.associate = angular.module('ahAssociate', ['ui.bootstrap']);
 
     ga.associate.controller('associateController', ['$scope', function ($scope) {
                       

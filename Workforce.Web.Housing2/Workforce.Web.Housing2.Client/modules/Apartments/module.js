@@ -3,7 +3,7 @@
 (function (ga) {
   'use strict';
 
-  ga.apartment = angular.module('ahApartment', ['ui-boostrap']);
+  ga.apartment = angular.module('ahApartment', ['ui.bootstrap']);
 
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'aptToRoomService',
     'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, aptToRoomService, aptGetService,
