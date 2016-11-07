@@ -23,18 +23,11 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>  List<ApartmentDto> apartments  </returns>
     public async Task<List<ApartmentDto>> ApartmentsGetAll()
     {
-      try
-      {
         Apartment apartmentVnM = new Apartment();
         var daoApartments = await graceService.GetApartmentsAsync();
         var dtoApartments = apartmentVnM.getDtoList(daoApartments);
         //STILL NEED TO VALIDATE
         return dtoApartments;
-      }
-      catch (Exception)
-      {
-        return null;
-      }
     }
     /// <summary>
     /// this method gets all the active apartments
@@ -42,18 +35,11 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns></returns>
     public async Task<List<ApartmentDto>> ApartmentsGetActvie()
     {
-      try
-      {
         Apartment apartmentVnM = new Apartment();
         //var daoApartments = await graceService.GetApartmentsAsync();
         var dtoApartments = apartmentVnM.getActiveDtoList(await graceService.GetApartmentsAsync());
         //STILL NEED TO VALIDATE
         return dtoApartments;
-      }
-      catch (Exception)
-      {
-        return null;
-      }
     }
     /// <summary>
     /// This method calls the soap service and awaits on the get
@@ -61,20 +47,13 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns> List<HousingComplexDto> </returns>
     public async Task<List<HousingComplexDto>> HousingComplexsGetAll()
     {
-      try
-      {
+
         HousingComplex housingComplexVnM = new HousingComplex();
         var daoComplexes = await graceService.GetComplexesAsync();
         var dtoComplexes = await housingComplexVnM.getDtoList(daoComplexes);
 
         //STILL NEED TO VALIDATE
         return dtoComplexes;
-
-      }
-      catch (Exception)
-      {
-        return null;
-      }
     }
     /// <summary>
     /// method to get the active housingcomplexes
@@ -82,19 +61,13 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns></returns>
     public async Task<List<HousingComplexDto>> HousingComplexsGetActive()
     {
-      try
-      {
+
         HousingComplex housingComplexVnM = new HousingComplex();
         var dtoComplexes =await  housingComplexVnM.getActiveDtoList(await graceService.GetComplexesAsync()); 
 
         //STILL NEED TO VALIDATE
         return dtoComplexes;
 
-      }
-      catch (Exception)
-      {
-        return null;
-      }
     }
     
 
@@ -104,19 +77,13 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>  List<HousingDataDto> </returns>
     public async Task<List<HousingDataDto>> HousingDataGetAll()
     {
-      try
-      {
+
         HousingData housingDataVnM = new HousingData();
         var daoDatas = await graceService.GetHousingDataAsync();
         var dtoDatas = housingDataVnM.getDtoList(daoDatas);
 
         //STILL NEED TO VALIDATE
         return dtoDatas;
-      }
-      catch (Exception)
-      {
-        return null;
-      }
     }
 
     /// <summary>
@@ -125,19 +92,15 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns> List<StatusDto> </returns>
     public async Task<List<StatusDto>> StatusesGetAll()
     {
-      try
-      {
+      
         Status statusVnM = new Status();
         var daoStatuses = await graceService.GetStatusesAsync();
         var dtoStatuses = statusVnM.getDtoList(daoStatuses);
 
         //STILL NEED TO VALIDATE
         return dtoStatuses;
-      }
-      catch (Exception)
-      {
-        return null;
-      }
+ 
+
     }
 
     #endregion
@@ -305,19 +268,15 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteApartment(ApartmentDto oldApartment)
     {
-      try
-      {
+     
         Apartment ApartmentVnM = new Apartment();
 
         //validate the incoming DTO first before converting into DAO
         //STILL NEED TO VALIDATE
 
         return await graceService.DeleteApartmentAsync(ApartmentVnM.MapToDao(oldApartment));
-      }
-      catch (Exception)
-      {
-        return false;
-      }
+      
+
     }
     /// <summary>
     /// This method recieves an HousingComlexDto model that we expect to delete based off of the primary key
@@ -325,20 +284,15 @@ namespace Workforce.Logic.Domain.Helpers
     /// <param name="oldComplex"></param>
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteComplex(HousingComplexDto oldComplex)
-    {
-      try
-      {
+    { 
+
         HousingComplex housingComplexVnM = new HousingComplex();
 
         //validate the incoming DTO first before converting into DAO
         //STILL NEED TO VALIDATE
 
         return await graceService.DeleteHousingComplexAsync(housingComplexVnM.MapToDao(oldComplex));
-      }
-      catch (Exception)
-      {
-        return false;
-      }
+
     }
     /// <summary>
     /// This method recieves an HousingDataDto model that we expect to delete based off of the primary key
@@ -347,8 +301,7 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteHousingData(HousingDataDto oldData)
     {
-      try
-      {
+
         HousingData housingDataVnM = new HousingData();
 
         //validate the incoming DTO first before converting into DAO
@@ -356,11 +309,7 @@ namespace Workforce.Logic.Domain.Helpers
 
 
         return await graceService.DeleteHousingDataAsync(housingDataVnM.MapToDao(oldData));
-      }
-      catch (Exception)
-      {
-        return false;
-      }
+      
     }
     /// <summary>
     /// This method recieves an StatusDto model that we expect to delete based off of the primary key
@@ -369,19 +318,14 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteStatus(StatusDto oldStatus)
     {
-      try
-      {
+
         Status statusVnM = new Status();
 
         //validate the incoming DTO first before converting into DAO
         //STILL NEED TO VALIDATE
 
         return await graceService.DeleteStatusAsync(statusVnM.MapToDao(oldStatus));
-      }
-      catch (Exception)
-      {
-        return false;
-      }
+  
     }
 
     #endregion

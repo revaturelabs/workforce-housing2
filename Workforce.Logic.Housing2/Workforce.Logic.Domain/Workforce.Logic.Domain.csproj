@@ -69,8 +69,24 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,12 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\AssociateHelper.cs" />
-    <Compile Include="Helpers\Class1.cs" />
     <Compile Include="Helpers\Consumers.cs" />
     <Compile Include="Helpers\D3jsHelper.cs" />
     <Compile Include="Helpers\LogicHelper.cs" />
     <Compile Include="Models\Apartment.cs" />
-    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\D3AptCapacity.cs" />
     <Compile Include="Models\D3DateProjection.cs" />
     <Compile Include="Models\HousingComplex.cs" />
@@ -116,14 +130,14 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Service References\HousingService\GraceService.wsdl" />
-    <None Include="Service References\HousingService\GraceService.xsd">
+    <None Include="Service References\HousingService\GraceService1.wsdl" />
+    <None Include="Service References\HousingService\GraceService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\HousingService\GraceService1.xsd">
+    <None Include="Service References\HousingService\GraceService31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\HousingService\GraceService2.xsd">
+    <None Include="Service References\HousingService\GraceService32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\HousingService\Workforce.Logic.Domain.HousingService.ApartmentDao.datasource">
@@ -143,9 +157,6 @@
     <WCFMetadataStorage Include="Service References\HousingService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HousingService\GraceService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\HousingService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +168,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HousingService\GraceService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
