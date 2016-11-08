@@ -5,8 +5,8 @@
 
   ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
 
-  ga.complex.controller('complexController', ['$scope', '$location', 'complexGetService', 'complexToAptService',
-  function ($scope, $location, complexGetService, complexToAptService) {
+  ga.complex.controller('complexController', ['$scope', '$location', '$window', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
+  function ($scope, $location, $window, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
     $scope.filteredComplexes = [];
     $scope.currentPage = 1;
