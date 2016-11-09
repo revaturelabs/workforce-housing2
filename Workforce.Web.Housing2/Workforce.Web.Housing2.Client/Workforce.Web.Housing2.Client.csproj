@@ -94,7 +94,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\carousel.css" />
-    <Content Include="Content\d3Content.css" />
+    <Content Include="Content\d3AptCap.css" />
+    <Content Include="Content\d3projections.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\myContent.css" />
     <Content Include="Content\responsive.css" />
@@ -113,9 +114,13 @@
     <Content Include="modules\Associates\module.js" />
     <Content Include="modules\Associates\service.js" />
     <Content Include="modules\Associates\view.html" />
+    <Content Include="modules\Capacity\module.js" />
+    <Content Include="modules\Capacity\view.html" />
     <Content Include="modules\Complexes\module.js" />
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
+    <Content Include="modules\Projections\module.js" />
+    <Content Include="modules\Projections\view.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\AptToRoom.js" />
     <Content Include="Scripts\associateData.js" />
