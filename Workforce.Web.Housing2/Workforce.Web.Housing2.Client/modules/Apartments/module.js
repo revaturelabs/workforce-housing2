@@ -3,11 +3,29 @@
 (function (ga) {
   'use strict';
 
-  ga.apartment = angular.module('ahApartment', []);
+  ga.apartment = angular.module('ahApartment', ['ui.bootstrap']);
 
-  ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'aptToRoomService',
-    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, aptToRoomService, aptGetService,
+  ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'complexToAptService', 'aptToRoomService',
+    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, complexToAptService, aptToRoomService, aptGetService,
       aptPostService, roomDeleteService) {
+
+    $scope.filteredApartments = [];
+    $scope.currentPage = 1;
+    $scope.numPerPage = 10;
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    }
+
+    complexGetService.get(function (response) {
+        $scope.complexes = response.data;
+
+    });
+
+    var y = complexToAptService.get();
+    $scope.getModel = {
+        HotelID: y.HotelID
+    }
 
     $scope.get = function () {
       aptGetService.get($scope.getModel, function (response) {
@@ -17,16 +35,41 @@
       })
     }
 
+    $scope.pageChanged = function () {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+        $scope.filteredApartments = $scope.apts.slice(begin, end);
+    };
+
+    $scope.info = complexToAptService.get().Name;
+
     $scope.go = function (room, path) {
       aptToRoomService.set(room);
       $location.path(path);
     }
+
+    $scope.back = function () {
+        $window.location.href = '#/';
+    }
+
+    $scope.model = {
+        HotelID: complexToAptService.get().HotelID,
+        RoomNumber: null,
+        MaxCapacity: null,
+        Gender: null
+    };
 
     $scope.newApartment = function () {
       aptPostService.addApt($scope.model, function (result) {
         $window.location.reload();
       });
     };
+
+    $scope.grab = function (data) {
+        aptToRoomService.set(data);
+        $scope.removedApt = aptToRoomService.get().RoomNumber
+    }
 
     $scope.removeApartment = function () {
       var x = aptToRoomService.get();
