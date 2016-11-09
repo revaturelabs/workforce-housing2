@@ -116,6 +116,12 @@
     <Content Include="modules\Complexes\module.js" />
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
+    <Content Include="modules\Login\module.js" />
+    <Content Include="modules\Login\service.js" />
+    <Content Include="modules\Login\view.html" />
+    <Content Include="modules\Register\module.js" />
+    <Content Include="modules\Register\service.js" />
+    <Content Include="modules\Register\view.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\AptToRoom.js" />
     <Content Include="Scripts\associateData.js" />
