@@ -11,21 +11,13 @@
     <label>Gender:</label><br />
     <input type="radio" name="gender" data-ng-model="male"/>Male
     <input type="radio" name="gender" data-ng-model="female">Female
-    <input type="radio" name="gender" data-ng-model="other" />Other
+    <input type="radio" name="gender" data-ng-model="notSpec" />Not Specified
   </div>
   <div class="form-group">
     <label>Email:</label>
     <input class="form-control" type="email" data-ng-model="uEmail" required/>
   </div>
-  <div class="form-group">
-    <label>Password:</label>
-    <input class="form-control" type="password" data-ng-model="pass" required/>
-  </div>
-  <div class="form-group">
-    <label>Confirm Password:</label>
-    <input class="form-control" type="password" data-ng-model="confpass" required/>
-  </div>
-  <button data-ng-click="register(fname, lname, uEmail, male, female, other, pass, confpass)"
+  <button data-ng-click="register(fname, lname, uEmail, male, female, notSpec)"
           data-ng-disabled="register.$invalid"
           class="orange-btn btn-primary">Register</button>
 </form>
