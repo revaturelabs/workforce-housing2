@@ -14,7 +14,7 @@
     }]);
 
     ga.complex.factory('complexPostService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/housingcomplex';
+        var url = '/workforce-housing-rest/api/housingcomplex';
         return {
             addComplex: function (info, pass, fail) {
                 $http({
@@ -27,7 +27,7 @@
     }]);
 
     ga.complex.factory('complexEditService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/housingcomplex';
+        var url = '/workforce-housing-rest/api/housingcomplex';
         return {
             editComplex: function (info, pass, fail) {
                 $http({

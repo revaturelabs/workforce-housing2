@@ -108,7 +108,7 @@
             };
             associateDeleteService.removeAssoc($scope.deleteModel, function (result) {
                 aptToRoomService.set(y);
-                //$window.location.reload();
+                $window.location.reload();
             });
         }
 

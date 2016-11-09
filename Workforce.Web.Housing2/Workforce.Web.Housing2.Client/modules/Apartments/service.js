@@ -1,5 +1,4 @@
-﻿
-(function (ga) {
+﻿(function (ga) {
     'use strict';
 
     ga.apartment.factory('aptGetService', ['$http', function ($http) {

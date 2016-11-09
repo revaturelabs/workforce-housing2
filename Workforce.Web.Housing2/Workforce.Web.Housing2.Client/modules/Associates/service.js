@@ -1,5 +1,4 @@
-﻿
-(function (ga) {
+﻿(function (ga) {
     'use strict';
 
     ga.associate.factory('traineeGetService', ['$http', function ($http) {
