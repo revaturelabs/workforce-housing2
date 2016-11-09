@@ -1,5 +1,4 @@
-﻿
-(function (ga) {
+﻿(function (ga) {
     'use strict';
 
     ga.associate.factory('traineeGetService', ['$http', function ($http) {
@@ -42,7 +41,7 @@
     }]);
 
     ga.associate.factory('associateDeleteService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/associate/';
+        var url = '/workforce-housing-rest/api/associate/';
         return {
             removeAssoc: function (info, pass, fail) {
                 $http({

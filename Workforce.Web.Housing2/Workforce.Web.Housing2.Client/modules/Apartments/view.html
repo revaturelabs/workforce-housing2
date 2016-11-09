@@ -42,7 +42,7 @@
         <div ng-if="apt.CurrentCapacity === 0">
           <div class="panel panel-success">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
@@ -59,7 +59,7 @@
         <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
@@ -76,7 +76,7 @@
         <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
           <div class="panel panel-warning">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/trainees'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>

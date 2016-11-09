@@ -54,13 +54,12 @@ namespace Workforce.Logic.Domain.Helpers
       {
         passed2 = await logicHelper.AddHousingData(data);
       }
-      //bool passed2 = await logicHelper.AddHousingData(data);
+      
       if (passed2)
       {
         passed = await logicHelper.UpdateApartment(aptDto);
       }
-      //bool passed = await logicHelper.UpdateApartment(aptDto);
-      //bool passed2 = await logicHelper.AddHousingData(data);
+      
 
       return (passed && passed2);
     }
@@ -90,10 +89,8 @@ namespace Workforce.Logic.Domain.Helpers
         return false;
       }
 
-      data.RoomID = null;
-
       bool passed = await logicHelper.UpdateApartment(aptDto);
-     // bool passed2 = await logicHelper.UpdateHousingData(data);
+
       bool passed3 = await logicHelper.UpdateHousingData(data);
 
       return (passed &&  passed3);
