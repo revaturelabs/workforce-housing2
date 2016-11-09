@@ -53,6 +53,13 @@
         $window.location.href = '#/';
     }
 
+    $scope.model = {
+        HotelID: complexToAptService.get().HotelID,
+        RoomNumber: null,
+        MaxCapacity: null,
+        Gender: null
+    };
+
     $scope.newApartment = function () {
       aptPostService.addApt($scope.model, function (result) {
         $window.location.reload();

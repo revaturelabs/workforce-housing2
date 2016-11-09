@@ -42,7 +42,7 @@
     }]);
 
     ga.associate.factory('associateDeleteService', ['$http', function ($http) {
-        var url = '/workforce-grace-rest/api/associate/';
+        var url = '/workforce-housing-rest/api/associate/';
         return {
             removeAssoc: function (info, pass, fail) {
                 $http({
