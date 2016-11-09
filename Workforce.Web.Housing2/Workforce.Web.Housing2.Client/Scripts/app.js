@@ -1,7 +1,7 @@
 ﻿(function (ga) {
   'use strict';
 
-  ga.angular = angular.module('ahApp', ['ngRoute', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin']);
+  ga.angular = angular.module('ahApp', ['ngRoute', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin', 'ahRegister']);
   ga.angular.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
       controller: 'complexController',
@@ -18,6 +18,10 @@
       .when('/login', {
         controller: 'loginController',
         templateUrl: 'modules/Login/view.html'
+      })
+      .when('/register', {
+        controller: 'registerController',
+        templateUrl: 'modules/Register/view.html'
       })
     .otherwise({ redirectTo: '/' })
   }]);
