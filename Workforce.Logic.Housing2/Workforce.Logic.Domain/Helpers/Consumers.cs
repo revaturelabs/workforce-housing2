@@ -22,7 +22,7 @@ namespace Workforce.Logic.Domain.Helpers
       using (var client = new HttpClient())
       {
         // New code:
-        client.BaseAddress = new Uri("http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-associate-rest/");
+        client.BaseAddress = new Uri("http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-associate-rest/"); 
         client.DefaultRequestHeaders.Accept.Clear();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
