@@ -4,7 +4,12 @@
 
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
-    ga.assocList.controller('assocListController', ['$scope', 'listGetService', function ($scope, listGetService) {
+    ga.assocList.controller('assocListController', ['$scope', 'listGetService', 'listPostService', function ($scope, listGetService, listPostService) {
+
+        var sessionItem = sessionStorage.getItem('Login');
+        if (sessionItem !== "true") {
+            window.location.href = '#/login';
+        }
 
         $scope.filteredAssociates = [];
         $scope.currentPage = 1;

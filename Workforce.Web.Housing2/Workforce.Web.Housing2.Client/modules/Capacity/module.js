@@ -4,6 +4,11 @@
     ga.aptCapacity = angular.module('ahCap', []);
 
     ga.aptCapacity.controller('capController', ['$scope', function ($scope) {
+        var sessionItem = sessionStorage.getItem('Login');
+        if (sessionItem !== "true") {
+            window.location.href = '#/login';
+
+        }
 
         // config references
         var chartConfig = {

@@ -27,6 +27,13 @@
                         <option name="gender" data-ng-model="notSpec">Not Specified</option>
                     </select>
                 </div>
+                <div class="form-group" >
+                    <span data-ng-init="get()"></span>
+                    <label>Batch Type:</label><br />
+                    <select class="form-control" id="sel1" ng-model="batchType">
+                        <option ng-repeat="batch in batches" value="{{batch.id}}">batch.Name</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label>Email:</label>
                     <input class="form-control" type="email" data-ng-model="uEmail" required />
