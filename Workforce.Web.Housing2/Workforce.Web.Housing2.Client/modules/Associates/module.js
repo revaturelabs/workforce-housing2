@@ -43,6 +43,8 @@
             })
         }
 
+        $scope.addAssoc = function () { location = '#/register'; };
+
         $scope.living = function () {
             //var u = traineeDataGrab.get();
             var v = aptToRoomService.get();

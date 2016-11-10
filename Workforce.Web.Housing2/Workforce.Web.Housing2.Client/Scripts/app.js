@@ -27,6 +27,14 @@
         controller: 'registerController',
         templateUrl: 'modules/Register/view.html'
       })
+      .when('/thanksForRegister', {
+        controller: 'registerController',
+        templateUrl: 'modules/Register/thanks.html'
+      })
+      .when('/fail', {
+        controller: 'registerController',
+        templateUrl: 'modules/Login/fail.html'
+      })
     .otherwise({ redirectTo: '/' })
   }]);
 
