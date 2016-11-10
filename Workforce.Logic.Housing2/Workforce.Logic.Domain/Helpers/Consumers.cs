@@ -26,7 +26,7 @@ namespace Workforce.Logic.Domain.Helpers
         client.DefaultRequestHeaders.Accept.Clear();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        HttpResponseMessage response = await client.GetAsync("api/associate");
+        HttpResponseMessage response = await client.GetAsync("api/associate/1");
         List<AssociateDto> assoc = new List<AssociateDto>();
         if (response.IsSuccessStatusCode)
         {
