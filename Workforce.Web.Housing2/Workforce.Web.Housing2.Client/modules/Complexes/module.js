@@ -8,6 +8,10 @@
   ga.complex.controller('complexController', ['$scope', '$location', '$window', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
   function ($scope, $location, $window, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
+    var sessionItem = sessionStorage.getItem('Login');
+    if (sessionItem != "true") {
+      window.location.href = '#/login';
+    }
     $scope.filteredComplexes = [];
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
