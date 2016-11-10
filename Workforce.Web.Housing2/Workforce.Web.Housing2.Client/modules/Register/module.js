@@ -16,5 +16,8 @@
     };
 
     $scope.goLogin = function () { location = '#/login'; };
+      $scope.back = function () {
+            location = '#/associatelist';
+        }
   }]);
 })(window.ahApp);

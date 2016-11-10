@@ -4,8 +4,40 @@
 
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
-    ga.assocList.controller('assocListController', ['$scope', function ($scope) {
+    ga.assocList.controller('assocListController', ['$scope', 'listGetService', function ($scope, listGetService) {
 
-          
+        $scope.filteredAssociates = [];
+        $scope.currentPage = 1;
+        $scope.numPerPage = 6;
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        }
+
+        $scope.pageChanged = function () {
+            var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+            $scope.filteredAssociates = $scope.listAssoc.slice(begin, end);
+        };
+
+        $scope.list = function () {
+            $scope.getModel = {
+                RoomID: -1,
+                AssociateID: -1
+            }
+            listGetService.get($scope.getModel, function (response) {
+                var x = $scope.numPerPage;
+                $scope.listAssoc = response.data;
+                $scope.filteredAssociates = $scope.listAssoc.slice(0, x);
+            })
+        }
+
+        $scope.addAssoc = function () { location = '#/register'; };
+        
+
       }]);
 })(window.ahApp);
+
+
+
