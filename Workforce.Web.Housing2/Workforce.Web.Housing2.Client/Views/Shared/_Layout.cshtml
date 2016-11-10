@@ -9,6 +9,7 @@
   <link href="~/Content/carousel.css" rel="stylesheet" />
   <link href="~/Content/dashboard.css" rel="stylesheet" />
   <link href="~/Content/style.css" rel="stylesheet" />
+  <link href="~/Content/d3AptCap.css" rel="stylesheet" />
   <link href="~/Content/myContent.css" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="icon" />
   <link href="~/Content/responsive.css" rel="stylesheet" />
@@ -17,7 +18,7 @@
 
   <link href="https://revature.com/imgs/favicon_192.png" rel="icon" type="image/x-icon">
   <script src="https://use.typekit.net/pvo4jdm.js"></script>
-  <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
   <style type="text/css">
     .wf-loading {
@@ -43,9 +44,9 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse rev-menu">
             <ul class="nav navbar-nav">
-              <li><a href="#/rooming"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
-              <li><a href="#/complexes"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
-              <li><a href="#/logout"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
+              <li><a href="/workforce-felice/Associate/Index/"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
+              <li><a href="/workforce-grace/"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
+              <li><a href="/workforce-felice/Login/"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
             </ul>
 
           </div>
@@ -53,14 +54,16 @@
       </nav>
     </div>
   </div>
-
   @RenderBody()
-
+  <script src="~/Scripts/jquery-1.9.1.min.js"></script>
   <script src="~/Scripts/bootstrap.min.js"></script>
   <script src="~/Libraries/angular.min.js"></script>
   <script src="~/Libraries/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script> 
   <script src="~/Scripts/app.js"></script>
   <script src="~/Scripts/ComplexToApt.js"></script>
   <script src="~/Scripts/AptToRoom.js"></script>
@@ -75,6 +78,6 @@
   <script src="~/modules/Login/service.js"></script>
   <script src="~/modules/Register/module.js"></script>
   <script src="~/modules/Register/service.js"></script>
-  <script src="~/Scripts/authentication.js"></script>
+  <script src="~/modules/Capacity/module.js"></script>
 </body>
 </html>
