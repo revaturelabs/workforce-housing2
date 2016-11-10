@@ -3,7 +3,7 @@
   ga.login = angular.module('ahLogin', []);
 
   var sessionItem = sessionStorage.getItem('Login');
-  if (sessionItem != "true") {
+  if (sessionItem !== "true") {
     location = '#/login';
   }
 

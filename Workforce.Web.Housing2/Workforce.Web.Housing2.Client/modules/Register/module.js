@@ -4,7 +4,7 @@
   ga.register.controller('registerController', ['$scope', 'registerService', function ($scope, registerService) {
     function check() {
       var sessionItem = sessionStorage.getItem('Login');
-      if (sessionItem != "true") {
+      if (sessionItem !== "true") {
         location = '#/login';
       }
     }

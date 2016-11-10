@@ -9,7 +9,7 @@
   function ($scope, $location, $window, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
     var sessionItem = sessionStorage.getItem('Login');
-    if (sessionItem != "true") {
+    if (sessionItem !== "true") {
       window.location.href = '#/login';
     }
     $scope.filteredComplexes = [];

@@ -12,7 +12,7 @@
       aptPostService, roomDeleteService) {
 
       var sessionItem = sessionStorage.getItem('Login');
-      if (sessionItem != "true") {
+      if (sessionItem !== "true") {
         window.location.href = '#/login';
       }
     $scope.filteredApartments = [];

@@ -6,7 +6,7 @@
     ga.associate.controller('associateController', ['$scope', '$window', 'aptToRoomService', 'traineeGetService', 'traineeDataGrab', 'associatePostService', 'associateByAptService', 'associateDeleteService',
                                                 function ($scope, $window, aptToRoomService, traineeGetService, traineeDataGrab, associatePostService, associateByAptService, associateDeleteService) {
                                                   var sessionItem = sessionStorage.getItem('Login');
-                                                  if (sessionItem != "true") {
+                                                  if (sessionItem !== "true") {
                                                     window.location.href = '#/login';
                                                   }
         $scope.filteredTrainees = [];
