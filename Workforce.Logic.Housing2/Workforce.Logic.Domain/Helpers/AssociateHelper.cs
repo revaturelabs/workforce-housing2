@@ -36,7 +36,13 @@ namespace Workforce.Logic.Domain.Helpers
         StatusID = 1
       };
 
-      if (aptDto.CurrentCapacity < aptDto.MaxCapacity)
+      string RoomsGender = "Male";
+      if(aptDto.GenderID == 2) //Female on gender table
+      {
+        RoomsGender = "Female";
+      }
+
+      if ((aptDto.CurrentCapacity < aptDto.MaxCapacity) && (RoomsGender == assoc.Gender))
       {
         aptDto.CurrentCapacity++;
       }
