@@ -94,7 +94,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\carousel.css" />
-    <Content Include="Content\d3Content.css" />
+    <Content Include="Content\d3AptCap.css" />
+    <Content Include="Content\d3projections.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\myContent.css" />
     <Content Include="Content\responsive.css" />
@@ -113,6 +114,8 @@
     <Content Include="modules\Associates\module.js" />
     <Content Include="modules\Associates\service.js" />
     <Content Include="modules\Associates\view.html" />
+    <Content Include="modules\Capacity\module.js" />
+    <Content Include="modules\Capacity\view.html" />
     <Content Include="modules\Complexes\module.js" />
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
@@ -130,7 +133,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ComplexToApt.js" />
-    <Content Include="Scripts\d3Chart.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

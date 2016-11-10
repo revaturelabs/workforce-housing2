@@ -27,47 +27,28 @@
 
 
 <div class="col-sm-2 col-md-2 col-lg-2 traineeSidebar">
-    <h1>Associate</h1>
-    <hr />
+ 
     <span data-ng-init="get()"></span>
     <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="trainee in filteredTrainees" data-ng-click="grab(trainee)">
         <div ng-switch on="trainee.Gender">
             <div ng-switch-when="Female">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
-                    </div>
-                    <div class="panel-body">
-                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
-                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
-                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
-                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}} {{trainee.LastName}} (F)</h3> </a>
                     </div>
                 </div>
             </div>
             <div ng-switch-when="Male">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
-                    </div>
-                    <div class="panel-body">
-                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
-                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
-                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
-                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}} {{trainee.LastName}} (M)</h3> </a>
                     </div>
                 </div>
             </div>
             <div ng-switch-default>
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}}</h3> </a>
-                    </div>
-                    <div class="panel-body">
-                        <p class="list-group-item-text"> {{trainee.Gender}}</p>
-                        <p class="list-group-item-text">Email: {{trainee.Email}}</p>
-                        <p class="list-group-item-text">RoomID: {{trainee.RoomID}}</p>
-                        <p class="list-group-item-text">AssocID: {{trainee.AssociateID}}</p>
+                        <a href="" style="color:black;"> <h3 class="panel-title">{{trainee.FirstName}}  {{trainee.LastName}} (Other)</h3> </a>
                     </div>
                 </div>
             </div>
@@ -92,13 +73,11 @@
                     <div ng-switch-when="Female">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (F)</h3> </a>
                             </div>
                             <div class="panel-body">
                                 <p class="list-group-item-text"> {{associate.Gender}}</p>
                                 <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
-                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
                             </div>
                             <div class="panel-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
@@ -111,13 +90,11 @@
                     <div ng-switch-when="Male">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (M)</h3> </a>
                             </div>
                             <div class="panel-body">
                                 <p class="list-group-item-text"> {{associate.Gender}}</p>
                                 <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
-                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
                             </div>
                             <div class="panel-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
@@ -130,13 +107,11 @@
                     <div ng-switch-default>
                         <div class="panel panel-warning">
                             <div class="panel-heading">
-                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (Other)</h3> </a>
                             </div>
                             <div class="panel-body">
                                 <p class="list-group-item-text"> {{associate.Gender}}</p>
                                 <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                <p class="list-group-item-text">RoomID: {{associate.RoomID}}</p>
-                                <p class="list-group-item-text">AssocID: {{associate.AssociateID}}</p>
                             </div>
                             <div class="panel-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
@@ -155,8 +130,7 @@
 </div>
 
 <div class="col-sm-2 col-md-2 col-lg-2 traineeSidebarRight">
-    <h1>Associate Information</h1>
-    <hr />
+
     <div>
         <section class="col-sm-12 col-md-12 col-lg-12">
             <div class="panel panel-success">

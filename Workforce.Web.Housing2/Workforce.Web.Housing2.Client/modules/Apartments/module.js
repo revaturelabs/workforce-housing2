@@ -50,7 +50,7 @@
     }
 
     $scope.back = function () {
-        $window.location.href = '#/';
+        $window.location.href = '#/complexes';
     }
 
     $scope.model = {
