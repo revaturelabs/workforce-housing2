@@ -5,10 +5,16 @@
 
   ga.apartment = angular.module('ahApartment', ['ui.bootstrap']);
 
+
+
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'complexToAptService', 'aptToRoomService',
     'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, complexToAptService, aptToRoomService, aptGetService,
       aptPostService, roomDeleteService) {
 
+      var sessionItem = sessionStorage.getItem('Login');
+      if (sessionItem != "true") {
+        window.location.href = '#/login';
+      }
     $scope.filteredApartments = [];
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
