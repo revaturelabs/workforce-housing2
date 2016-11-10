@@ -111,6 +111,9 @@
     <Content Include="modules\Apartments\module.js" />
     <Content Include="modules\Apartments\service.js" />
     <Content Include="modules\Apartments\view.html" />
+    <Content Include="modules\AssociateList\module.js" />
+    <Content Include="modules\AssociateList\service.js" />
+    <Content Include="modules\AssociateList\view.html" />
     <Content Include="modules\Associates\module.js" />
     <Content Include="modules\Associates\service.js" />
     <Content Include="modules\Associates\view.html" />
