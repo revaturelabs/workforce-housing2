@@ -2,11 +2,14 @@
   'use strict';
 
   ga.register.factory('registerService', ['$http', function ($http) {
+    var url = '/workforce-associate-rest/api/accounts/create';
     return {
-      get: function () {
+      post: function (data, pass, fail) {
         $http({
-
-        })
+          method: 'post',
+          url: url,
+          params: data
+        }).then(pass, fail);
       }
     }
   }]);

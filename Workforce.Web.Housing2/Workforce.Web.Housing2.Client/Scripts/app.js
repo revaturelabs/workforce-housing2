@@ -1,20 +1,20 @@
 ﻿(function (ga) {
   'use strict';
 
-  ga.angular = angular.module('ahApp', ['ngRoute', 'ngMessages', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin', 'ahRegister', 'ahCap']);
+  ga.angular = angular.module('ahApp', ['ngRoute', 'ngMessages', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin', 'ahRegister']);
   ga.angular.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
       controller: 'loginController',
       templateUrl: 'modules/Login/view.html'
     })
-        .when('/complexes', {
-            controller: 'complexController',
-            templateUrl: 'modules/Complexes/view.html'
-        })
         .when('/apartments', {
             controller: 'apartmentController',
             templateUrl: 'modules/Apartments/view.html'
         })
+      .when('/complexes', {
+        controller: 'complexController',
+        templateUrl: 'modules/Complexes/view.html'
+      })
         .when('/rooming', {
             controller: 'associateController',
             templateUrl: 'modules/Associates/view.html'
@@ -27,10 +27,14 @@
         controller: 'registerController',
         templateUrl: 'modules/Register/view.html'
       })
-        .when('/capacity', {
-            controller: 'capController',
-            templateUrl: 'modules/Capacity/view.html'
-        })
+      .when('/thanksForRegister', {
+        controller: 'registerController',
+        templateUrl: 'modules/Register/thanks.html'
+      })
+      .when('/fail', {
+        controller: 'registerController',
+        templateUrl: 'modules/Login/fail.html'
+      })
     .otherwise({ redirectTo: '/' })
   }]);
 
