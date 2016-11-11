@@ -41,13 +41,12 @@
         $scope.addAssoc = function () { location = '#/register'; };
         
         $scope.removal = function (data) {
-            console.log(data);
+            
 
             listDeleteService.removeAssociate(data , function (result) {
-                console.log('It worked');
+                
                 //$window.location.reload();
             }, function (result) {
-                console.log(result);
             });
         }
 
