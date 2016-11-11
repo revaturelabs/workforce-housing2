@@ -290,7 +290,7 @@ namespace Workforce.Logic.Domain.Helpers
         
       //validate the incoming DTO first before converting into DAO
       //STILL NEED TO VALIDATE
-
+       
       //first we get the currentOccupancy, if its greater then ZERO then return false
       int currOccupancy = await housingComplexVnM.returnComplexCurCap(oldComplex);
       if (currOccupancy > 0)
