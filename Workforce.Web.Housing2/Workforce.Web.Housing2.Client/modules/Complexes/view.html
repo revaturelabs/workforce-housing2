@@ -4,16 +4,26 @@
       <h1>
         Apartment Complexes
       </h1>
+        <!--<h1>
+            <button type="button" class="btn btn-default btn-sm" data-ng-click="refresh()">
+                <span class="glyphicon glyphicon-repeat"></span> Refresh
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span> Add a New Complex
+            </button>
+
+        </h1>-->
     </div>
     <div class="col-md-6 col-lg-4">
       <div class="row">
-        <section class="col-md-2 col-lg-6">
-          <h1>
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-              <span class="glyphicon glyphicon-plus"></span> Add a new Complex
-            </button>
+        <section class="col-md-2 col-lg-2">
+            <h1>
+                
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-plus"></span> Add a New Complex
+                </button>
 
-          </h1>
+            </h1>
         </section>
         <!--<section class="col-md-2 col-lg-6">
             <h1>
@@ -50,7 +60,7 @@
 
           </div>
           <div class="panel-footer">
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Complex </button>
+            <!--<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Complex </button>-->
             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
               <span class="glyphicon glyphicon-trash"></span> Remove Complex
             </button>
@@ -118,8 +128,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click="newComplex()">Save changes</button>
+          <button type="button" class="btn btn-default" data-target="#myModal" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-target="#myModal" data-dismiss="modal" data-ng-click="newComplex()">Save changes</button>
         </div>
       </div>
     </form>
@@ -140,8 +150,8 @@
         Are you sure you want to remove this apartment complex?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="removeComplex()">Remove</button>
+        <button type="button" class="btn btn-default" data-target="#complexModal" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-target="#complexModal" data-dismiss="modal" data-ng-click="removeComplex()">Remove</button>
       </div>
     </div>
   </div>

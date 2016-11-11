@@ -21,8 +21,7 @@
       
       
       registerService.post($scope.model, function (response) {
-          location = '#/thanksForRegister';
-          console.log('fail');
+          location = '#/associatelist';
       }, function (response) {
           location = '#/fail';
       });

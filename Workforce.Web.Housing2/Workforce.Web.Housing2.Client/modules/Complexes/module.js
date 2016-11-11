@@ -55,6 +55,10 @@
       complexToAptService.set(data);
     }
 
+    $scope.refresh = function () {
+        $route.reload();
+    }
+
     $scope.removeComplex = function () {
       var x = complexToAptService.get();
       complexDeleteService.removeTheComplex(x, function (result) {
