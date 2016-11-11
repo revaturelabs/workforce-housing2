@@ -7,8 +7,8 @@
 
 
 
-  ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', 'complexGetService', 'complexToAptService', 'aptToRoomService',
-    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, complexGetService, complexToAptService, aptToRoomService, aptGetService,
+  ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', '$route', 'complexGetService', 'complexToAptService', 'aptToRoomService',
+    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $route, complexGetService, complexToAptService, aptToRoomService, aptGetService,
       aptPostService, roomDeleteService) {
 
       var sessionItem = sessionStorage.getItem('Login');
@@ -68,7 +68,7 @@
 
     $scope.newApartment = function () {
       aptPostService.addApt($scope.model, function (result) {
-        $window.location.reload();
+          $route.reload();
       });
     };
 
@@ -80,7 +80,7 @@
     $scope.removeApartment = function () {
       var x = aptToRoomService.get();
       roomDeleteService.removeApt(x, function (result) {
-        $window.location.reload();
+          $route.reload();
       });
     };
 

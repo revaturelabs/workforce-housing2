@@ -5,8 +5,8 @@
 
   ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
 
-  ga.complex.controller('complexController', ['$scope', '$location', '$window', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
-  function ($scope, $location, $window, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
+  ga.complex.controller('complexController', ['$scope', '$location', '$window', '$route', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
+  function ($scope, $location, $window, $route, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
     var sessionItem = sessionStorage.getItem('Login');
     if (sessionItem !== "true") {
@@ -47,7 +47,7 @@
 
     $scope.newComplex = function () {
       complexPostService.addComplex($scope.model, function (result) {
-        $window.location.reload();
+          $route.reload();
       });
     };
 
@@ -58,7 +58,7 @@
     $scope.removeComplex = function () {
       var x = complexToAptService.get();
       complexDeleteService.removeTheComplex(x, function (result) {
-        $window.location.reload();
+          $route.reload();
       });
     };
 

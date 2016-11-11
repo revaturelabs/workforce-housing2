@@ -21,14 +21,14 @@
       
       
       registerService.post($scope.model, function (response) {
-           //location = '#/fail'; 
-      
+          location = '#/thanksForRegister';
+          console.log('fail');
       }, function (response) {
-          
+          location = '#/fail';
       });
     };
 
-    $scope.goLogin = function () { location = '#/login'; };
+    $scope.goLogin = function () { location = '#/associatelist'; };
       $scope.back = function () {
             location = '#/associatelist';
       }
