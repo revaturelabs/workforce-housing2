@@ -287,7 +287,7 @@ namespace Workforce.Logic.Domain.Helpers
     {
 
       HousingComplex housingComplexVnM = new HousingComplex();
-
+        
       //validate the incoming DTO first before converting into DAO
       //STILL NEED TO VALIDATE
 
