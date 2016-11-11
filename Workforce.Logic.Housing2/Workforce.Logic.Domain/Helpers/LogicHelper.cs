@@ -267,7 +267,7 @@ namespace Workforce.Logic.Domain.Helpers
     /// <param name="oldApartment"></param>
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteApartment(ApartmentDto oldApartment)
-    {
+    { 
 
       Apartment ApartmentVnM = new Apartment();
 
