@@ -13,7 +13,7 @@ namespace Workforce.Logic.Domain.Helpers
   public class LogicHelper
   {
 
-    private readonly  GraceServiceClient graceService = new GraceServiceClient();
+    private readonly GraceServiceClient graceService = new GraceServiceClient();
 
     #region GetAlls()
 
@@ -23,11 +23,11 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns>  List<ApartmentDto> apartments  </returns>
     public async Task<List<ApartmentDto>> ApartmentsGetAll()
     {
-        Apartment apartmentVnM = new Apartment();
-        var daoApartments = await graceService.GetApartmentsAsync();
-        var dtoApartments = apartmentVnM.getDtoList(daoApartments);
-        //STILL NEED TO VALIDATE
-        return dtoApartments;
+      Apartment apartmentVnM = new Apartment();
+      var daoApartments = await graceService.GetApartmentsAsync();
+      var dtoApartments = apartmentVnM.getDtoList(daoApartments);
+      //STILL NEED TO VALIDATE
+      return dtoApartments;
     }
     /// <summary>
     /// this method gets all the active apartments
@@ -35,11 +35,11 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns></returns>
     public async Task<List<ApartmentDto>> ApartmentsGetActvie()
     {
-        Apartment apartmentVnM = new Apartment();
-        //var daoApartments = await graceService.GetApartmentsAsync();
-        var dtoApartments = apartmentVnM.getActiveDtoList(await graceService.GetApartmentsAsync());
-        //STILL NEED TO VALIDATE
-        return dtoApartments;
+      Apartment apartmentVnM = new Apartment();
+      //var daoApartments = await graceService.GetApartmentsAsync();
+      var dtoApartments = apartmentVnM.getActiveDtoList(await graceService.GetApartmentsAsync());
+      //STILL NEED TO VALIDATE
+      return dtoApartments;
     }
     /// <summary>
     /// This method calls the soap service and awaits on the get
@@ -48,12 +48,12 @@ namespace Workforce.Logic.Domain.Helpers
     public async Task<List<HousingComplexDto>> HousingComplexsGetAll()
     {
 
-        HousingComplex housingComplexVnM = new HousingComplex();
-        var daoComplexes = await graceService.GetComplexesAsync();
-        var dtoComplexes = await housingComplexVnM.getDtoList(daoComplexes);
+      HousingComplex housingComplexVnM = new HousingComplex();
+      var daoComplexes = await graceService.GetComplexesAsync();
+      var dtoComplexes = await housingComplexVnM.getDtoList(daoComplexes);
 
-        //STILL NEED TO VALIDATE
-        return dtoComplexes;
+      //STILL NEED TO VALIDATE
+      return dtoComplexes;
     }
     /// <summary>
     /// method to get the active housingcomplexes
@@ -62,14 +62,14 @@ namespace Workforce.Logic.Domain.Helpers
     public async Task<List<HousingComplexDto>> HousingComplexsGetActive()
     {
 
-        HousingComplex housingComplexVnM = new HousingComplex();
-        var dtoComplexes =await  housingComplexVnM.getActiveDtoList(await graceService.GetComplexesAsync()); 
+      HousingComplex housingComplexVnM = new HousingComplex();
+      var dtoComplexes = await housingComplexVnM.getActiveDtoList(await graceService.GetComplexesAsync());
 
-        //STILL NEED TO VALIDATE
-        return dtoComplexes;
+      //STILL NEED TO VALIDATE
+      return dtoComplexes;
 
     }
-    
+
 
     /// <summary>
     ///  This method calls the soap service and awaits on the get
@@ -78,12 +78,12 @@ namespace Workforce.Logic.Domain.Helpers
     public async Task<List<HousingDataDto>> HousingDataGetAll()
     {
 
-        HousingData housingDataVnM = new HousingData();
-        var daoDatas = await graceService.GetHousingDataAsync();
-        var dtoDatas = housingDataVnM.getDtoList(daoDatas);
+      HousingData housingDataVnM = new HousingData();
+      var daoDatas = await graceService.GetHousingDataAsync();
+      var dtoDatas = housingDataVnM.getDtoList(daoDatas);
 
-        //STILL NEED TO VALIDATE
-        return dtoDatas;
+      //STILL NEED TO VALIDATE
+      return dtoDatas;
     }
 
     /// <summary>
@@ -92,14 +92,14 @@ namespace Workforce.Logic.Domain.Helpers
     /// <returns> List<StatusDto> </returns>
     public async Task<List<StatusDto>> StatusesGetAll()
     {
-      
-        Status statusVnM = new Status();
-        var daoStatuses = await graceService.GetStatusesAsync();
-        var dtoStatuses = statusVnM.getDtoList(daoStatuses);
 
-        //STILL NEED TO VALIDATE
-        return dtoStatuses;
- 
+      Status statusVnM = new Status();
+      var daoStatuses = await graceService.GetStatusesAsync();
+      var dtoStatuses = statusVnM.getDtoList(daoStatuses);
+
+      //STILL NEED TO VALIDATE
+      return dtoStatuses;
+
 
     }
 
@@ -267,15 +267,15 @@ namespace Workforce.Logic.Domain.Helpers
     /// <param name="oldApartment"></param>
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteApartment(ApartmentDto oldApartment)
-    {
-     
-        Apartment ApartmentVnM = new Apartment();
+    { 
 
-        //validate the incoming DTO first before converting into DAO
-        //STILL NEED TO VALIDATE
+      Apartment ApartmentVnM = new Apartment();
 
-        return await graceService.DeleteApartmentAsync(ApartmentVnM.MapToDao(oldApartment));
-      
+      //validate the incoming DTO first before converting into DAO
+      //STILL NEED TO VALIDATE
+
+      return await graceService.DeleteApartmentAsync(ApartmentVnM.MapToDao(oldApartment));
+
 
     }
     /// <summary>
@@ -284,14 +284,24 @@ namespace Workforce.Logic.Domain.Helpers
     /// <param name="oldComplex"></param>
     /// <returns>Task<bool></returns>
     public async Task<bool> DeleteComplex(HousingComplexDto oldComplex)
-    { 
+    {
 
-        HousingComplex housingComplexVnM = new HousingComplex();
+      HousingComplex housingComplexVnM = new HousingComplex();
+        
+      //validate the incoming DTO first before converting into DAO
+      //STILL NEED TO VALIDATE
+       
+      //first we get the currentOccupancy, if its greater then ZERO then return false
+      int currOccupancy = await housingComplexVnM.returnComplexCurCap(oldComplex);
+      if (currOccupancy > 0)
+      {
+        return false;
+      }
 
-        //validate the incoming DTO first before converting into DAO
-        //STILL NEED TO VALIDATE
-
+      else
+      {
         return await graceService.DeleteHousingComplexAsync(housingComplexVnM.MapToDao(oldComplex));
+      }
 
     }
     /// <summary>
@@ -302,14 +312,14 @@ namespace Workforce.Logic.Domain.Helpers
     public async Task<bool> DeleteHousingData(HousingDataDto oldData)
     {
 
-        HousingData housingDataVnM = new HousingData();
+      HousingData housingDataVnM = new HousingData();
 
-        //validate the incoming DTO first before converting into DAO
-        //STILL NEED TO VALIDATE
+      //validate the incoming DTO first before converting into DAO
+      //STILL NEED TO VALIDATE
 
 
-        return await graceService.DeleteHousingDataAsync(housingDataVnM.MapToDao(oldData));
-      
+      return await graceService.DeleteHousingDataAsync(housingDataVnM.MapToDao(oldData));
+
     }
     /// <summary>
     /// This method recieves an StatusDto model that we expect to delete based off of the primary key
@@ -319,13 +329,13 @@ namespace Workforce.Logic.Domain.Helpers
     public async Task<bool> DeleteStatus(StatusDto oldStatus)
     {
 
-        Status statusVnM = new Status();
+      Status statusVnM = new Status();
 
-        //validate the incoming DTO first before converting into DAO
-        //STILL NEED TO VALIDATE
+      //validate the incoming DTO first before converting into DAO
+      //STILL NEED TO VALIDATE
 
-        return await graceService.DeleteStatusAsync(statusVnM.MapToDao(oldStatus));
-  
+      return await graceService.DeleteStatusAsync(statusVnM.MapToDao(oldStatus));
+
     }
 
     #endregion
@@ -338,7 +348,7 @@ namespace Workforce.Logic.Domain.Helpers
     /// <param name="complex"></param>
     /// <returns>Task<List<ApartmentDto>></returns>
     public async Task<List<ApartmentDto>> FilterAptByComplex(HousingComplexDto complex)
-    { 
+    {
       List<ApartmentDto> returnList = new List<ApartmentDto>();
       foreach (var item in await ApartmentsGetActvie())
       {
