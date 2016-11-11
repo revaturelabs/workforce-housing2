@@ -8,20 +8,33 @@
               $http({
                   method: 'post',
                   url: url,
-                  params: data
+                  data: data,
+                  headers: {
+                  'Content-Type': 'application/json'
+              }
               }).then(pass, fail);
           }
       }
   }]);
 
   ga.register.factory('batchService', ['$http', function ($http) {
-      var url = 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-associate-rest/api/batch/';
+      var url = '/workforce-associate-rest/api/batch/';
       return {
-          get: function (data, pass, fail) {
+          get: function (pass, fail) {
               $http({
                   method: 'get',
-                  url: url,
-                  params: data
+                  url: url
+              }).then(pass, fail);
+          }
+      }
+  }]);
+  ga.register.factory('genderService', ['$http', function ($http) {
+      var url = '/workforce-associate-rest/api/gender/';
+      return {
+          get: function (pass, fail) {
+              $http({
+                  method: 'get',
+                  url: url
               }).then(pass, fail);
           }
       }

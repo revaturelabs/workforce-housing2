@@ -1,7 +1,7 @@
 ﻿(function (ga) {
   ga.register = angular.module('ahRegister', []);
 
-  ga.register.controller('registerController', ['$scope', 'registerService', 'batchService', function ($scope, registerService, batchService) {
+  ga.register.controller('registerController', ['$scope', 'registerService', 'batchService', 'genderService', function ($scope, registerService, batchService, genderService) {
     function check() {
       var sessionItem = sessionStorage.getItem('Login');
       if (sessionItem !== "true") {
@@ -9,15 +9,23 @@
       }
     }
 
-    $scope.register = function (fname, lname, uEmail, male, female, notSpec) {
-      var u = { Email: uEmail, FirstName: fname, LastName: lname };
-      if (male === true) {
-        u.Gender = male;
-      }
-      else {
-        u.Gender = female;
-      }
-      registerService.post(u, function () { location = '#/thanksForRegister'; }, function () { location = '#/fail'; });
+    $scope.register = function (fname, lname, uEmail, gender, batch) {
+        //var u = { Email: uEmail, FirstName: fname, LastName: lname, BatchID: batch, Gender: gender };
+        $scope.model = {
+            Email: uEmail,
+            FirstName: fname,
+            LastName: lname,
+            Gender: gender,
+            BatchID: batch
+        };
+      
+      console.log($scope.model);
+      registerService.post($scope.model, function (response) {
+          console.log(response); //location = '#/fail'; 
+      
+      }, function (response) {
+          console.log(response);
+      });
     };
 
     $scope.goLogin = function () { location = '#/login'; };
@@ -33,25 +41,29 @@
             Gender
         
         */
-      $scope.model = {
-          FirstName: null,
-          LastName: null,
-          BatchID: null,
-          Gender: null,
-          Email: null
-      };
+      //$scope.model = {
+      //    FirstName: null,
+      //    LastName: null,
+      //    BatchID: null,
+      //    Gender: null,
+      //    Email: null
+      //};
 
-      $scope.newAssoc = function () {
-          listPostService.addNew($scope.model, function (result) {
-              $window.location.reload();
-          });
-      };
+      //$scope.newAssoc = function () {
+      //    listPostService.addNew($scope.model, function (result) {
+      //        $window.location.reload();
+      //    });
+      //};
 
-      $scope.get = function () {
+      
           batchService.get(function (response) {
+              console.log(response);
               $scope.batches = response.data;
-            }
-        )}
+            })
+        genderService.get(function (response) {
+              console.log(response);
+              $scope.genders = response.data;
+            })
       
   }]);
 })(window.ahApp);

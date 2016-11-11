@@ -4,7 +4,7 @@
 
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
-    ga.assocList.controller('assocListController', ['$scope', 'listGetService', 'listPostService', function ($scope, listGetService, listPostService) {
+    ga.assocList.controller('assocListController', ['$scope', 'listGetService', function ($scope, listGetService) {
 
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {

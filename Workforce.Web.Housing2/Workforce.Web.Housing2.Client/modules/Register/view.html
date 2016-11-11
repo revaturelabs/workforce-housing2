@@ -21,24 +21,22 @@
                 </div>
                 <div class="form-group">
                     <label>Gender:</label><br />
-                    <select class="form-control" id="sel1">
-                        <option name="gender" data-ng-model="male">Male</option>
-                        <option name="gender" data-ng-model="female">Female</option>
-                        <option name="gender" data-ng-model="notSpec">Not Specified</option>
+                    <select class="form-control" id="sel1" data-ng-model="gender">
+                        <option ng-repeat="gender in genders" data-ng-value="{{gender.Name}}"> {{gender.Name}}</option>
                     </select>
                 </div>
                 <div class="form-group" >
-                    <span data-ng-init="get()"></span>
+                    
                     <label>Batch Type:</label><br />
-                    <select class="form-control" id="sel1" ng-model="batchType">
-                        <option ng-repeat="batch in batches" value="{{batch.id}}">batch.Name</option>
+                    <select class="form-control" id="sel1" data-ng-model="batch">
+                        <option ng-repeat="batch in batches" data-ng-value="{{batch.id}}" >{{batch.Name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
                     <input class="form-control" type="email" data-ng-model="uEmail" required />
                 </div>
-                <button data-ng-click="register(fname, lname, uEmail, male, female, notSpec)"
+                <button data-ng-click="register(fname, lname, uEmail, gender, batch)"
                         data-ng-disabled="register.$invalid"
                         class="btn btn-primary">
                     Register
