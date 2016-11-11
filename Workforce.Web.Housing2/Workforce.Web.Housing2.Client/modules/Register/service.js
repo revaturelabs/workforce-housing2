@@ -8,10 +8,7 @@
               $http({
                   method: 'post',
                   url: url,
-                  data: data,
-                  headers: {
-                  'Content-Type': 'application/json'
-              }
+                  data: data
               }).then(pass, fail);
           }
       }

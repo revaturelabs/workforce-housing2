@@ -4,7 +4,7 @@
 
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
-    ga.assocList.controller('assocListController', ['$scope', 'listGetService', 'listDeleteService', function ($scope, listGetService, listDeleteService) {
+    ga.assocList.controller('assocListController', ['$scope', '$route', 'listGetService', 'listDeleteService', function ($scope, $route, listGetService, listDeleteService) {
 
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
@@ -44,7 +44,7 @@
             
 
             listDeleteService.removeAssociate(data , function (result) {
-                
+                $route.reload();
                 //$window.location.reload();
             }, function (result) {
             });
