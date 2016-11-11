@@ -16,7 +16,7 @@
             FirstName: fname,
             LastName: lname,
             Gender: gender,
-            BatchID: batch
+            Batch: batch
         };
       
       

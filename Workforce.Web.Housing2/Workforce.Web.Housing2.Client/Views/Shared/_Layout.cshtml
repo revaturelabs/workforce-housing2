@@ -50,14 +50,24 @@
 
 
             </ul>
-            <script>
-              function logout()
+              <script>
+              var logCheck = sessionStorage.getItem('Login');
+              var lb = document.getElementById('lo');
+              if (logCheck === 'true')
+              {
+                lb.style.visibility = 'visible';
+              }
+              else
+              {
+                lb.style.visibility = 'hidden';
+              }
+              var logout = function ()
               {
                 sessionStorage.setItem("Login", "false");
                 var lb = document.getElementById('lo');
                 lb.style.visibility = 'hidden';
               }
-            </script>
+              </script>
           </div>
         </div>
       </nav>
