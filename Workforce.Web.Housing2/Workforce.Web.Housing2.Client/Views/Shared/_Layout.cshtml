@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav">
               <li><a href="#/associatelist"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
               <li><a href="#/complexes"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
-              <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
+              <li><a href="#" id="lo" style="visibility:hidden" onclick="logout()"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
 
 
             </ul>
@@ -54,6 +54,8 @@
               function logout()
               {
                 sessionStorage.setItem("Login", "false");
+                var lb = document.getElementById('lo');
+                lb.style.visibility = 'hidden';
               }
             </script>
           </div>
