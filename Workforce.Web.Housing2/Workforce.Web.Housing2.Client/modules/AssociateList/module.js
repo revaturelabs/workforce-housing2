@@ -45,7 +45,6 @@
 
             listDeleteService.removeAssociate(data , function (result) {
                 $route.reload();
-                //$window.location.reload();
             }, function (result) {
             });
         }
