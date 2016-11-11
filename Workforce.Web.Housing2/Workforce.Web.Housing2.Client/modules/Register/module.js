@@ -19,12 +19,12 @@
             BatchID: batch
         };
       
-      console.log($scope.model);
+      
       registerService.post($scope.model, function (response) {
-          console.log(response); //location = '#/fail'; 
+           //location = '#/fail'; 
       
       }, function (response) {
-          console.log(response);
+          
       });
     };
 
@@ -56,12 +56,10 @@
       //};
 
       
-          batchService.get(function (response) {
-              console.log(response);
+      batchService.get(function (response) {
               $scope.batches = response.data;
             })
         genderService.get(function (response) {
-              console.log(response);
               $scope.genders = response.data;
             })
       
