@@ -4,7 +4,7 @@
 
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
-    ga.assocList.controller('assocListController', ['$scope', 'listGetService', function ($scope, listGetService) {
+    ga.assocList.controller('assocListController', ['$scope', 'listGetService', 'listDeleteService', function ($scope, listGetService, listDeleteService) {
 
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
@@ -40,6 +40,16 @@
 
         $scope.addAssoc = function () { location = '#/register'; };
         
+        $scope.removal = function (data) {
+            console.log(data);
+
+            listDeleteService.removeAssociate(data , function (result) {
+                console.log('It worked');
+                //$window.location.reload();
+            }, function (result) {
+                console.log(result);
+            });
+        }
 
       }]);
 })(window.ahApp);

@@ -44,7 +44,7 @@
                                 <p class="list-group-item-text">Email: {{list.Email}}</p>
                             </div>
                             <div class="panel-footer">
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="removal(list)">
                                     <span class="glyphicon glyphicon-trash"></span> Remove Associate
                                 </button>
 
@@ -61,7 +61,7 @@
                                 <p class="list-group-item-text">Email: {{list.Email}}</p>
                             </div>
                             <div class="panel-footer">
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="removal(list)">
                                     <span class="glyphicon glyphicon-trash"></span> Remove Associate
                                 </button>
 
@@ -78,7 +78,7 @@
                                 <p class="list-group-item-text">Email: {{list.Email}}</p>
                             </div>
                             <div class="panel-footer">
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="removal(list)">
                                     <span class="glyphicon glyphicon-trash"></span> Remove Associate
                                 </button>
 
@@ -118,24 +118,4 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="myModalLabel">Let's not be hasty...</h2>
-            </div>
-            <div class="modal-body">
-                <section id='chart'></section>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
         
