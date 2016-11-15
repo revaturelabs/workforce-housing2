@@ -38,7 +38,11 @@
       .when('/capacity', {
              controller: 'capController',
              templateUrl: 'modules/Capacity/view.html'
-         })
+      })
+        .when('/controlpanel', {
+            controller: 'panelController',
+            templateUrl: 'modules/ControlPanel/view.html'
+      })
     .otherwise({ redirectTo: '/' })
   }]);
 
