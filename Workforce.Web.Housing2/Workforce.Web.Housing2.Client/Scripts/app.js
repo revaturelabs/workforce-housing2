@@ -1,7 +1,7 @@
 ﻿(function (ga) {
   'use strict';
 
-  ga.angular = angular.module('ahApp', ['ngRoute', 'ngMessages', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin', 'ahRegister', 'ahCap']);
+  ga.angular = angular.module('ahApp', ['ngRoute', 'ngMessages', 'ahComplex', 'ahApartment', 'ahAssociate', 'ahLogin', 'ahRegister', 'ahCap', 'ahPanel']);
   ga.angular.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
       controller: 'loginController',
