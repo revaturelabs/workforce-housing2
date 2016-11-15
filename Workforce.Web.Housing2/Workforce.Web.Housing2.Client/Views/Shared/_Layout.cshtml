@@ -18,7 +18,7 @@
 
   <link href="https://revature.com/imgs/favicon_192.png" rel="icon" type="image/x-icon">
   <script src="https://use.typekit.net/pvo4jdm.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
   <style type="text/css">
     .wf-loading {
@@ -48,21 +48,17 @@
               <li><a href="#/complexes"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
               <li><a href="#" id="lo" style="visibility:hidden" onclick="logout()"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
 
-
             </ul>
             <script>
               var logCheck = sessionStorage.getItem('Login');
               var lb = document.getElementById('lo');
-              if (logCheck === 'true')
-              {
+              if (logCheck === 'true') {
                 lb.style.visibility = 'visible';
               }
-              else
-              {
+              else {
                 lb.style.visibility = 'hidden';
               }
-              var logout = function ()
-              {
+              var logout = function () {
                 sessionStorage.setItem("Login", "false");
                 var lb = document.getElementById('lo');
                 lb.style.visibility = 'hidden';
