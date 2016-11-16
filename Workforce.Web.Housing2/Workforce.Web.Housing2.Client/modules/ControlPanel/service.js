@@ -26,4 +26,16 @@
         }
     }]);
 
+    ga.controlPanel.factory('aptGetService', ['$http', function ($http) {
+        var url = '/workforce-housing-rest/api/apartment/';
+        return {
+            get: function (pass, fail) {
+                $http({
+                    method: 'get',
+                    url: url
+                }).then(pass, fail);
+            }
+        }
+    }]);
+
 })(window.ahApp);
