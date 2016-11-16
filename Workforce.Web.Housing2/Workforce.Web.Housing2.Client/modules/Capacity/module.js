@@ -27,6 +27,13 @@
 
         function chart(data) {
 
+            var ar = [];
+            for (var i = 0; i < data.length; i++)
+            {
+                ar.push(data[i].maxCapacity);
+                ar.push(data[i].currentCapacity);
+            }
+
           var width = 960;
           var height = 500;
 
@@ -34,22 +41,17 @@
 
           var chart = d3.select("#chart").attr("width", width).attr("height", height);
 
-          var barWidth = width / (data.length * 2);
+          var barWidth = width / (ar.length);
 
-          var bar = chart.selectAll("g").data(data).enter().append("g")
+          var bar = chart.selectAll("g").data(ar).enter().append("g")
          .attr("transform", function (d, i) { return "translate(" + i * barWidth + ",0)"; });
 
           bar.append("rect")
-                .attr("y", function (d) { return y(d.maxCapacity); })
-                .attr("height", function (d) { return height - y(d.maxCapacity); })
+                .attr("y", function (d) { return y(d); })
+                .attr("height", function (d) { return height - y(d); })
                 .attr("width", barWidth - 1)
                 .style('fill', "#dd2020");
 
-          bar.append("rect")
-                .attr("y", function (d) { return y(d.currentCapacity); })
-                .attr("height", function (d) { return height - y(d.currentCapacity); })
-                .attr("width", barWidth - 1)
-                .style('fill', "#0147FA");
         }
 
     }]);
