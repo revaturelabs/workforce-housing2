@@ -67,10 +67,16 @@
       var x = complexToAptService.get();
       complexDeleteService.removeTheComplex(x, function (result) {
           $timeout(function () {
-              // 1 second delay, might not need this long, but it works.
+            // 1 second delay, might not need this long, but it works.
+            if (true) {
+              alert("It worked.");
+            }
+            else {
               $route.reload();
+            }
+              
           }, 1000);
-          //$route.reload();
+        //$route.reload();
       });
     };
 
