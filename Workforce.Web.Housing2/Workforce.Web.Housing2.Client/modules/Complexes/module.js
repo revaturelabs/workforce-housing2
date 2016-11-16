@@ -68,15 +68,11 @@
       complexDeleteService.removeTheComplex(x, function (result) {
           $timeout(function () {
             // 1 second delay, might not need this long, but it works.
-            if (true) {
-              alert("It worked.");
-            }
-            else {
-              $route.reload();
-            }
-              
+              $route.reload();              
           }, 1000);
         //$route.reload();
+      }, function (result) {
+        alert("Failed to remove complex.  This is most likely due to it containing an associate / associates.");
       });
     };
 
