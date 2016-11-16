@@ -7,7 +7,10 @@
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
             window.location.href = '#/login';
-
+        }
+        else
+        {
+            init();
         }
 
         // config references
@@ -59,7 +62,7 @@
             }, 1500);
         }
 
-        init();
+        
 
 
 
@@ -100,7 +103,7 @@
               })
 
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
               .append("g")
