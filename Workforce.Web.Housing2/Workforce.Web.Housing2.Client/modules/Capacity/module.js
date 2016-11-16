@@ -84,7 +84,7 @@
 
             //two colors of the graphs		
             var color = d3.scale.ordinal()
-                .range(["#21b200", "#dd2020"]);
+                .range(["#0147FA", "#dd2020"]);
 
             var xAxis = d3.svg.axis()
                 .scale(x0)
