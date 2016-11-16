@@ -5,10 +5,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
   <link href="~/Content/carousel.css" rel="stylesheet" />
   <link href="~/Content/dashboard.css" rel="stylesheet" />
   <link href="~/Content/style.css" rel="stylesheet" />
+  <link href="~/Content/d3AptCap.css" rel="stylesheet" />
   <link href="~/Content/myContent.css" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="icon" />
   <link href="~/Content/responsive.css" rel="stylesheet" />
@@ -39,28 +40,50 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <div class="logo"><a href=""><img src="https://revature.com/imgs/logo.png" alt="Revature" /></a> </div>
+            <div class="logo"><a href='#/complexes'><img src="https://revature.com/imgs/logo.png" alt="Revature" /></a> </div>
           </div>
           <div id="navbar" class="navbar-collapse collapse rev-menu">
             <ul class="nav navbar-nav">
-              <li><a href="/workforce-felice/Associate/Index/"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
-              <li><a href="/workforce-grace/"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
-              <li><a href="/workforce-felice/Login/"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
-            </ul>
+              <li><a href="#/associatelist"><span class="glyphicon glyphicon-user"></span>&nbsp; ASSOCIATES</a></li>
+              <li><a href="#/complexes"><span class="glyphicon glyphicon-home"></span>&nbsp; HOUSING</a></li>
+              <li><a href="#/capacity"><span class="glyphicon glyphicon-signal"></span>&nbsp; ANALYTICS</a></li>
+              <li><a href="#" id="lo" style="visibility:hidden" onclick="logout()"><span class="glyphicon glyphicon-off"></span>&nbsp; LOGOUT</a></li>
 
+
+            </ul>
+            <script>
+              var logCheck = sessionStorage.getItem('Login');
+              var lb = document.getElementById('lo');
+              if (logCheck === 'true')
+              {
+                lb.style.visibility = 'visible';
+              }
+              else
+              {
+                lb.style.visibility = 'hidden';
+              }
+              var logout = function ()
+              {
+                sessionStorage.setItem("Login", "false");
+                var lb = document.getElementById('lo');
+                lb.style.visibility = 'hidden';
+              }
+            </script>
           </div>
         </div>
       </nav>
     </div>
   </div>
   @RenderBody()
-
+  <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+  <script src="~/Scripts/bootstrap.min.js"></script>
   <script src="~/Libraries/angular.min.js"></script>
   <script src="~/Libraries/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script>
   <script src="~/Scripts/app.js"></script>
   <script src="~/Scripts/ComplexToApt.js"></script>
   <script src="~/Scripts/AptToRoom.js"></script>
@@ -71,5 +94,12 @@
   <script src="~/modules/Associates/service.js"></script>
   <script src="~/modules/Apartments/module.js"></script>
   <script src="~/modules/Apartments/service.js"></script>
+  <script src="~/modules/Login/module.js"></script>
+  <script src="~/modules/Login/service.js"></script>
+  <script src="~/modules/Register/module.js"></script>
+  <script src="~/modules/Register/service.js"></script>
+  <script src="~/modules/Capacity/module.js"></script>
+  <script src="~/modules/AssociateList/module.js"></script>
+  <script src="~/modules/AssociateList/service.js"></script>
 </body>
 </html>

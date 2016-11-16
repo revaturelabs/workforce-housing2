@@ -36,7 +36,13 @@ namespace Workforce.Logic.Domain.Helpers
         StatusID = 1
       };
 
-      if (aptDto.CurrentCapacity < aptDto.MaxCapacity)
+      string RoomsGender = "Male";
+      if(aptDto.GenderID == 2) //Female on gender table
+      {
+        RoomsGender = "Female";
+      }
+
+      if ((aptDto.CurrentCapacity < aptDto.MaxCapacity) && (RoomsGender == assoc.Gender))
       {
         aptDto.CurrentCapacity++;
       }
@@ -54,13 +60,12 @@ namespace Workforce.Logic.Domain.Helpers
       {
         passed2 = await logicHelper.AddHousingData(data);
       }
-      //bool passed2 = await logicHelper.AddHousingData(data);
+      
       if (passed2)
       {
         passed = await logicHelper.UpdateApartment(aptDto);
       }
-      //bool passed = await logicHelper.UpdateApartment(aptDto);
-      //bool passed2 = await logicHelper.AddHousingData(data);
+      
 
       return (passed && passed2);
     }
@@ -90,10 +95,8 @@ namespace Workforce.Logic.Domain.Helpers
         return false;
       }
 
-      data.RoomID = null;
-
       bool passed = await logicHelper.UpdateApartment(aptDto);
-     // bool passed2 = await logicHelper.UpdateHousingData(data);
+
       bool passed3 = await logicHelper.UpdateHousingData(data);
 
       return (passed &&  passed3);

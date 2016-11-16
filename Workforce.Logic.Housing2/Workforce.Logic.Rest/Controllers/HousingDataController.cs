@@ -35,5 +35,16 @@ namespace Workforce.Logic.Rest.Controllers
       }
       return Request.CreateResponse(HttpStatusCode.OK, "failed to insert");
     }
+
+    public async Task<HttpResponseMessage> Delete(int id)
+    {
+      var thisData = await logicHelper.HousingDataGetAll();
+      var thisHousingData = thisData.Find(x => x.AssociateID == id);
+      if (await logicHelper.DeleteHousingData(thisHousingData))
+      {
+        return Request.CreateResponse(HttpStatusCode.OK, "successful deletion");
+      }
+      return Request.CreateResponse(HttpStatusCode.OK, "failed to delete");
+    }
   }
 }

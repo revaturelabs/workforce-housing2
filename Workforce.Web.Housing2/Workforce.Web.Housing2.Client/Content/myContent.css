@@ -39,7 +39,7 @@
 
 .traineeSidebar {
     position: fixed;
-    top: 0;
+    top: 100px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -54,7 +54,7 @@
 
 .traineeSidebarRight {
     position: fixed;
-    top: 0;
+    top: 100px;
     bottom: 0;
     right: 0;
     z-index: 1000;
@@ -64,5 +64,20 @@
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #F8F9F9;
     border-left: 1px solid #eee;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: -5px 5px 5px  #888888;
   }
+
+.panel {
+    border-radius: 0px;
+}
+
+@media only screen and (min-width : 300px) {
+
+    .h1 {
+        font-size:10px;
+    }
+   .text {
+    font-size: 20px;
+   }
+
+}
