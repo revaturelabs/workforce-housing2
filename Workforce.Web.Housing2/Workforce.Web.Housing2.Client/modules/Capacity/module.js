@@ -7,7 +7,10 @@
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
             window.location.href = '#/login';
-
+        }
+        else
+        {
+            init();
         }
 
         // config references
@@ -59,7 +62,7 @@
             }, 1500);
         }
 
-        init();
+        
 
 
 
