@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Workforce.Logic.Domain.Helpers;
-using Workforce.Logic.Domain.HousingService;
+using Workforce.Logic.Domain.HousingReference;
 using Workforce.Logic.Domain.TransferModels.Dtos;
 
 namespace Workforce.Logic.Domain.Models
