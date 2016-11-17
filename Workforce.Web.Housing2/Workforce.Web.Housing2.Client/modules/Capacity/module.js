@@ -36,7 +36,8 @@
                 d3.json(chartConfig.data_url, function (data) {
                     spin.style.visibility = 'hidden';
 
-                    // instantiate chart within callback
+                  // instantiate chart within callback
+                    
                     chart(data);
 
                 });
@@ -52,7 +53,7 @@
         function chart(data) {
 
 
-            var margin = { top: 35, right: 20, bottom: 60, left: 70 },
+            var margin = { top: 75, right: 20, bottom: 60, left: 70 },
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
@@ -147,7 +148,7 @@
                 .data(colNames.slice().reverse())
               .enter().append("g")
                 .attr("class", "legend")
-                .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+                .attr("transform", function (d, i) { return "translate(0," + ((i * 20) - 60) + ")"; });
 
             legend.append("rect")
                 .attr("x", width - 18)
@@ -163,7 +164,21 @@
                 .style('font-size', '20px')
                 .text(function (d, i) { return i % 2 ? 'Current Capacity' : 'Max Capacity'; });
 
-            svg.selectAll('.tick').style('font-size', function () { var pix = x1.rangeBand() / 18; return pix +'px' });
+            svg.selectAll('.tick').style('font-size', function () {
+              var pix = x1.rangeBand();
+              if(pix > 100)
+              {
+                return '22px';
+              }
+              else if (pix > 75)
+              {
+                return '18px';
+              }
+              else
+              {
+                return '14px';
+              }
+            });
 
         }
 
