@@ -106,7 +106,7 @@
     <Compile Include="Models\HousingData.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\HousingService\Reference.cs">
+    <Compile Include="Service References\HousingReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -128,49 +128,48 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="web.config" />
     <None Include="packages.config" />
-    <None Include="Service References\HousingService\GraceService1.wsdl" />
-    <None Include="Service References\HousingService\GraceService3.xsd">
+    <None Include="Service References\HousingReference\GraceService.wsdl" />
+    <None Include="Service References\HousingReference\GraceService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\HousingService\GraceService31.xsd">
+    <None Include="Service References\HousingReference\GraceService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\HousingService\GraceService32.xsd">
+    <None Include="Service References\HousingReference\GraceService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\HousingService\Workforce.Logic.Domain.HousingService.ApartmentDao.datasource">
+    <None Include="Service References\HousingReference\Workforce.Logic.Domain.HousingReference.ApartmentDao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\HousingService\Workforce.Logic.Domain.HousingService.HousingComplexDao.datasource">
+    <None Include="Service References\HousingReference\Workforce.Logic.Domain.HousingReference.HousingComplexDao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\HousingService\Workforce.Logic.Domain.HousingService.HousingDataDao.datasource">
+    <None Include="Service References\HousingReference\Workforce.Logic.Domain.HousingReference.HousingDataDao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\HousingService\Workforce.Logic.Domain.HousingService.StatusDao.datasource">
+    <None Include="Service References\HousingReference\Workforce.Logic.Domain.HousingReference.StatusDao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\HousingService\" />
+    <WCFMetadataStorage Include="Service References\HousingReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HousingService\configuration91.svcinfo" />
+    <None Include="Service References\HousingReference\GraceService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HousingService\configuration.svcinfo" />
+    <None Include="Service References\HousingReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HousingService\Reference.svcmap">
+    <None Include="Service References\HousingReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HousingReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\HousingService\GraceService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
