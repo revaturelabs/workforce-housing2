@@ -35,71 +35,60 @@
                 $scope.complexes = response.data;
                 $scope.filteredComplexes = $scope.complexes.slice(0, x);
                 $rootScope.$broadcast('complexObtained', {});
-                //$scope.broadCast = function () {
-                //    $rootScope.$broadcast('complexObtained', {});
-                //}
+                
             })
         }
 
-        $scope.go = function (complex) {
+        $scope.chosen = function (complex) {
             complexToAptService.set(complex);
-
+            $rootScope.$broadcast('complexPicked', {});
         }
 
-
-        $scope.model = {
-            Name: null,
-            Address: null,
-            IsHotel: null,
-            PhoneNumber: null
-        };
-
-        $scope.newComplex = function () {
-            complexPostService.addComplex($scope.model, function (result) {
-                $window.location.reload();
-            });
-        };
-
-        $scope.grab = function (data) {
-            complexToAptService.set(data);
-        }
-
-        $scope.removeComplex = function () {
-            var x = complexToAptService.get();
-            complexDeleteService.removeTheComplex(x, function (result) {
-                $window.location.reload();
-            });
-        };
-
-        
-
-        
     }]);
 
-    ga.controlPanel.controller('panelAptController', ['$scope', '$rootScope', 'aptGetService', 'complexToAptService', function ($scope, $rootScope, aptGetService, complexToAptService) {
+    ga.controlPanel.controller('panelAptController', ['$scope', '$rootScope', 'aptGetService', 'filterAptService', 'complexToAptService', 'aptToRoomService', function ($scope, $rootScope, aptGetService, filterAptService, complexToAptService, aptToRoomService) {
+
+        $scope.filteredApartments = [];
+        $scope.aptCurrentPage = 1;
+        $scope.numPerPage = 3;
+
+        $scope.setPage = function (pageNo) {
+            $scope.aptCurrentPage = pageNo;
+        }
+        $scope.aptPageChanged = function () {
+            var begin = (($scope.aptCurrentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+            $scope.filteredApartments = $scope.apts.slice(begin, end);
+        };
 
         $scope.$on('complexObtained', function () {
-            console.log('well then');
             $scope.aptGet();
+        });
+
+        $scope.$on('complexPicked', function () {
+            var x = complexToAptService.get();
+
+            filterAptService.get(x, function (response) {
+                var x = $scope.numPerPage;
+                $scope.apts = response.data;
+                $scope.filteredApartments = $scope.apts.slice(0, x);
+            })
         });
     
         $scope.aptGet = function () {
-            //var y = complexToAptService.get();
-            //$scope.getModel = {
-            //    HotelID: -1
-            //}
-                aptGetService.get(function (response) {
-                    //var x = $scope.numPerPage;
-                    $scope.apts = response.data;
-                    //$scope.filteredApartments = $scope.apts.slice(0, x);
-                    $rootScope.$broadcast('apartmentObtained', {});
-                })
-            
+            aptGetService.get(function (response) {
+                var x = $scope.numPerPage;
+                $scope.apts = response.data;
+                $scope.filteredApartments = $scope.apts.slice(0, x);
+                $rootScope.$broadcast('apartmentObtained', {});
+            })
         }
-    }]);
 
-    ga.controlPanel.controller('panelRoomController', ['$scope', function ($scope) {
-
+        $scope.aptChoose = function (apt) {
+            aptToRoomService.set(apt);
+            $rootScope.$broadcast('aptPicked', {});
+        }
     }]);
 
     ga.controlPanel.controller('panelAssocController', ['$scope', 'associateGetService', function ($scope, associateGetService) {
@@ -131,16 +120,39 @@
             associateGetService.get($scope.getModel, function (response) {
                 var x = $scope.numPerPage;
                 $scope.associates = response.data;
-                console.log($scope.associates.length);
                 $scope.filteredAssociates = $scope.associates.slice(0, x);
             }, function (response) {
-                console.log(response);
             })
         }
 
     }]);
 
-    
+    ga.controlPanel.controller('panelRoomController', ['$scope', 'aptToRoomService', 'associateByAptService', function ($scope, aptToRoomService, associateByAptService) {
+        
+        $scope.aptRoom = '';
+
+        $scope.$on('complexPicked', function () {
+            $scope.aptRoom = 'Choose A Room';
+        })
+        
+
+        $scope.$on('aptPicked', function () {
+            var x = aptToRoomService.get();
+            associateByAptService.get(x, function (response) {
+                $scope.livingAssoc = response.data;
+            })
+            
+        });
+
+        $scope.living = function () {
+            var v = aptToRoomService.get();
+
+            associateByAptService.get(v, function (response) {
+                $scope.livingAssoc = response.data;
+            })
+        }
+
+    }]);
 
 
 })(window.ahApp);

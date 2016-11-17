@@ -5,53 +5,187 @@
                 Apartments 
             </h1>
         </div>
+        <div class="row">
+            <section class="col-md-8 col-lg-9">
+                <hr />
+            </section>
 
+        </div>
+        <section>
+            <div class="container-fluid" ng-controller="panelAptController">
+                <div class="row">
+                    <!--<span data-ng-init="aptGet()"></span>-->
+                    <section class="col-sm-12 col-md-12 col-lg-10">
+                        <section class="col-sm-12 col-md-3 col-lg-3" data-ng-repeat="apt in filteredApartments">
 
+                            <div ng-if="apt.CurrentCapacity === 0">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+                                        <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Apt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+                                        <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Apt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+                                        <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Apt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </section>
+                    <div class="row center-block">
+                    <section class="col-md-9 col-lg-9">
+                        <ul uib-pagination total-items="apts.length" boundary-links="true" items-per-page="numPerPage" ng-model="aptCurrentPage" ng-change="aptPageChanged()"></ul>
+                    </section>
+                </div>
+                </div>
+            </div>
+        </section>
     </section>
 
 
 </div>
 
-<div class="row">
-    <section class="col-md-8 col-lg-9">
-        <hr />
-    </section>
 
-</div>
 <div class="row">
     <section class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-lg-8">
             <h1>
-                Apt #: 
+                {{aptRoom}}
             </h1>
         </div>
+        <div class="container-fluid" ng-controller="panelRoomController">
+            <div class="row">
+                <section class="col-sm-12 col-md-12 col-lg-10">
+                    <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="associate in livingAssoc">
 
+                        <div ng-switch on="associate.Gender">
+                            <div ng-switch-when="Female">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (F)</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-when="Male">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (M)</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (Other)</h3> </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                </section>
+            </div>
+        </div>
 
     </section>
 
 
 </div>
+
+
+
 <div class="col-sm-2 col-md-2 col-lg-2 traineeSidebar">
-    
+
     <span data-ng-init="get()"></span>
     <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="complex in filteredComplexes">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <a href="" style="color:black;" data-ng-click="go(complex); broadCast()"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
-                </div>
-                <div class="panel-body">
-                    <p class="list-group-item-text">Address: {{complex.Address}}</p>
-                    <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
-
-                </div>
-                <div class="panel-footer">
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Complex </button>
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
-                        <span class="glyphicon glyphicon-trash"></span> Remove Complex
-                    </button>
-                </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <a href="" style="color:black;" data-ng-click="chosen(complex)"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
             </div>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+            <div class="panel-body">
+                <p class="list-group-item-text">Address: {{complex.Address}}</p>
+                <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span></button>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </div>
+        <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
             <div class="panel panel-info">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h3 class="panel-title">
@@ -69,13 +203,13 @@
                 <div class="panel-footer" role="tab" id="headingOne">
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span></button>
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
-                        <span class="glyphicon glyphicon-trash"></span> 
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>
             </div>
 
 
-        </div>  
+        </div>-->
 
     </section>
     <div class="row center-block">
@@ -86,73 +220,6 @@
 
 </div>
 
-<div class="container-fluid" ng-controller="panelAptController">
-    <div class="row">
-        <!--<span data-ng-init="aptGet()"></span>-->
-        <section class="col-sm-12 col-md-12 col-lg-10">
-            <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="apt in apts">
-
-                <div ng-if="apt.CurrentCapacity === 0">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
-                        </div>
-                        <div class="panel-body">
-                            <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
-                            <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
-                        </div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
-                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
-                        </div>
-                        <div class="panel-body">
-                            <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
-                            <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
-                        </div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
-                        </div>
-                        <div class="panel-body">
-                            <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
-                            <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
-                        </div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </section>
-        <!--<div class="row">
-            <section class="col-md-9 col-lg-9">
-                <ul uib-pagination total-items="apts.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
-            </section>
-        </div>-->
-    </div>
-</div>
 
 <div class="col-sm-2 col-md-2 col-lg-2 traineeSidebarRight" ng-controller="panelAssocController">
 
