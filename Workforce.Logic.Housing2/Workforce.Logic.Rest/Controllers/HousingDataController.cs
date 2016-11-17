@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -19,7 +20,19 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns>Task<HttpResponseMessage></returns>
     public async Task<HttpResponseMessage> Get()
     {
-      return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingDataGetAll());
+      Logger log = new Logger();
+      log.InfoLog();
+      try
+      {
+        return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingDataGetAll());
+      }
+      catch(Exception ex)
+      {
+        var error = "The error is this: " +  ex.InnerException.ToString();
+        log.ErrorLog(error);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
+      
     }
 
     /// <summary>
