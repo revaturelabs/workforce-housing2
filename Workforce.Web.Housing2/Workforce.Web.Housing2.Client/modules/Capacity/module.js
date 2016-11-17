@@ -13,7 +13,7 @@
             init();
         }
 
-        var data_url = 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-rest/api/d3aptcapacity';
+        var data_url = '/workforce-housing-rest/api/d3aptcapacity';
         
         // callback function wrapped for loader in 'init' function
         function init() {
@@ -28,16 +28,24 @@
         function chart(data) {
 
             var ar = [];
+            function ob() { this.val = null; this.name = null; };
+            var ob1 = new ob();
+            var ob2 = new ob();
             for (var i = 0; i < data.length; i++)
             {
-                ar.push(data[i].maxCapacity);
-                ar.push(data[i].currentCapacity);
+                ob1.val = data[i].maxCapacity;
+                ob1.name = data[i].name;
+                ar.push(ob1);
+                ob2.val = data[i].currentCapacity;
+                ob2.name = data[i].name;
+                ar.push(ob2);
             }
+
 
           var width = 960;
           var height = 500;
 
-          var y = d3.scale.linear().range([height, 0]).domain([0, d3.max(data, function (d) { return d.maxCapacity; })]);
+          var y = d3.scale.linear().range([height, 0]).domain([0, d3.max(ar, function (d) { return d.val; })]);
 
           var chart = d3.select("#chart").attr("width", width).attr("height", height);
 
@@ -47,10 +55,19 @@
          .attr("transform", function (d, i) { return "translate(" + i * barWidth + ",0)"; });
 
           bar.append("rect")
-                .attr("y", function (d) { return y(d); })
-                .attr("height", function (d) { return height - y(d); })
-                .attr("width", barWidth - 1)
-                .style('fill', "#dd2020");
+          .attr("y", function (d) { return y(d.val); })
+          .attr("height", function (d) { return height - y(d.val); })
+          .attr("width", barWidth - 1)
+          .style('fill', function (d, i) { return i%2? '#808080':'#ba122b'; });
+
+          bar.append("text")
+          .attr("text-anchor", "middle")
+          .attr('x', barWidth/2)
+          .attr("y", function (d) { return y(d.val) + 30; })
+          .attr("dy", ".75em")
+          .style('font-size', '20px')
+          .style('fill', '#FFFFFF')
+          .text(function (d, i) { return i % 2 ? d.name + ' currentCapacity: ' + d.val : d.name + ' maxCapacity: ' + d.val; });
 
         }
 
