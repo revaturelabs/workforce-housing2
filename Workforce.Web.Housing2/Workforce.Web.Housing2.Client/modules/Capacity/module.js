@@ -13,7 +13,7 @@
             init();
         }
 
-        var data_url = '/workforce-housing-rest/api/d3aptcapacity';
+        var data_url = 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-rest/api/d3aptcapacity';
         
         // callback function wrapped for loader in 'init' function
         function init() {
@@ -63,12 +63,20 @@
           bar.append("text")
           .attr("text-anchor", "middle")
           .attr('x', barWidth/2)
-          .attr("y", function (d) { return y(d.val) + 30; })
+          .attr("y", function (d) { return y(d.val) + 20; })
           .attr("dy", ".75em")
           .style('font-size', '20px')
           .style('fill', '#FFFFFF')
-          .text(function (d, i) { return i % 2 ? d.name + ' currentCapacity: ' + d.val : d.name + ' maxCapacity: ' + d.val; });
+          .text(function (d) { return d.name });
 
+          bar.append("text")
+          .attr("text-anchor", "middle")
+          .attr('x', barWidth / 2)
+          .attr("y", function (d) { return y(d.val) + 45; })
+          .attr("dy", ".75em")
+          .style('font-size', '20px')
+          .style('fill', '#FFFFFF')
+          .text(function (d, i) { return i % 2 ? 'Current Capacity: ' + d.val : 'Max Capacity: ' + d.val; });
         }
 
     }]);
