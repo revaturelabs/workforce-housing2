@@ -68,7 +68,7 @@
 
         $scope.$on('complexPicked', function () {
             var x = complexToAptService.get();
-
+            $('#complexName').html(x.Name);
             filterAptService.get(x, function (response) {
                 var x = $scope.numPerPage;
                 $scope.apts = response.data;
@@ -91,7 +91,7 @@
         }
     }]);
 
-    ga.controlPanel.controller('panelAssocController', ['$scope', 'associateGetService', function ($scope, associateGetService) {
+    ga.controlPanel.controller('panelAssocController', ['$scope', '$rootScope', '$route', 'associateGetService', 'aptToRoomService', 'associatePostService', function ($scope, $rootScope, $route, associateGetService, aptToRoomService, associatePostService) {
 
         $scope.$on('apartmentObtained', function () {
             $scope.assocGet();
@@ -125,33 +125,97 @@
             })
         }
 
+        
+
+        $scope.moveIn = function (data)
+        {
+            var x = aptToRoomService.get();
+            $scope.moveModel = {
+                RoomID: x.RoomID,
+                AssociateID: data.AssociateID
+            }
+            associatePostService.addAssoc($scope.moveModel, function (result) {
+                aptToRoomService.set(x);
+                $scope.getModel = {
+                    RoomID: -1,
+                    AssociateID: -1
+                }
+                associateGetService.get($scope.getModel, function (response) {
+                    var x = $scope.numPerPage;
+                    $scope.associates = response.data;
+                    $scope.filteredAssociates = $scope.associates.slice(0, x);
+                    $rootScope.$broadcast('assocMovedIn', {});
+                }, function (response) {
+                })
+            });
+        }
+
+        $scope.$on('assocRemoved', function () {
+            $scope.getModel = {
+                RoomID: -1,
+                AssociateID: -1
+            }
+            associateGetService.get($scope.getModel, function (response) {
+                var x = $scope.numPerPage;
+                $scope.associates = response.data;
+                $scope.filteredAssociates = $scope.associates.slice(0, x);
+            }, function (response) {
+            })
+        });
+
     }]);
 
-    ga.controlPanel.controller('panelRoomController', ['$scope', 'aptToRoomService', 'associateByAptService', function ($scope, aptToRoomService, associateByAptService) {
+    ga.controlPanel.controller('panelRoomController', ['$scope', '$rootScope', '$route', 'aptToRoomService', 'associateByAptService', 'associateDeleteService', function ($scope, $rootScope, $route, aptToRoomService, associateByAptService, associateDeleteService) {
         
-        $scope.aptRoom = '';
-
         $scope.$on('complexPicked', function () {
-            $scope.aptRoom = 'Choose A Room';
-        })
-        
+            $('#roomNumber').html('Choose an Apartment');
+        });
 
         $scope.$on('aptPicked', function () {
             var x = aptToRoomService.get();
+            $('#roomNumber').html('Apt #: ' + x.RoomNumber);
             associateByAptService.get(x, function (response) {
+                var y = response.data.length;
+                if (y === 0) {
+                    $('#assocRoom').text("There's no one here, would you like to add someone?");
+                }
+                else {
+                    $('#assocRoom').text('');
+                }
                 $scope.livingAssoc = response.data;
             })
             
         });
 
-        $scope.living = function () {
-            var v = aptToRoomService.get();
+        $scope.moveOut = function (data) {
+            var y = aptToRoomService.get();
 
-            associateByAptService.get(v, function (response) {
-                $scope.livingAssoc = response.data;
-            })
+            $scope.deleteModel = {
+                AssociateID: data.AssociateID,
+                RoomID: y.RoomID
+            };
+            associateDeleteService.removeAssoc($scope.deleteModel, function (result) {
+                aptToRoomService.set(y);
+                associateByAptService.get(y, function (response) {
+                    $scope.livingAssoc = response.data;
+                    $rootScope.$broadcast('assocRemoved', {});
+                })
+            });
         }
 
+        $scope.$on('assocMovedIn', function () {
+            var x = aptToRoomService.get();
+            associateByAptService.get(x, function (response) {
+                var y = response.data.length;
+                if (y === 0) {
+                    $('#assocRoom').text("There's no one here, would you like to add someone?");
+                }
+                else {
+                    $('#assocRoom').text('');
+                }
+                $scope.livingAssoc = response.data;
+            })
+        });
     }]);
 
 

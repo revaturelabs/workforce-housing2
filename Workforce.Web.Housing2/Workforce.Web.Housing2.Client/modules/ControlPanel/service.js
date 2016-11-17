@@ -64,4 +64,33 @@
         }
     }]);
 
+    ga.controlPanel.factory('associatePostService', ['$http', function ($http) {
+        var url = '/workforce-housing-rest/api/associate/';
+        return {
+            addAssoc: function (info, pass, fail) {
+                $http({
+                    method: 'post',
+                    url: url,
+                    data: info
+                }).then(pass, fail);
+            }
+        }
+    }]);
+
+    ga.controlPanel.factory('associateDeleteService', ['$http', function ($http) {
+        var url = '/workforce-housing-rest/api/associate/';
+        return {
+            removeAssoc: function (info, pass, fail) {
+                $http({
+                    method: 'delete',
+                    url: url,
+                    data: info,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(pass, fail);
+            }
+        }
+    }]);
+
 })(window.ahApp);

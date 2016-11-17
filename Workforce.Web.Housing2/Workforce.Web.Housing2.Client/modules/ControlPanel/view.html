@@ -1,8 +1,8 @@
 ﻿<div class="row">
     <section class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-lg-8">
-            <h1>         
-                Apartments 
+            <h1 id="complexName">         
+                All Apartments 
             </h1>
         </div>
         <div class="row">
@@ -89,78 +89,82 @@
 <div class="row">
     <section class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-lg-8">
-            <h1>
-                {{aptRoom}}
-            </h1>
+            <h2 id="roomNumber">
+                
+            </h2>
         </div>
-        <div class="container-fluid" ng-controller="panelRoomController">
-            <div class="row">
-                <section class="col-sm-12 col-md-12 col-lg-10">
-                    <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="associate in livingAssoc">
+        <div class="row">
+            <section class="col-md-8 col-lg-9">
+                <hr />
+            </section>
 
-                        <div ng-switch on="associate.Gender">
-                            <div ng-switch-when="Female">
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (F)</h3> </a>
-                                    </div>
-                                    <div class="panel-body">
-                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
-                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
-                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
-                                        </button>
+        </div>
+        <section>
+            <p id="assocRoom"></p>
+            <div class="container-fluid" ng-controller="panelRoomController">
+                <div class="row">
+                    <section class="col-sm-12 col-md-12 col-lg-10">
+                        <section class="col-sm-12 col-md-3 col-lg-3" data-ng-repeat="associate in livingAssoc">
 
+                            <div ng-switch on="associate.Gender">
+                                <div ng-switch-when="Female">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                            <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                                <span class="glyphicon glyphicon-briefcase"></span> Move  Out
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="Male">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                            <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                                <span class="glyphicon glyphicon-briefcase"></span> Move Out
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="list-group-item-text"> {{associate.Gender}}</p>
+                                            <p class="list-group-item-text">Email: {{associate.Email}}</p>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
+                                                <span class="glyphicon glyphicon-briefcase"></span> Move Out
+                                            </button>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div ng-switch-when="Male">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (M)</h3> </a>
-                                    </div>
-                                    <div class="panel-body">
-                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
-                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
-                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="panel panel-warning">
-                                    <div class="panel-heading">
-                                        <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}} (Other)</h3> </a>
-                                    </div>
-                                    <div class="panel-body">
-                                        <p class="list-group-item-text"> {{associate.Gender}}</p>
-                                        <p class="list-group-item-text">Email: {{associate.Email}}</p>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assocModal" data-ng-click="moveOut(associate)">
-                                            <span class="glyphicon glyphicon-trash"></span> Remove Associate
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        </section>
                     </section>
-
-                </section>
+                </div>
             </div>
-        </div>
-
+        </section>
     </section>
-
-
 </div>
 
 
@@ -224,21 +228,38 @@
 <div class="col-sm-2 col-md-2 col-lg-2 traineeSidebarRight" ng-controller="panelAssocController">
 
     <!--<span data-ng-init="assocGet()"></span>-->
-    <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates" data-ng-click="grab(trainee)">
+    <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates">
         <div ng-switch on="associate.Gender">
             <div ng-switch-when="Female">
                 <div class="panel panel-danger">
+
                     <div class="panel-heading">
                         <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
                     </div>
                 </div>
             </div>
-            <div ng-switch-when="Male">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-switch-when="Male">
                 <div class="panel panel-info">
+                    <div class="panel-heading" role="tab" id="heading{{associate.FirstName}}">
+                        <h3 class="panel-title">
+                            <a href="" role="button" style="color:black;" data-ng-click="" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{associate.FirstName}}" aria-expanded="true" aria-controls="collapse{{associate.FirstName}}">
+                                {{associate.FirstName}} {{associate.LastName}}
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapse{{associate.FirstName}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{associate.FirstName}}">
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#moveModal" data-ng-click="moveIn(associate)"> <span class="glyphicon glyphicon-bed"></span> Move In </button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--<div class="panel panel-info">
                     <div class="panel-heading">
                         <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
                     </div>
-                </div>
+                </div>-->
+
             </div>
             <div ng-switch-default>
                 <div class="panel panel-warning">
@@ -257,3 +278,23 @@
     </div>
 </div>
 
+<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h3 class="panel-title">
+                        <a href="" role="button" style="color:black;" data-ng-click="" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                           {{associate.FirstName}} {{associate.LastName}}
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                    </div>
+                </div>
+                <div class="panel-footer" role="tab" id="headingOne">
+                    
+                </div>
+            </div>
+
+
+        </div>-->
