@@ -22,10 +22,6 @@
             val: 90
         };
 
-      
-
-
-        var target = document.getElementById(chartConfig.target);
         var spin = document.getElementById('spin');
 
 
@@ -167,7 +163,7 @@
                 .style('font-size', '20px')
                 .text(function (d, i) { return i % 2 ? 'Current Capacity' : 'Max Capacity'; });
 
-            var tick = svg.selectAll('.tick').style('font-size', function () { var pix = x1.rangeBand() / 18; return pix +'px' });
+            svg.selectAll('.tick').style('font-size', function () { var pix = x1.rangeBand() / 18; return pix +'px' });
 
         }
 
