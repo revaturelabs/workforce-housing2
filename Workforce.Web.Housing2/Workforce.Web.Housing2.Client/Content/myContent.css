@@ -1,4 +1,7 @@
-﻿.dropdown {
+﻿body{
+  font-size: 15px;
+}
+.dropdown {
     position: relative;
 }
 
