@@ -41,9 +41,9 @@ namespace Workforce.Logic.Rest.Controllers
       newApartmentDto.CurrentCapacity = 0;
       if (await logicHelper.AddApartment(newApartmentDto))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted new Apartment/Room");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert new Apartment/Room");
     }
     /// <summary>
     /// put method for apartment
@@ -54,9 +54,9 @@ namespace Workforce.Logic.Rest.Controllers
     {
       if (await logicHelper.UpdateApartment(apartment))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully updated Apartment/Room Data");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update Apartment/Room Data");
     }
     /// <summary>
     /// delete method for apartment
@@ -67,9 +67,9 @@ namespace Workforce.Logic.Rest.Controllers
     {
       if (await logicHelper.DeleteApartment(apartment))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted Apartment/Room Data");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete Apartment/Room Data");
     }
 
   }

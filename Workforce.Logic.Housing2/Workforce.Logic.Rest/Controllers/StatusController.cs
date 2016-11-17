@@ -30,9 +30,9 @@ namespace Workforce.Logic.Rest.Controllers
     {     
       if(await logicHelper.AddStatus(newStatus))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted new status");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert new status");
     }
   }
 }
