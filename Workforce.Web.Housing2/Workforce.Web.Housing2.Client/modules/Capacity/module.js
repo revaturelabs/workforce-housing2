@@ -16,7 +16,7 @@
         // config references
         var chartConfig = {
             target: 'chart',
-            data_url: 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-rest/api/d3aptcapacity',
+            data_url: '/workforce-housing-rest/api/d3aptcapacity',
             width: 900,
             height: 450,
             val: 90
@@ -56,7 +56,7 @@
         function chart(data) {
 
 
-            var margin = { top: 35, right: 20, bottom: 35, left: 40 },
+            var margin = { top: 35, right: 20, bottom: 60, left: 70 },
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
@@ -67,10 +67,6 @@
 
             var y = d3.scale.linear()
                 .range([height, 0]);
-
-            //two colors of the graphs		
-            var color = d3.scale.ordinal()
-                .range(["#21b200", "#dd2020"]);
 
             var xAxis = d3.svg.axis()
                 .scale(x0)
@@ -93,7 +89,7 @@
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
               .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
             svg.call(tip);
@@ -114,19 +110,24 @@
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis).append("text")
                       .attr("x", (width / 2))
-                      .attr("y", 30)
-                      .style("text-anchor", "start")
+                      .attr("y", 50)
+                      .style("text-anchor", "middle")
+                      .style('font-size', '25px')
                       .text("Apartment Complex Name");
+
+           
 
             svg.append("g")
                 .attr("class", "y axis")
                 .call(yAxis)
               .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 2)
+                .attr("x", -(height / 2))
                 .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("Capacity");
+                .style("text-anchor", "center")
+                .style('font-size', '25px')
+                .text("Capacity")
+                .attr("y", -65);
 
             var state = svg.selectAll(".state")
                 .data(data)
@@ -136,13 +137,14 @@
 
             state.selectAll("rect")
                 .data(function (d) { return d.capacities; })
-              .enter().append("rect")
+                .enter().append("rect")
                 .attr("width", x1.rangeBand())
                 .attr("x", function (d) { return x1(d.name); })
                 .attr("y", function (d) { return y(d.value); })
                 .attr("height", function (d) { return height - y(d.value); })
                 .style('fill', function (d, i) { return i % 2 ? '#808080' : '#ba122b'; })
-                            .on('mouseover', tip.show)
+                .style("font-size", "50px")
+                .on('mouseover', tip.show)
                 .on('mouseout', tip.hide);
 
             var legend = svg.selectAll(".legend")
@@ -162,7 +164,10 @@
                 .attr("y", 9)
                 .attr("dy", ".35em")
                 .style("text-anchor", "end")
-                .text(function (d) { return d; });
+                .style('font-size', '20px')
+                .text(function (d, i) { return i % 2 ? 'Current Capacity' : 'Max Capacity'; });
+
+            var tick = svg.selectAll('.tick').style('font-size', function () { var pix = x1.rangeBand() / 18; return pix +'px' });
 
         }
 
