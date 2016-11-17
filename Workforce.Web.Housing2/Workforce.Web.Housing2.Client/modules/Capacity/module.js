@@ -13,7 +13,7 @@
             init();
         }
 
-        var data_url = 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-rest/api/d3aptcapacity';
+        var data_url = '/workforce-housing-rest/api/d3aptcapacity';
         
         // callback function wrapped for loader in 'init' function
         function init() {
