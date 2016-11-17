@@ -13,13 +13,14 @@
             init();
         }
 
-        var data_url = '/workforce-housing-rest/api/d3aptcapacity';
+    
+        var data_url = 'http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-rest/api/d3aptcapacity';
         
         // callback function wrapped for loader in 'init' function
         function init() {
-
           setTimeout(function () {
-            d3.json(data_url, function (data) {
+              d3.json(data_url, function (data) {
+                  
               chart(data);
             });
           }, 1500);
@@ -29,13 +30,13 @@
 
             var ar = [];
             function ob() { this.val = null; this.name = null; };
-            var ob1 = new ob();
-            var ob2 = new ob();
             for (var i = 0; i < data.length; i++)
             {
+                var ob1 = new ob();
                 ob1.val = data[i].maxCapacity;
                 ob1.name = data[i].name;
                 ar.push(ob1);
+                var ob2 = new ob();
                 ob2.val = data[i].currentCapacity;
                 ob2.name = data[i].name;
                 ar.push(ob2);
