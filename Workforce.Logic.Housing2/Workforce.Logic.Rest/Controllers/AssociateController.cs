@@ -19,7 +19,7 @@ namespace Workforce.Logic.Rest.Controllers
     //AssociatesGetByApartment()AssociatesGetRoomless
 
     AssociateHelper associateHelper = new AssociateHelper();
-
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     /// <summary>
     /// http get method if -1 is passed in we get associates who are roomless otherwise we return all associate
     /// that are in the given apartment
@@ -28,11 +28,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Get([FromUri] InsertAssociateDto associate)
     {
-      if (associate.AssociateId.Equals(-1))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, await associateHelper.AssociatesGetRoomless());
+        if (associate.AssociateId.Equals(-1))
+        {
+          var theResponseRmlss = Request.CreateResponse(HttpStatusCode.OK, await associateHelper.AssociatesGetRoomless());
+          log.Info("Associate Get Successful");
+          return theResponseRmlss;
+        }
+        var theResponseByAp = Request.CreateResponse(HttpStatusCode.OK, await associateHelper.AssociatesGetByApartment(associate));
+        log.Info("Associate Get Successful");
+        return theResponseByAp;
       }
-      return Request.CreateResponse(HttpStatusCode.OK, await associateHelper.AssociatesGetByApartment(associate));
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
     /// <summary>
@@ -42,11 +54,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Post([FromBody]InsertAssociateDto associate)
     {
-      if (await associateHelper.InsertAssociateToRoom(associate))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "Successfully registered associate into a apartment room");
+        if (await associateHelper.InsertAssociateToRoom(associate))
+        {
+          var theResponseByAp = Request.CreateResponse(HttpStatusCode.OK, "Successfully registered associate into a apartment room");
+          log.Info("Associate Post Successful");
+          return theResponseByAp;
+        }
+        var theResponse2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert associate into a apartment room");
+        log.Info("Associate Post Unsuccessful");
+        return theResponse2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert associate into a apartment room");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert associate into a apartment room");
+      }
     }
 
     /// <summary>
@@ -60,6 +84,7 @@ namespace Workforce.Logic.Rest.Controllers
       //{
       //  return Request.CreateResponse(HttpStatusCode.OK, "successfully moved associate to another apartment room");
       //}
+      log.Info("Associate Put Unsuccessful");
       return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to move associate to another apartment room");
     }
 
@@ -70,11 +95,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Delete([FromBody]InsertAssociateDto associate)
     {
-      if (await associateHelper.RemoveAssocFromRoom(associate))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully removed associate from apartment room");
+        if (await associateHelper.RemoveAssocFromRoom(associate))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successfully removed associate from apartment room");
+          log.Info("Associate Delete Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to remove assocaiate from apartment room");
+        log.Info("Associate Delete Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to remove assocaiate from apartment room");
+      catch(Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to remove assocaiate from apartment room");
+      }
     }
   }
 }

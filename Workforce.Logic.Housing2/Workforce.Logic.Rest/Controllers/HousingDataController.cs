@@ -13,6 +13,7 @@ namespace Workforce.Logic.Rest.Controllers
   public class HousingDataController : ApiController
   {
     private readonly LogicHelper logicHelper = new LogicHelper();
+    private readonly log4net.ILog log = LogHelper.GetLogger();
 
     /// <summary>
     /// CRUD: Read calls logicHelper to get all housingComplexes from service
@@ -20,19 +21,18 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns>Task<HttpResponseMessage></returns>
     public async Task<HttpResponseMessage> Get()
     {
-      Logger log = new Logger();
-      log.InfoLog();
       try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingDataGetAll());
+        var theResponse = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingDataGetAll());
+        log.Info("HousingData Get Successful");
+        return theResponse;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
-        var error = "The error is this: " +  ex.InnerException.ToString();
-        log.ErrorLog(error);
+        LogHelper.SendError(log, ex);
         return Request.CreateResponse(HttpStatusCode.BadRequest);
       }
-      
+
     }
 
     /// <summary>
@@ -41,23 +41,45 @@ namespace Workforce.Logic.Rest.Controllers
     /// <param name="newData"></param>
     /// <returns></returns>
     public async Task<HttpResponseMessage> Post([FromBody]HousingDataDto newData)
-    { 
-      if(await logicHelper.AddHousingData(newData))
+    {
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        if (await logicHelper.AddHousingData(newData))
+        {
+          var theResponse = Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+          log.Info("HousingData Post Successful");
+          return theResponse;
+        }
+        log.Info("HousingData Post Unsuccessful");
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      }
     }
 
     public async Task<HttpResponseMessage> Delete(int id)
     {
-      var thisData = await logicHelper.HousingDataGetAll();
-      var thisHousingData = thisData.Find(x => x.AssociateID == id);
-      if (await logicHelper.DeleteHousingData(thisHousingData))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful deletion");
+        var thisData = await logicHelper.HousingDataGetAll();
+        var thisHousingData = thisData.Find(x => x.AssociateID == id);
+        if (await logicHelper.DeleteHousingData(thisHousingData))
+        {
+          log.Info("HousingData Delete Successful");
+          return Request.CreateResponse(HttpStatusCode.OK, "successful deletion");
+        }
+        log.Info("HousingData Delete Unsuccessful");
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+      }
     }
   }
 }
+

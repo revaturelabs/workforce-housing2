@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -12,19 +13,31 @@ namespace Workforce.Logic.Rest.Controllers
   public class HousingComplexController : ApiController
   {
     private readonly LogicHelper logicHelper = new LogicHelper();
-
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     /// <summary>
     /// CRUD: Read calls logicHelper to get all housingComplexes from service
     /// </summary>
     /// <returns>Task<HttpResponseMessage></returns>
     public async Task<HttpResponseMessage> Get()//[FromUri] bool getActive)
     {
-      bool getActive = true;
-      if (getActive)
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingComplexsGetActive());
+        bool getActive = true;
+        if (getActive)
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingComplexsGetActive());
+          log.Info("HousingComplex Get Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingComplexsGetAll());
+        log.Info("HousingComplex Get Successful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingComplexsGetAll());
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
     /// <summary>
@@ -34,12 +47,24 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Post([FromBody]HousingComplexDto newHousingComDto)
     {
-      newHousingComDto.ActiveBit = true;
-      if (await logicHelper.AddHousingComplex(newHousingComDto))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted");
+        newHousingComDto.ActiveBit = true;
+        if (await logicHelper.AddHousingComplex(newHousingComDto))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successfully inserted");
+          log.Info("HousingComplex Post Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+        log.Info("HousingComplex Post Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
     /// <summary>
@@ -49,11 +74,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Put([FromBody]HousingComplexDto complex)
     {
-      if (await logicHelper.UpdateHousingComplex(complex))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfull updated");
+        if (await logicHelper.UpdateHousingComplex(complex))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successfully updated");
+          log.Info("HousingComplex Put Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update");
+        log.Info("HousingComplex Put Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
     /// <summary>
     /// Delete method for Housing Complex
@@ -62,11 +99,24 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Delete([FromBody]HousingComplexDto complex)
     {
-      if (await logicHelper.DeleteComplex(complex))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted");
+        if (await logicHelper.DeleteComplex(complex))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successfully delete");
+          log.Info("HousingComplex Delete Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+        log.Info("HousingComplex Delete Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
+
     }
   }
 }
