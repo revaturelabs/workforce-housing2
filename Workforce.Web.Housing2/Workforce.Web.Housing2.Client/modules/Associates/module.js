@@ -3,8 +3,8 @@
 
     ga.associate = angular.module('ahAssociate', ['ui.bootstrap']);
 
-    ga.associate.controller('associateController', ['$scope', '$window', 'aptToRoomService', 'traineeGetService', 'traineeDataGrab', 'associatePostService', 'associateByAptService', 'associateDeleteService',
-                                                function ($scope, $window, aptToRoomService, traineeGetService, traineeDataGrab, associatePostService, associateByAptService, associateDeleteService) {
+    ga.associate.controller('associateController', ['$scope', '$window', '$route', 'aptToRoomService', 'traineeGetService', 'traineeDataGrab', 'associatePostService', 'associateByAptService', 'associateDeleteService',
+                                                function ($scope, $window, $route, aptToRoomService, traineeGetService, traineeDataGrab, associatePostService, associateByAptService, associateDeleteService) {
                                                   var sessionItem = sessionStorage.getItem('Login');
                                                   if (sessionItem !== "true") {
                                                     window.location.href = '#/login';
@@ -73,7 +73,7 @@
             };
             roomDeleteService.removeApt($scope.rModel, function (result) {
                 $window.location.href = '#/apartments';
-                $window.location.reload();
+                $route.reload();
             });
         };
 
@@ -96,7 +96,7 @@
             };
             associatePostService.addAssoc($scope.insertModel, function (result) {
                 aptToRoomService.set(y);
-                $window.location.reload();
+                $route.reload();
             });
         }
 
@@ -113,7 +113,7 @@
             };
             associateDeleteService.removeAssoc($scope.deleteModel, function (result) {
                 aptToRoomService.set(y);
-                $window.location.reload();
+                $route.reload();
             });
         }
 

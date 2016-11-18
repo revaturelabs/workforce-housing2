@@ -5,8 +5,8 @@
 
   ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
 
-  ga.complex.controller('complexController', ['$scope', '$location', '$window', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
-  function ($scope, $location, $window, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
+  ga.complex.controller('complexController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
+  function ($scope, $location, $window, $timeout, $route, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
       $('#mainPage').removeClass('controlPanel');
     var sessionItem = sessionStorage.getItem('Login');
@@ -47,8 +47,12 @@
     };
 
     $scope.newComplex = function () {
-      complexPostService.addComplex($scope.model, function (result) {
-        $window.location.reload();
+        complexPostService.addComplex($scope.model, function (result) {
+            $timeout(function () {
+                // 1 second delay, might not need this long, but it works.
+                $route.reload();
+            }, 1000);
+          //$route.reload();
       });
     };
 
@@ -56,10 +60,18 @@
       complexToAptService.set(data);
     }
 
+    $scope.refresh = function () {
+        $route.reload();
+    }
+
     $scope.removeComplex = function () {
       var x = complexToAptService.get();
       complexDeleteService.removeTheComplex(x, function (result) {
-        $window.location.reload();
+          $timeout(function () {
+              // 1 second delay, might not need this long, but it works.
+              $route.reload();
+          }, 1000);
+          //$route.reload();
       });
     };
 

@@ -32,7 +32,7 @@ namespace Workforce.Logic.Rest.Controllers
       {
         return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
       }
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
     }
   }
 }
