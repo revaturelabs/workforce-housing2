@@ -26,7 +26,7 @@
         fname.value = '';
         lname.value = '';
         var el = document.getElementById('error');
-        el.innerHTML = '<p style="color:red;font-size:150%">please enter valid username and password</p>';
+        el.innerHTML = '<p style="color:red;font-size:150%">Invalid username / password</p>';
       }
 
     };
