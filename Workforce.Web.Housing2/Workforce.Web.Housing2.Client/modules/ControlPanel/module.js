@@ -169,14 +169,12 @@
                 associateGetService.get($scope.getModel, function (response) {
                     var g = $scope.numPerPage;
                     $scope.associates = response.data;
-                    console.log($scope.assocCurrentPage);
                     $scope.filteredAssociates = $scope.associates.slice(0, g);
                     $rootScope.$broadcast('assocMovedIn', {});
                 }, function (response) {
                 })
             }, function (result) {
 
-                console.log(result);
                 setTimeout(function () { $('#failAddAssoc').fadeIn(200); });
                 setTimeout(function () { $('#failAddAssoc').fadeOut(3000); }, 2000);
             });
