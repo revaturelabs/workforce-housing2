@@ -21,6 +21,20 @@ namespace Workforce.Logic.Rest.Controllers
     {
       return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.HousingDataGetAll());
     }
+   
+    /// <summary>
+    /// Put method for updating housingData
+    /// </summary>
+    /// <param name="complex"></param>
+    /// <returns></returns>
+    public async Task<HttpResponseMessage> Put([FromBody]HousingDataDto complex)
+    {
+      if(await logicHelper.UpdateHousingData(complex))
+      {
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully updated Housing Data");
+      }
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update Housing Data");
+    }
 
     /// <summary>
     /// post method to insert new housingData
@@ -31,9 +45,9 @@ namespace Workforce.Logic.Rest.Controllers
     { 
       if(await logicHelper.AddHousingData(newData))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted Housing Data");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert Housing Data");
     }
 
     public async Task<HttpResponseMessage> Delete(int id)
@@ -42,9 +56,9 @@ namespace Workforce.Logic.Rest.Controllers
       var thisHousingData = thisData.Find(x => x.AssociateID == id);
       if (await logicHelper.DeleteHousingData(thisHousingData))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successful deletion");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted Housing Data");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete Housing Data");
     }
   }
 }
