@@ -28,13 +28,14 @@
 
     });
 
-    var y = complexToAptService.get();
-    $scope.getModel = {
-        HotelID: y.HotelID
-    }
+    //var y = complexToAptService.get();
+    //$scope.getModel = {
+    //    HotelID: y.HotelID
+    //}
 
     $scope.get = function () {
-      aptGetService.get($scope.getModel, function (response) {
+        var y = complexToAptService.get();
+        aptGetService.get(y, function (response) {
         var x = $scope.numPerPage;
         $scope.apts = response.data;
         $scope.filteredApartments = $scope.apts.slice(0, x);

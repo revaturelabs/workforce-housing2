@@ -48,7 +48,7 @@
     }]);
 
     ga.controlPanel.controller('panelAptController', ['$scope', '$rootScope', 'aptGetService', 'filterAptService', 'complexToAptService', 'aptToRoomService', function ($scope, $rootScope, aptGetService, filterAptService, complexToAptService, aptToRoomService) {
-
+        
         $scope.filteredApartments = [];
         $scope.aptCurrentPage = 1;
         $scope.numPerPage = 3;
@@ -167,9 +167,10 @@
                     AssociateID: -1
                 }
                 associateGetService.get($scope.getModel, function (response) {
-                    var x = $scope.numPerPage;
+                    var g = $scope.numPerPage;
                     $scope.associates = response.data;
-                    $scope.filteredAssociates = $scope.associates.slice(0, x);
+                    console.log($scope.assocCurrentPage);
+                    $scope.filteredAssociates = $scope.associates.slice(0, g);
                     $rootScope.$broadcast('assocMovedIn', {});
                 }, function (response) {
                 })
@@ -182,9 +183,9 @@
                 AssociateID: -1
             }
             associateGetService.get($scope.getModel, function (response) {
-                var x = $scope.numPerPage;
+                var g = $scope.numPerPage;
                 $scope.associates = response.data;
-                $scope.filteredAssociates = $scope.associates.slice(0, x);
+                $scope.filteredAssociates = $scope.associates.slice(0, g);
             }, function (response) {
             })
         });
