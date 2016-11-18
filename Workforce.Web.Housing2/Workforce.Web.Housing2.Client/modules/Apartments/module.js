@@ -8,7 +8,7 @@
 
 
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexToAptService', 'aptToRoomService',
-    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, aptGetService,
+    'filterAptService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, filterAptService,
       aptPostService, roomDeleteService) {
         $('#mainPage').removeClass('controlPanel');
       var sessionItem = sessionStorage.getItem('Login');
@@ -35,7 +35,7 @@
 
     $scope.get = function () {
         var y = complexToAptService.get();
-        aptGetService.get(y, function (response) {
+        filterAptService.get(y, function (response) {
         var x = $scope.numPerPage;
         $scope.apts = response.data;
         $scope.filteredApartments = $scope.apts.slice(0, x);
