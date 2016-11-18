@@ -10,7 +10,7 @@
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexToAptService', 'aptToRoomService',
     'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, aptGetService,
       aptPostService, roomDeleteService) {
-
+        $('#mainPage').removeClass('controlPanel');
       var sessionItem = sessionStorage.getItem('Login');
       if (sessionItem !== "true") {
         window.location.href = '#/login';

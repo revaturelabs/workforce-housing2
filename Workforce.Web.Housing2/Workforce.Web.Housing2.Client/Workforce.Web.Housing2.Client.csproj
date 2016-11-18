@@ -122,6 +122,9 @@
     <Content Include="modules\Complexes\module.js" />
     <Content Include="modules\Complexes\service.js" />
     <Content Include="modules\Complexes\view.html" />
+    <Content Include="modules\ControlPanel\module.js" />
+    <Content Include="modules\ControlPanel\service.js" />
+    <Content Include="modules\ControlPanel\view.html" />
     <Content Include="modules\Login\fail.html" />
     <Content Include="modules\Login\module.js" />
     <Content Include="modules\Login\service.js" />

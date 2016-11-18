@@ -75,6 +75,7 @@ namespace Workforce.Logic.Rest.Controllers
 
     /// <summary>
     /// not implemented yet but we want this to change associate to a different room
+    /// NOTE: This method may need to be removed as it's overall functionality does not seem needed in the long run
     /// </summary>
     /// <param name="associate"></param>
     /// <returns></returns>

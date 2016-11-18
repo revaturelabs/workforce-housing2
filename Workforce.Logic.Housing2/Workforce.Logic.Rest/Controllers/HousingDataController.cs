@@ -36,6 +36,20 @@ namespace Workforce.Logic.Rest.Controllers
     }
 
     /// <summary>
+    /// Put method for updating housingData
+    /// </summary>
+    /// <param name="complex"></param>
+    /// <returns></returns>
+    public async Task<HttpResponseMessage> Put([FromBody]HousingDataDto complex)
+    {
+      if(await logicHelper.UpdateHousingData(complex))
+      {
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully updated Housing Data");
+      }
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update Housing Data");
+    }
+
+    /// <summary>
     /// post method to insert new housingData
     /// </summary>
     /// <param name="newData"></param>
