@@ -34,12 +34,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="panel-footer">
-                                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
-                                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                                 <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
@@ -52,16 +46,10 @@
                                             <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
                                             <br />
                                             <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" style="min-width: 2em; width: 100%;">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" style="min-width: 2em; width: 100%;">
                                                     {{apt.CurrentCapacity}} / {{apt.MaxCapacity}}
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -75,17 +63,11 @@
                                             <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
                                             <br />
                                             <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
                                                     {{apt.CurrentCapacity}} / {{apt.MaxCapacity}}
                                                 </div>
                                             </div>
                                             <!--<uib-progressbar max="10" value="6"><span style="color:white; white-space:nowrap;">{{apt.CurrentCapacity}}/{{apt.MaxCapacity}}</span></uib-progressbar>-->
-                                        </div>
-                                        <div class="panel-footer">
-                                            <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                                                <span class="glyphicon glyphicon-trash"></span> Remove Apt
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -205,12 +187,6 @@
                 <p class="list-group-item-text">Address: {{complex.Address}}</p>
                 <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
 
-            </div>
-            <div class="panel-footer">
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span></button>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
             </div>
         </div>
         <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
