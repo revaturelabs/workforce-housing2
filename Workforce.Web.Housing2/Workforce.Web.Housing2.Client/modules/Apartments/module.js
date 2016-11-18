@@ -51,9 +51,8 @@
 
     $scope.info = complexToAptService.get().Name;
 
-    $scope.go = function (room, path) {
+    $scope.go = function (room) {
       aptToRoomService.set(room);
-      $location.path(path);
     }
 
     $scope.back = function () {
@@ -64,7 +63,7 @@
         HotelID: complexToAptService.get().HotelID,
         RoomNumber: null,
         MaxCapacity: null,
-        Gender: null
+        GenderID: null
     };
 
     $scope.newApartment = function () {
@@ -72,7 +71,7 @@
             $timeout(function () {
                 // 1 second delay, might not need this long, but it works.
                 $route.reload();
-            }, 1000);
+            }, 500);
           //$route.reload();
       });
     };

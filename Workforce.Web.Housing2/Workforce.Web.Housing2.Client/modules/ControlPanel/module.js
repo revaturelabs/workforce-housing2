@@ -174,6 +174,11 @@
                     $rootScope.$broadcast('assocMovedIn', {});
                 }, function (response) {
                 })
+            }, function (result) {
+
+                console.log(result);
+                setTimeout(function () { $('#failAddAssoc').fadeIn(200); });
+                setTimeout(function () { $('#failAddAssoc').fadeOut(3000); }, 2000);
             });
         }
 

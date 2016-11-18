@@ -42,7 +42,7 @@
         <div ng-if="apt.CurrentCapacity === 0">
           <div class="panel panel-success">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt)"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
@@ -59,14 +59,13 @@
         <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt)"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
               <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
             </div>
             <div class="panel-footer">
-              <button type="button" class="btn btn-default" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit </button>
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
                 <span class="glyphicon glyphicon-trash"></span> Remove 
               </button>
@@ -76,14 +75,13 @@
         <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
           <div class="panel panel-warning">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt)"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
               <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
             </div>
             <div class="panel-footer">
-              <button type="button" class="btn btn-default" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit </button>
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
                 <span class="glyphicon glyphicon-trash"></span> Remove 
               </button>
@@ -109,7 +107,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title center text-uppercase" id="myModalLabel">Add Apartment</h2>
+          <h2 class="modal-title center text-uppercase" id="myModalLabel">Add a New Apartment at {{info}}</h2>
         </div>
         <div class="modal-body">
 
@@ -144,16 +142,22 @@
             <label for="genderSelection">Male or Female Apartment:</label>
             <div class="radio">
               <label>
-                <input type="radio" name="model.Gender" data-ng-model="model.Gender" id="optionsRadios1" value="Male" checked>
+                <input type="radio" name="model.GenderID" data-ng-model="model.GenderID" id="optionsRadios1" value="1" checked>
                 Male
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="model.Gender" data-ng-model="model.Gender" id="optionsRadios1" value="Female">
+                <input type="radio" name="model.GenderID" data-ng-model="model.GenderID" id="optionsRadios2" value="2">
                 Female
               </label>
             </div>
+              <div class="radio">
+                  <label>
+                      <input type="radio" name="model.GenderID" data-ng-model="model.GenderID" id="optionsRadios3" value="29">
+                      Not Specified
+                  </label>
+              </div>
           </div>
         </div>
         <div class="modal-footer">
