@@ -14,8 +14,8 @@
       <div class="row">
         <section class="col-sm-1 col-md-1 col-lg-1">
           <h1>
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-              <span class="glyphicon glyphicon-plus"></span> Add a new Apartment
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-plus"></span> Add Apartment
             </button>
           </h1>
         </section>
@@ -42,16 +42,16 @@
         <div ng-if="apt.CurrentCapacity === 0">
           <div class="panel panel-success">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
               <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
             </div>
             <div class="panel-footer">
-              <!--<button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>-->
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
-                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              <!--<button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit </button>-->
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)">
+                <span class="glyphicon glyphicon-trash"></span> Remove 
               </button>
             </div>
           </div>
@@ -59,16 +59,16 @@
         <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
               <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
             </div>
             <div class="panel-footer">
-              <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              <button type="button" class="btn btn-default" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit </button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                <span class="glyphicon glyphicon-trash"></span> Remove 
               </button>
             </div>
           </div>
@@ -76,16 +76,16 @@
         <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
           <div class="panel panel-warning">
             <div class="panel-heading">
-              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+              <a href="" style="color:black;" data-ng-click="go(apt, ('/rooming'))"> <h3 class="panel-title">Apartment: {{apt.RoomNumber}}</h3> </a>
             </div>
             <div class="panel-body">
               <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
               <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
             </div>
             <div class="panel-footer">
-              <button type="button" class="btn btn-default btn-sm" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Apt</button>
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
-                <span class="glyphicon glyphicon-trash"></span> Remove Apt
+              <button type="button" class="btn btn-default" data-ng-click="go(apt, ('/aptInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit </button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#apartmentModal" data-ng-click="grab(apt)" disabled>
+                <span class="glyphicon glyphicon-trash"></span> Remove 
               </button>
             </div>
           </div>
@@ -109,7 +109,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title" id="myModalLabel">Add a New Apt at {{info}}</h2>
+          <h2 class="modal-title center text-uppercase" id="myModalLabel">Add Apartment</h2>
         </div>
         <div class="modal-body">
 
@@ -123,7 +123,7 @@
               </div>
           </div>-->
           <div class="form-group">
-            <label for="roomNumberHere">Room Number</label>
+            <label for="roomNumberHere">Room Number:</label>
             <div>
               <input type="text" class="form-control" data-ng-model="model.RoomNumber" id="roomNum" name="model.RoomNumber" placeholder="Room Number">
             </div>
@@ -135,13 +135,13 @@
               </div>
           </div>-->
           <div class="form-group">
-            <label for="maxCapacity">Max Capacity</label>
+            <label for="maxCapacity">Max Capacity:</label>
             <div>
               <input type="number" class="form-control" data-ng-model="model.MaxCapacity" id="MaxCap" name="model.MaxCapacity" placeholder="Max Capacity">
             </div>
           </div>
           <div class="form-group">
-            <label for="genderSelection">Will this be a Male or Female Apartment?</label>
+            <label for="genderSelection">Male or Female Apartment:</label>
             <div class="radio">
               <label>
                 <input type="radio" name="model.Gender" data-ng-model="model.Gender" id="optionsRadios1" value="Male" checked>
@@ -158,7 +158,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click="newApartment()">Save changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click="newApartment()">Save Changes</button>
         </div>
       </div>
     </form>
@@ -166,7 +166,7 @@
 </div>
 
 
-<!-- Apt Remove modal -->
+<!--  Remove modal -->
 
 
 <div class="modal fade" id="apartmentModal" tabindex="-1" role="dialog" aria-labelledby="apartmentModal">
@@ -174,10 +174,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title" id="myModalLabel">Hold it right there!</h2>
+        <h2 class="modal-title center text-uppercase" id="myModalLabel">Remove Apartment: {{removedApt}}</h2>
       </div>
       <div class="modal-body">
-        Are you sure you want to remove Apartment #: {{removedApt}}?
+        Are you sure you want to remove apartment number: {{removedApt}}?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" data-target="#apartmentModal">Cancel</button>
