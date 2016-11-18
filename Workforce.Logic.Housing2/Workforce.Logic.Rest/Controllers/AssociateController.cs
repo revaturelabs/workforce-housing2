@@ -46,7 +46,7 @@ namespace Workforce.Logic.Rest.Controllers
       {
         return Request.CreateResponse(HttpStatusCode.OK, "Successfully registered associate into a apartment room");
       }
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to insert associate into a apartment room");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert associate into a apartment room");
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ namespace Workforce.Logic.Rest.Controllers
       //{
       //  return Request.CreateResponse(HttpStatusCode.OK, "successfully moved associate to another apartment room");
       //}
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to move associate to another apartment room");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to move associate to another apartment room");
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ namespace Workforce.Logic.Rest.Controllers
       {
         return Request.CreateResponse(HttpStatusCode.OK, "successfully removed associate from apartment room");
       }
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to remove assocaiate from apartment room");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to remove assocaiate from apartment room");
     }
   }
 }

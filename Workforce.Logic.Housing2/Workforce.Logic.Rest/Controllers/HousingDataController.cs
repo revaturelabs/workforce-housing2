@@ -46,7 +46,7 @@ namespace Workforce.Logic.Rest.Controllers
       {
         return Request.CreateResponse(HttpStatusCode.OK, "successful insert");
       }
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
     }
 
     public async Task<HttpResponseMessage> Delete(int id)
@@ -57,7 +57,7 @@ namespace Workforce.Logic.Rest.Controllers
       {
         return Request.CreateResponse(HttpStatusCode.OK, "successful deletion");
       }
-      return Request.CreateResponse(HttpStatusCode.OK, "failed to delete");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
     }
   }
 }
