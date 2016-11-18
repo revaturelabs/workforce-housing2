@@ -9,7 +9,7 @@
 
   ga.login.controller('loginController', ['$scope', 'loginService', function ($scope, loginService) {
 
-
+      $('#mainPage').removeClass('controlPanel');
 
     $scope.authenticate = function () {
       var fname = document.getElementById('fn');

@@ -5,14 +5,15 @@
 
     ga.controlPanel = angular.module('ahPanel', ['ui.bootstrap', 'ngMessages']);
 
-    var sessionItem = sessionStorage.getItem('Login');
-    if (sessionItem !== "true") {
-        window.location.href = '#/login';
-    }
+    
 
     ga.controlPanel.controller('panelController', ['$scope', '$rootScope', '$location', '$window', 'complexGetService', 'complexToAptService',
     function ($scope, $rootScope, $location, $window, complexGetService, complexToAptService) {
 
+        var sessionItem = sessionStorage.getItem('Login');
+        if (sessionItem !== "true") {
+            window.location.href = '#/login';
+        }
         
         $scope.filteredComplexes = [];
         $scope.currentPage = 1;
@@ -47,7 +48,7 @@
     }]);
 
     ga.controlPanel.controller('panelAptController', ['$scope', '$rootScope', 'aptGetService', 'filterAptService', 'complexToAptService', 'aptToRoomService', function ($scope, $rootScope, aptGetService, filterAptService, complexToAptService, aptToRoomService) {
-
+        
         $scope.filteredApartments = [];
         $scope.aptCurrentPage = 1;
         $scope.numPerPage = 3;
@@ -63,9 +64,9 @@
             $scope.filteredApartments = $scope.apts.slice(begin, end);
         };
 
-        $scope.$on('complexObtained', function () {
-            $scope.aptGet();
-        });
+        //$scope.$on('complexObtained', function () {
+        //    $scope.aptGet();
+        //});
 
         $scope.$on('complexPicked', function () {
             var x = complexToAptService.get();
@@ -74,6 +75,7 @@
                 var x = $scope.numPerPage;
                 $scope.apts = response.data;
                 $scope.filteredApartments = $scope.apts.slice(0, x);
+                $rootScope.$broadcast('apartmentObtained', {});
             })
         });
 
@@ -112,8 +114,13 @@
 
     ga.controlPanel.controller('panelAssocController', ['$scope', '$rootScope', '$route', 'associateGetService', 'aptToRoomService', 'associatePostService', function ($scope, $rootScope, $route, associateGetService, aptToRoomService, associatePostService) {
 
-        $scope.$on('apartmentObtained', function () {
-            $scope.assocGet();
+
+        $scope.$on('aptPicked', function () {
+            $('#chooseAptFirst').html('');
+            var x = $scope.filteredAssociates;
+            if (x.length === 0) {
+                $scope.assocGet();
+            }
         });
 
         $scope.filteredAssociates = [];
@@ -160,12 +167,16 @@
                     AssociateID: -1
                 }
                 associateGetService.get($scope.getModel, function (response) {
-                    var x = $scope.numPerPage;
+                    var g = $scope.numPerPage;
                     $scope.associates = response.data;
-                    $scope.filteredAssociates = $scope.associates.slice(0, x);
+                    $scope.filteredAssociates = $scope.associates.slice(0, g);
                     $rootScope.$broadcast('assocMovedIn', {});
                 }, function (response) {
                 })
+            }, function (result) {
+
+                setTimeout(function () { $('#failAddAssoc').fadeIn(200); });
+                setTimeout(function () { $('#failAddAssoc').fadeOut(3000); }, 2000);
             });
         }
 
@@ -175,9 +186,9 @@
                 AssociateID: -1
             }
             associateGetService.get($scope.getModel, function (response) {
-                var x = $scope.numPerPage;
+                var g = $scope.numPerPage;
                 $scope.associates = response.data;
-                $scope.filteredAssociates = $scope.associates.slice(0, x);
+                $scope.filteredAssociates = $scope.associates.slice(0, g);
             }, function (response) {
             })
         });

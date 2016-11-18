@@ -8,7 +8,7 @@
 
 
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexToAptService', 'aptToRoomService',
-    'aptGetService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, aptGetService,
+    'filterAptService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, filterAptService,
       aptPostService, roomDeleteService) {
         $('#mainPage').removeClass('controlPanel');
       var sessionItem = sessionStorage.getItem('Login');
@@ -28,13 +28,14 @@
 
     });
 
-    var y = complexToAptService.get();
-    $scope.getModel = {
-        HotelID: y.HotelID
-    }
+    //var y = complexToAptService.get();
+    //$scope.getModel = {
+    //    HotelID: y.HotelID
+    //}
 
     $scope.get = function () {
-      aptGetService.get($scope.getModel, function (response) {
+        var y = complexToAptService.get();
+        filterAptService.get(y, function (response) {
         var x = $scope.numPerPage;
         $scope.apts = response.data;
         $scope.filteredApartments = $scope.apts.slice(0, x);
@@ -50,9 +51,8 @@
 
     $scope.info = complexToAptService.get().Name;
 
-    $scope.go = function (room, path) {
+    $scope.go = function (room) {
       aptToRoomService.set(room);
-      $location.path(path);
     }
 
     $scope.back = function () {
@@ -63,7 +63,7 @@
         HotelID: complexToAptService.get().HotelID,
         RoomNumber: null,
         MaxCapacity: null,
-        Gender: null
+        GenderID: null
     };
 
     $scope.newApartment = function () {
@@ -71,7 +71,7 @@
             $timeout(function () {
                 // 1 second delay, might not need this long, but it works.
                 $route.reload();
-            }, 1000);
+            }, 500);
           //$route.reload();
       });
     };

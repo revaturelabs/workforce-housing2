@@ -3,8 +3,11 @@
         <section class="col-sm-12 col-md-12 col-lg-12">
             <div class="col-sm-9 col-md-9 col-lg-9">
                 <h1 id="complexName" class="text-center" >
-                    All Apartments
+                    Choose a Complex
                 </h1>
+                <div id="failAddAssoc" class="alert alert-danger display-none">
+                    <strong>Failed to add associate to apartment.</strong> Something seems to have gone wrong.
+                </div>
             </div>
             <div class="row">
                 <section class="col-md-8 col-lg-9">
@@ -19,50 +22,68 @@
                         <section class="col-sm-12 col-md-12 col-lg-12">
                             <section class="col-sm-12 col-md-3 col-lg-3" data-ng-repeat="apt in filteredApartments">
 
-                                <div ng-if="apt.CurrentCapacity === 0">
-                                    <div class="panel panel-success">
+                                <div ng-if="apt.GenderID === 1">
+                                    <div class="panel panel-info">
                                         <div class="panel-heading">
                                             <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
                                         </div>
                                         <div class="panel-body">
+                                            <p class="list-group-item-text">Gender: Male</p>
                                             <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
                                             <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
                                             <br />
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" style="width: 0%;">
-
+                                            <div ng-if="apt.CurrentCapacity == apt.MaxCapacity" class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
+                                                    FULL!
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-if="apt.CurrentCapacity === apt.MaxCapacity">
-                                    <div class="panel panel-danger">
-                                        <div class="panel-heading">
-                                            <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
-                                        </div>
-                                        <div class="panel-body">
-                                            <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
-                                            <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
-                                            <br />
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" style="min-width: 2em; width: 100%;">
+                                            <div ng-if="apt.CurrentCapacity < apt.MaxCapacity" class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
                                                     {{apt.CurrentCapacity}} / {{apt.MaxCapacity}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-if="apt.CurrentCapacity > 0 && apt.CurrentCapacity < apt.MaxCapacity">
+                                <div ng-if="apt.GenderID === 2">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p class="list-group-item-text">Gender: Female</p>
+                                            <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
+                                            <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
+                                            <br />
+                                            <div ng-if="apt.CurrentCapacity == apt.MaxCapacity" class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
+                                                    FULL!
+                                                </div>
+                                            </div>
+                                            <div ng-if="apt.CurrentCapacity < apt.MaxCapacity" class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
+                                                    {{apt.CurrentCapacity}} / {{apt.MaxCapacity}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="apt.GenderID === 29">
                                     <div class="panel panel-warning">
                                         <div class="panel-heading">
                                             <a href="" style="color:black;" data-ng-click="aptChoose(apt)"> <h3 class="panel-title">Apt #: {{apt.RoomNumber}}</h3> </a>
                                         </div>
                                         <div class="panel-body">
+                                            <p class="list-group-item-text">Gender: Not Specified</p>
                                             <p class="list-group-item-text">Current Occupancy: {{apt.CurrentCapacity}}</p>
                                             <p class="list-group-item-text">Max Capacity: {{apt.MaxCapacity}}</p>
                                             <br />
-                                            <div class="progress">
+                                            <div ng-if="apt.CurrentCapacity == apt.MaxCapacity" class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
+                                                    FULL!
+                                                </div>
+                                            </div>
+                                            <div ng-if="apt.CurrentCapacity < apt.MaxCapacity" class="progress">
                                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{apt.CurrentCapacity}}" aria-valuemin="0" aria-valuemax="{{apt.MaxCapacity}}" ng-style="{width : ((apt.CurrentCapacity / apt.MaxCapacity ))*100 + '%'}">
                                                     {{apt.CurrentCapacity}} / {{apt.MaxCapacity}}
                                                 </div>
@@ -176,17 +197,30 @@
         </h1>
         <hr />
     </div>
-    
     <span data-ng-init="get()"></span>
     <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="complex in filteredComplexes">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
-            </div>
-            <div class="panel-body">
-                <p class="list-group-item-text">Address: {{complex.Address}}</p>
-                <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+        <div ng-if="complex.IsHotel == true">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title"><span class="glyphicon glyphicon-lamp"></span> {{complex.Name}} </h3> </a>
+                </div>
+                <div class="panel-body">
+                    <p class="list-group-item-text">Address: {{complex.Address}}</p>
+                    <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
 
+                </div>
+            </div>
+        </div>
+        <div ng-if="complex.IsHotel == false">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span> {{complex.Name}} </h3> </a>
+                </div>
+                <div class="panel-body">
+                    <p class="list-group-item-text">Address: {{complex.Address}}</p>
+                    <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+
+                </div>
             </div>
         </div>
         <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -232,17 +266,36 @@
             
         </h1>
         <hr />
+        <p id="chooseAptFirst">Choose an apartment to view associates</p>
     </div>
     
     <!--<span data-ng-init="assocGet()"></span>-->
-    <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates">
-        <div ng-switch on="associate.Gender">
-            <div ng-switch-when="Female">
+    
+    <section  class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates">
+        <div id="allAssoc" ng-switch on="associate.Gender">
+            <!--<div ng-switch-when="Female">
                 <div class="panel panel-danger">
 
                     <div class="panel-heading">
                         <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}} {{associate.LastName}}</h3> </a>
                     </div>
+                </div>
+            </div>-->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-switch-when="Female">
+                <div class="panel panel-danger">
+                    <div class="panel-heading" role="tab" id="heading{{associate.FirstName}}">
+                        <h3 class="panel-title">
+                            <a href="" role="button" style="color:black;" data-ng-click="" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{associate.FirstName}}" aria-expanded="true" aria-controls="collapse{{associate.FirstName}}">
+                                {{associate.FirstName}} {{associate.LastName}}
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapse{{associate.FirstName}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{associate.FirstName}}">
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#moveModal" data-ng-click="moveIn(associate)"> <span class="glyphicon glyphicon-bed"></span> Move In </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-switch-when="Male">
@@ -268,13 +321,30 @@
                 </div>-->
 
             </div>
-            <div ng-switch-default>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-switch-default>
+                <div class="panel panel-warning">
+                    <div class="panel-heading" role="tab" id="heading{{associate.FirstName}}">
+                        <h3 class="panel-title">
+                            <a href="" role="button" style="color:black;" data-ng-click="" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{associate.FirstName}}" aria-expanded="true" aria-controls="collapse{{associate.FirstName}}">
+                                {{associate.FirstName}} {{associate.LastName}}
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapse{{associate.FirstName}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{associate.FirstName}}">
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#moveModal" data-ng-click="moveIn(associate)"> <span class="glyphicon glyphicon-bed"></span> Move In </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--<div ng-switch-default>
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                         <a href="" style="color:black;"> <h3 class="panel-title">{{associate.FirstName}}  {{associate.LastName}}</h3> </a>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </section>
     <div class="row center-block">

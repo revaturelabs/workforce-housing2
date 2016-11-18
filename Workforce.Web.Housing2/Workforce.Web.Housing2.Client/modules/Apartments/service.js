@@ -1,7 +1,7 @@
 ﻿(function (ga) {
     'use strict';
 
-    ga.apartment.factory('aptGetService', ['$http', function ($http) {
+    ga.apartment.factory('filterAptService', ['$http', function ($http) {
         var url = '/workforce-housing-rest/api/filteraptsbycomplex/';
         return {
             get: function (data, pass, fail) {
