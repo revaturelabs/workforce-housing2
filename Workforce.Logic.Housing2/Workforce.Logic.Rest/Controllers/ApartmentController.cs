@@ -16,18 +16,31 @@ namespace Workforce.Logic.Rest.Controllers
   {
     private readonly LogicHelper logicHelper = new LogicHelper();
 
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     /// <summary>
     /// CRUD: Read calls logicHelper to get all Apartments from service
     /// </summary>
     /// <returns>Task<HttpResponseMessage></returns>
     public async Task<HttpResponseMessage> Get()//[FromUri] bool getActive)
     {
-      bool getActive = true;
-      if (getActive)
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.ApartmentsGetActvie());
+        bool getActive = true;
+        if (getActive)
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.ApartmentsGetActvie());
+          log.Info("Apartment Get Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.ApartmentsGetAll());
+        log.Info("Apartment Get Successful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.ApartmentsGetAll());
+      catch(Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
     /// <summary>
@@ -37,13 +50,25 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Post([FromBody]ApartmentDto newApartmentDto)
     {
-      newApartmentDto.ActiveBit = true;
-      newApartmentDto.CurrentCapacity = 0;
-      if (await logicHelper.AddApartment(newApartmentDto))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted new Apartment/Room");
+        newApartmentDto.ActiveBit = true;
+        newApartmentDto.CurrentCapacity = 0;
+        if (await logicHelper.AddApartment(newApartmentDto))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+          log.Info("Apartment Post Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+        log.Info("Apartment Post Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert new Apartment/Room");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
     /// <summary>
     /// put method for apartment
@@ -52,11 +77,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Put([FromBody]ApartmentDto apartment)
     {
-      if (await logicHelper.UpdateApartment(apartment))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully updated Apartment/Room Data");
+        if (await logicHelper.UpdateApartment(apartment))
+        { 
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successful update");
+          log.Info("Apartment Put Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update");
+        log.Info("Apartment Put Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update Apartment/Room Data");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
     /// <summary>
     /// delete method for apartment
@@ -65,11 +102,23 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Delete([FromBody]ApartmentDto apartment)
     {
-      if (await logicHelper.DeleteApartment(apartment))
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted Apartment/Room Data");
+        if (await logicHelper.DeleteApartment(apartment))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successful delete");
+          log.Info("Apartment Delete Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+        log.Info("Apartment Delete Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete Apartment/Room Data");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
   }
