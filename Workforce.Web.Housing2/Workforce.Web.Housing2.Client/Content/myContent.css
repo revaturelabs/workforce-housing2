@@ -1,4 +1,18 @@
-﻿.dropdown {
+﻿.display-none {
+  display: none;
+}
+
+body{
+  font-size: 15px;
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.dropdown {
     position: relative;
 }
 
