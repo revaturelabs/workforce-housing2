@@ -37,9 +37,9 @@ namespace Workforce.Logic.Rest.Controllers
       newHousingComDto.ActiveBit = true;
       if (await logicHelper.AddHousingComplex(newHousingComDto))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted new Complex/Hotel");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert new Complex/Hotel");
     }
 
     /// <summary>
@@ -51,9 +51,9 @@ namespace Workforce.Logic.Rest.Controllers
     {
       if (await logicHelper.UpdateHousingComplex(complex))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfull updated");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully updated Complex/Hotel");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to update Complex/Hotel");
     }
     /// <summary>
     /// Delete method for Housing Complex
@@ -64,9 +64,9 @@ namespace Workforce.Logic.Rest.Controllers
     {
       if (await logicHelper.DeleteComplex(complex))
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted");
+        return Request.CreateResponse(HttpStatusCode.OK, "successfully deleted Complex/Hotel");
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete");
+      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to delete Complex/Hotel");
     }
   }
 }
