@@ -13,7 +13,7 @@ namespace Workforce.Logic.Rest.Controllers
   [EnableCors(origins: "*", headers: "*", methods: "*")]
   public class D3AptCapacityController : ApiController
   {
-
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     D3jsHelper d3jsHelper = new D3jsHelper();
 
     /// <summary>
@@ -22,7 +22,17 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns></returns>
     public async Task<HttpResponseMessage> Get()
     {
-      return Request.CreateResponse(HttpStatusCode.OK, await d3jsHelper.ReturnGraphAptCapacity());
+      try
+      {
+        var Response = Request.CreateResponse(HttpStatusCode.OK, await d3jsHelper.ReturnGraphAptCapacity());
+        log.Info("D3AptCapacity Get Successful");
+        return Response;
+      }
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
   }
 }
