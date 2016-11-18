@@ -4,26 +4,27 @@
       <h1>
         Apartment Complexes
       </h1>
-        <!--<h1>
-            <button type="button" class="btn btn-default btn-sm" data-ng-click="refresh()">
-                <span class="glyphicon glyphicon-repeat"></span> Refresh
-            </button>
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-                <span class="glyphicon glyphicon-plus"></span> Add a New Complex
-            </button>
+      <!--<h1>
+          <button type="button" class="btn btn-default btn-sm" data-ng-click="refresh()">
+              <span class="glyphicon glyphicon-repeat"></span> Refresh
+          </button>
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-plus"></span> Add a New Complex
+          </button>
 
-        </h1>-->
+      </h1>-->
     </div>
     <div class="col-md-6 col-lg-4">
       <div class="row">
         <section class="col-md-2 col-lg-2">
-            <h1>
-                
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-                    <span class="glyphicon glyphicon-plus"></span> Add a New Complex
-                </button>
 
-            </h1>
+          <h1>
+
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-plus"></span> Add Apartment Complex
+            </button>
+
+          </h1>
         </section>
         <!--<section class="col-md-2 col-lg-6">
             <h1>
@@ -47,8 +48,13 @@
 </div>
 <div class="container-fluid">
   <div class="row">
+
+
     <span data-ng-init="get()"></span>
     <section class="col-sm-12 col-md-12 col-lg-10">
+      <div id="failRemoveComplex" class="alert alert-danger display-none">
+        <strong>Failed to remove apartment complex.</strong> This is most likely due to it containing an associate / associates.
+      </div>
       <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="complex in filteredComplexes">
         <div class="panel panel-info">
           <div class="panel-heading">
@@ -61,9 +67,30 @@
           </div>
           <div class="panel-footer">
             <!--<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal" data-ng-click="go(complex, ('/complexInfo'))"> <span class="glyphicon glyphicon-pencil"></span> Edit Complex </button>-->
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
-              <span class="glyphicon glyphicon-trash"></span> Remove Complex
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#complexModal" data-ng-click="grab(complex)">
+              <span class="glyphicon glyphicon-trash"></span> Remove
             </button>
+          </div>
+        </div>
+
+
+        <!-- Complex Remove modal -->
+
+        <div class="modal fade" id="complexModal" tabindex="-1" role="dialog" aria-labelledby="complexModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title center text-uppercase" id="myModalLabel">Remove: {{complex.Name}}</h2>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to remove this apartment complex?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-target="#complexModal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-target="#complexModal" data-ng-click="removeComplex()">Remove</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -77,6 +104,7 @@
   </div>
 </div>
 
+
 <!--Add Complex Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -84,14 +112,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title" id="myModalLabel">Add a New Apartment Complex</h2>
+          <h2 class="modal-title center text-uppercase" id="myModalLabel">Add Apartment Complex</h2>
         </div>
         <div class="modal-body">
 
           <div class="form-group" ng-class="{ 'has-error': addForm.Name.$touched && addForm.Name.$invalid }">
-            <label for="ApartmentComplexName">Name of the Apartment Complex?</label>
+            <label for="ApartmentComplexName">Name:</label>
             <div>
-              <input type="text" class="form-control" id="complexName" data-ng-model="model.Name" name="Name" placeholder="New Apartment Complex" required>
+              <input type="text" class="form-control" id="complexName" data-ng-model="model.Name" name="Name" placeholder="Apartment complex name" required>
 
               <div class="help-block" ng-messages="addForm.Name.$error" ng-if="addForm.Name.$touched">
                 <p ng-message="required">Please input a complex name</p>
@@ -99,19 +127,19 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="Address">Apartment Complex Address</label>
+            <label for="Address">Address:</label>
             <div>
-              <input type="text" class="form-control" data-ng-model="model.Address" id="address" name="model.Address" placeholder="Apartment Complex Address" required>
+              <input type="text" class="form-control" data-ng-model="model.Address" id="address" name="model.Address" placeholder="Apartment complex address" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="Contact">Contact Information?</label>
+            <label for="Contact">Phone Number:</label>
             <div>
-              <input type="text" class="form-control" data-ng-model="model.PhoneNumber"  name="model.PhoneNumber" placeholder="Phone #" required>
+              <input type="text" class="form-control" data-ng-model="model.PhoneNumber" name="model.PhoneNumber" placeholder="Apartment complex phone number" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="genderSelection">Will this be a Hotel?</label>
+            <label for="genderSelection">Hotel:</label>
             <div class="radio">
               <label>
                 <input type="radio" name="model.IsHotel" data-ng-model="model.IsHotel" id="optionsRadios1" data-ng-value="true" checked>
@@ -129,30 +157,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-target="#myModal" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-target="#myModal" data-dismiss="modal" data-ng-click="newComplex()">Save changes</button>
+          <button type="button" class="btn btn-primary" data-target="#myModal" data-dismiss="modal" data-ng-click="newComplex()">Save Changes</button>
         </div>
       </div>
     </form>
-  </div>
-</div>
-
-
-<!-- Complex Remove modal -->
-
-<div class="modal fade" id="complexModal" tabindex="-1" role="dialog" aria-labelledby="complexModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title" id="myModalLabel">Let's not be hasty...</h2>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to remove this apartment complex?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default"  data-dismiss="modal" data-target="#complexModal">Cancel</button>
-        <button type="button" class="btn btn-danger"  data-dismiss="modal" data-target="#complexModal" data-ng-click="removeComplex()">Remove</button>
-      </div>
-    </div>
   </div>
 </div>
