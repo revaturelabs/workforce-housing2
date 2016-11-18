@@ -15,11 +15,21 @@ namespace Workforce.Logic.Rest.Controllers
   public class FilterAptsByComplexController : ApiController
   {
     private readonly LogicHelper logicHelper = new LogicHelper();
+    private readonly log4net.ILog log = LogHelper.GetLogger();
 
     public async Task<HttpResponseMessage> Get([FromUri]HousingComplexDto complex)
     {
-      //var TargetHotApt = JsonConvert.DeserializeObject<HotelApartmentDTO>(o.ToString());
-      return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.FilterAptByComplex(complex));
+      try
+      {
+        var Response = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.FilterAptByComplex(complex));
+        log.Info("FilterAptsByComplex Get Successful");
+        return Response;
+      }
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
   }
 }
