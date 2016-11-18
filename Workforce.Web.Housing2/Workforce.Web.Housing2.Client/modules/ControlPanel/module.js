@@ -52,6 +52,7 @@
         $scope.aptCurrentPage = 1;
         $scope.numPerPage = 3;
 
+        
         $scope.setPage = function (pageNo) {
             $scope.aptCurrentPage = pageNo;
         }
@@ -69,6 +70,24 @@
         $scope.$on('complexPicked', function () {
             var x = complexToAptService.get();
             $('#complexName').html(x.Name);
+            filterAptService.get(x, function (response) {
+                var x = $scope.numPerPage;
+                $scope.apts = response.data;
+                $scope.filteredApartments = $scope.apts.slice(0, x);
+            })
+        });
+
+        $scope.$on('assocMovedIn', function () {
+            var x = complexToAptService.get();
+            filterAptService.get(x, function (response) {
+                var x = $scope.numPerPage;
+                $scope.apts = response.data;
+                $scope.filteredApartments = $scope.apts.slice(0, x);
+            })
+        });
+
+        $scope.$on('assocRemoved', function () {
+            var x = complexToAptService.get();
             filterAptService.get(x, function (response) {
                 var x = $scope.numPerPage;
                 $scope.apts = response.data;
@@ -169,6 +188,9 @@
         
         $scope.$on('complexPicked', function () {
             $('#roomNumber').html('Choose an Apartment');
+            $('#assocRoom').empty();
+            $scope.livingAssoc = [];
+
         });
 
         $scope.$on('aptPicked', function () {
