@@ -5,7 +5,7 @@
     ga.assocList = angular.module('ahAssocList', ['ui.bootstrap']);
 
     ga.assocList.controller('assocListController', ['$scope', '$route', 'listGetService', 'listDeleteService', function ($scope, $route, listGetService, listDeleteService) {
-
+        $('#mainPage').removeClass('controlPanel');
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
             window.location.href = '#/login';

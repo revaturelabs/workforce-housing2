@@ -8,6 +8,7 @@
   ga.complex.controller('complexController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
   function ($scope, $location, $window, $timeout, $route, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
+      $('#mainPage').removeClass('controlPanel');
     var sessionItem = sessionStorage.getItem('Login');
     if (sessionItem !== "true") {
       window.location.href = '#/login';

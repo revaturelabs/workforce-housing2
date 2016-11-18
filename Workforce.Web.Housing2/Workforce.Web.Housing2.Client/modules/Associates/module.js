@@ -9,6 +9,7 @@
                                                   if (sessionItem !== "true") {
                                                     window.location.href = '#/login';
                                                   }
+                                                  $('#mainPage').removeClass('controlPanel');
         $scope.filteredTrainees = [];
         $scope.currentPage = 1;
         $scope.numPerPage = 5;
