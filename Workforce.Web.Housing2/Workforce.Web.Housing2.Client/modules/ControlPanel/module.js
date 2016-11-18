@@ -5,14 +5,15 @@
 
     ga.controlPanel = angular.module('ahPanel', ['ui.bootstrap', 'ngMessages']);
 
-    var sessionItem = sessionStorage.getItem('Login');
-    if (sessionItem !== "true") {
-        window.location.href = '#/login';
-    }
+    
 
     ga.controlPanel.controller('panelController', ['$scope', '$rootScope', '$location', '$window', 'complexGetService', 'complexToAptService',
     function ($scope, $rootScope, $location, $window, complexGetService, complexToAptService) {
 
+        var sessionItem = sessionStorage.getItem('Login');
+        if (sessionItem !== "true") {
+            window.location.href = '#/login';
+        }
         
         $scope.filteredComplexes = [];
         $scope.currentPage = 1;
@@ -63,9 +64,9 @@
             $scope.filteredApartments = $scope.apts.slice(begin, end);
         };
 
-        $scope.$on('complexObtained', function () {
-            $scope.aptGet();
-        });
+        //$scope.$on('complexObtained', function () {
+        //    $scope.aptGet();
+        //});
 
         $scope.$on('complexPicked', function () {
             var x = complexToAptService.get();
@@ -74,6 +75,7 @@
                 var x = $scope.numPerPage;
                 $scope.apts = response.data;
                 $scope.filteredApartments = $scope.apts.slice(0, x);
+                $rootScope.$broadcast('apartmentObtained', {});
             })
         });
 
@@ -112,8 +114,13 @@
 
     ga.controlPanel.controller('panelAssocController', ['$scope', '$rootScope', '$route', 'associateGetService', 'aptToRoomService', 'associatePostService', function ($scope, $rootScope, $route, associateGetService, aptToRoomService, associatePostService) {
 
-        $scope.$on('apartmentObtained', function () {
-            $scope.assocGet();
+
+        $scope.$on('aptPicked', function () {
+            $('#chooseAptFirst').html('');
+            var x = $scope.filteredAssociates;
+            if (x.length === 0) {
+                $scope.assocGet();
+            }
         });
 
         $scope.filteredAssociates = [];

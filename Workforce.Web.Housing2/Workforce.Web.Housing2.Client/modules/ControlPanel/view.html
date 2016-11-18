@@ -3,7 +3,7 @@
         <section class="col-sm-12 col-md-12 col-lg-12">
             <div class="col-sm-9 col-md-9 col-lg-9">
                 <h1 id="complexName" class="text-center" >
-                    All Apartments
+                    Choose a Complex
                 </h1>
             </div>
             <div class="row">
@@ -176,17 +176,30 @@
         </h1>
         <hr />
     </div>
-    
     <span data-ng-init="get()"></span>
     <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="complex in filteredComplexes">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
-            </div>
-            <div class="panel-body">
-                <p class="list-group-item-text">Address: {{complex.Address}}</p>
-                <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+        <div ng-if="complex.IsHotel == true">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title"><span class="glyphicon glyphicon-lamp"></span> {{complex.Name}} </h3> </a>
+                </div>
+                <div class="panel-body">
+                    <p class="list-group-item-text">Address: {{complex.Address}}</p>
+                    <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
 
+                </div>
+            </div>
+        </div>
+        <div ng-if="complex.IsHotel == false">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a href="" style="color: black;" data-ng-click="chosen(complex)"> <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span> {{complex.Name}} </h3> </a>
+                </div>
+                <div class="panel-body">
+                    <p class="list-group-item-text">Address: {{complex.Address}}</p>
+                    <p class="list-group-item-text">Contact Information: {{complex.PhoneNumber}}</p>
+
+                </div>
             </div>
         </div>
         <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -232,11 +245,13 @@
             
         </h1>
         <hr />
+        <p id="chooseAptFirst">Choose an apartment to view associates</p>
     </div>
     
     <!--<span data-ng-init="assocGet()"></span>-->
-    <section class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates">
-        <div ng-switch on="associate.Gender">
+    
+    <section  class="col-sm-12 col-md-12 col-lg-12" data-ng-repeat="associate in filteredAssociates">
+        <div id="allAssoc" ng-switch on="associate.Gender">
             <div ng-switch-when="Female">
                 <div class="panel panel-danger">
 

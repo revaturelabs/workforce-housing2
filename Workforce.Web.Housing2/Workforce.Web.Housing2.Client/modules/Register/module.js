@@ -2,7 +2,9 @@
   ga.register = angular.module('ahRegister', []);
 
   ga.register.controller('registerController', ['$scope', 'registerService', 'batchService', 'genderService', function ($scope, registerService, batchService, genderService) {
-    function check() {
+
+      $('#mainPage').removeClass('controlPanel');
+      function check() {
       var sessionItem = sessionStorage.getItem('Login');
       if (sessionItem !== "true") {
         location = '#/login';
