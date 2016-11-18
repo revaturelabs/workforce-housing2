@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -11,6 +12,7 @@ namespace Workforce.Logic.Rest.Controllers
   [EnableCors(origins: "*", headers: "*", methods: "*")]
   public class StatusController : ApiController
   {
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     private readonly LogicHelper logicHelper = new LogicHelper();
     /// <summary>
     /// CRUD: Read calls logicHelper to get all Apartments from service
@@ -18,7 +20,17 @@ namespace Workforce.Logic.Rest.Controllers
     /// <returns>Task<HttpResponseMessage></returns>
     public async Task<HttpResponseMessage> Get()
     {
-      return Request.CreateResponse(HttpStatusCode.OK, await logicHelper.StatusesGetAll());
+      try
+      {
+        var Response = Request.CreateResponse(HttpStatusCode.OK, await logicHelper.StatusesGetAll());
+        log.Info("Status Get Successful");
+        return Response;
+      }
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
 
     /// <summary>
@@ -27,12 +39,24 @@ namespace Workforce.Logic.Rest.Controllers
     /// <param name="newStatus"></param>
     /// <returns></returns>
     public async Task<HttpResponseMessage> Post([FromBody]StatusDto newStatus)
-    {     
-      if(await logicHelper.AddStatus(newStatus))
+    {
+      try
       {
-        return Request.CreateResponse(HttpStatusCode.OK, "successfully inserted new status");
+        if (await logicHelper.AddStatus(newStatus))
+        {
+          var Response1 = Request.CreateResponse(HttpStatusCode.OK, "successful insert");
+          log.Info("Status Post Successful");
+          return Response1;
+        }
+        var Response2 = Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert");
+        log.Info("Status Post Unsuccessful");
+        return Response2;
       }
-      return Request.CreateResponse(HttpStatusCode.BadRequest, "failed to insert new status");
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
   }
 }

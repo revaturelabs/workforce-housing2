@@ -16,11 +16,21 @@ namespace Workforce.Logic.Rest.Controllers
   public class GetAssociatesController : ApiController
     {
 
+    private readonly log4net.ILog log = LogHelper.GetLogger();
     Consumers traineeConsumer = new Consumers();
     public async Task<HttpResponseMessage> Get([FromUri] ApartmentDto apartment)
-    { 
-      
-      return Request.CreateResponse(HttpStatusCode.OK, await traineeConsumer.ConsumeAssociatesFromAPI());
+    {
+      try
+      {
+        var Response = Request.CreateResponse(HttpStatusCode.OK, await traineeConsumer.ConsumeAssociatesFromAPI());
+        log.Info("GetAssociates Get Successsful");
+        return Response;
+      }
+      catch (Exception ex)
+      {
+        LogHelper.SendError(log, ex);
+        return Request.CreateResponse(HttpStatusCode.BadRequest);
+      }
     }
   }
 }
