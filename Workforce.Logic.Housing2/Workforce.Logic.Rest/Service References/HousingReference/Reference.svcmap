@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GraceService.xsd" MetadataType="Schema" ID="76362c19-348d-4a3a-a788-fe0d021df85e" SourceId="1" SourceUrl="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd2" />
-    <MetadataFile FileName="GraceService.disco" MetadataType="Disco" ID="d3f03a7e-fc6f-4b5b-8e0d-00c05ad8a6ae" SourceId="1" SourceUrl="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?disco" />
-    <MetadataFile FileName="GraceService1.xsd" MetadataType="Schema" ID="c92806c5-64d3-4c5a-b239-c77df570a209" SourceId="1" SourceUrl="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd0" />
-    <MetadataFile FileName="GraceService2.xsd" MetadataType="Schema" ID="3969807a-0aa2-4fc2-9bfa-861436827e4b" SourceId="1" SourceUrl="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd1" />
-    <MetadataFile FileName="GraceService.wsdl" MetadataType="Wsdl" ID="97cfa237-3593-4d6b-8feb-18954c7a029d" SourceId="1" SourceUrl="http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?wsdl" />
+    <MetadataFile FileName="GraceService3.xsd" MetadataType="Schema" ID="50a865a4-5f19-4730-9669-5055b94a18e3" SourceId="1" SourceUrl="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GraceService1.disco" MetadataType="Disco" ID="98a7470e-0d4e-41ba-9f55-2a540fb9ed7c" SourceId="1" SourceUrl="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?disco" />
+    <MetadataFile FileName="GraceService31.xsd" MetadataType="Schema" ID="3c2b5fd2-95d7-42dd-ba48-dde7d33409dc" SourceId="1" SourceUrl="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GraceService1.wsdl" MetadataType="Wsdl" ID="d7b0a7ba-9fd1-4434-9e33-f478c140a96c" SourceId="1" SourceUrl="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?wsdl" />
+    <MetadataFile FileName="GraceService32.xsd" MetadataType="Schema" ID="509af2cf-733d-438f-a573-ce3c1f79382b" SourceId="1" SourceUrl="http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-housing-soap/GraceService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
