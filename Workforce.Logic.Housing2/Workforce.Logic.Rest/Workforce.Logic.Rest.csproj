@@ -150,7 +150,7 @@
     <Compile Include="Controllers\D3ProjectionController.cs" />
     <Compile Include="Controllers\FilterAptsByComplexController.cs" />
     <Compile Include="Controllers\GetAssociatesController.cs" />
-    <Compile Include="Controllers\GetBatchesController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\HousingComplexController.cs" />
     <Compile Include="Controllers\HousingDataController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
