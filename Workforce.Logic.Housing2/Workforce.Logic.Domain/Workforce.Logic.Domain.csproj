@@ -128,18 +128,18 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\HousingReference\GraceService1.wsdl" />
+    <None Include="Service References\HousingReference\GraceService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HousingReference\GraceService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HousingReference\GraceService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="web.config" />
     <None Include="packages.config" />
-    <None Include="Service References\HousingReference\GraceService.wsdl" />
-    <None Include="Service References\HousingReference\GraceService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\HousingReference\GraceService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\HousingReference\GraceService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\HousingReference\Workforce.Logic.Domain.HousingReference.ApartmentDao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -157,9 +157,6 @@
     <WCFMetadataStorage Include="Service References\HousingReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HousingReference\GraceService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\HousingReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +167,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HousingReference\GraceService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

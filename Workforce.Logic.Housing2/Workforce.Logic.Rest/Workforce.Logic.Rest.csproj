@@ -131,13 +131,23 @@
     <Content Include="Properties\DataSources\Workforce.Logic.Domain.HousingService.HousingComplexDao.datasource" />
     <Content Include="Properties\DataSources\Workforce.Logic.Domain.HousingService.HousingDataDao.datasource" />
     <Content Include="Properties\DataSources\Workforce.Logic.Domain.HousingService.StatusDao.datasource" />
-    <None Include="Service References\HousingReference\GraceService.disco" />
     <None Include="Service References\HousingReference\configuration91.svcinfo" />
     <None Include="Service References\HousingReference\configuration.svcinfo" />
+    <None Include="Service References\HousingReference\GraceService1.wsdl" />
+    <None Include="Service References\HousingReference\GraceService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HousingReference\GraceService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HousingReference\GraceService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\HousingReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\HousingReference\GraceService1.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -150,7 +160,7 @@
     <Compile Include="Controllers\D3ProjectionController.cs" />
     <Compile Include="Controllers\FilterAptsByComplexController.cs" />
     <Compile Include="Controllers\GetAssociatesController.cs" />
-    <Compile Include="Controllers\GetBatchesController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\HousingComplexController.cs" />
     <Compile Include="Controllers\HousingDataController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -168,16 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Service References\HousingReference\GraceService.wsdl" />
-    <None Include="Service References\HousingReference\GraceService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\HousingReference\GraceService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\HousingReference\GraceService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
