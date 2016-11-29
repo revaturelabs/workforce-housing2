@@ -22,11 +22,11 @@ namespace Workforce.Logic.Domain.Helpers
       using (var client = new HttpClient())
       {
         // New code:
-        client.BaseAddress = new Uri("http://ec2-54-175-5-94.compute-1.amazonaws.com/workforce-associate-rest/"); 
+        client.BaseAddress = new Uri("http://ec2-54-197-33-154.compute-1.amazonaws.com/workforce-associate-rest/"); 
         client.DefaultRequestHeaders.Accept.Clear();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        HttpResponseMessage response = await client.GetAsync("api/associate/1");
+        HttpResponseMessage response = await client.GetAsync("api/associate/findbystatus/true");
         List<AssociateDto> assoc = new List<AssociateDto>();
         if (response.IsSuccessStatusCode)
         {
