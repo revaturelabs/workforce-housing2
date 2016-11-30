@@ -12,7 +12,12 @@
     else {
       init();
     }
-
+      /*
+        Most of this information was found on a basic d3js graph.  
+        Information about these graphs can be found on https://d3js.org/
+        The idea behind this is to represent the data over time on the apartments max capacity and how many people are rooming through the months
+        Ratios between male and female as well, and see if there are increases in the amount of people Revature can take in.  
+      */
     // config references
     var chartConfig = {
       target: 'chart',

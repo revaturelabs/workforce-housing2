@@ -2,7 +2,10 @@
   ga.register = angular.module('ahRegister', []);
 
   ga.register.controller('registerController', ['$scope', 'registerService', 'batchService', 'genderService', function ($scope, registerService, batchService, genderService) {
-
+      /*
+        There's a good chance this module might not need to exist once we merge our project with that of SalesForce.  For the time being, it serves
+        as the registration page for new associates who are registered into the database.  
+      */
       $('#mainPage').removeClass('controlPanel');
       function check() {
       var sessionItem = sessionStorage.getItem('Login');
@@ -33,28 +36,6 @@
       $scope.back = function () {
             location = '#/associatelist';
       }
-
-      /*
-            first name
-            last name
-            batch id
-            email
-            Gender
-        
-        */
-      //$scope.model = {
-      //    FirstName: null,
-      //    LastName: null,
-      //    BatchID: null,
-      //    Gender: null,
-      //    Email: null
-      //};
-
-      //$scope.newAssoc = function () {
-      //    listPostService.addNew($scope.model, function (result) {
-      //        $window.location.reload();
-      //    });
-      //};
 
       
       batchService.get(function (response) {

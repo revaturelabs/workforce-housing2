@@ -1,6 +1,10 @@
 ﻿(function (ga) {
     'use strict';
-
+    /*
+    Legacy code, this module used to be used to do the housing for associates, but after the control panel was created, the associates module(not to be mistaken for associateList) 
+    is kinda unnecessary.  I'm leaving this here, in case someone would like to utilize this code for future use.  
+    If you find it doesn't have any use, just delete it.  
+    */
     ga.associate = angular.module('ahAssociate', ['ui.bootstrap']);
 
     ga.associate.controller('associateController', ['$scope', '$window', '$route', 'aptToRoomService', 'traineeGetService', 'traineeDataGrab', 'associatePostService', 'associateByAptService', 'associateDeleteService',
