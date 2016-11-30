@@ -1,6 +1,4 @@
-﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
-
-(function (ga) {
+﻿(function (ga) {
   'use strict';
 
   ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
@@ -8,11 +6,16 @@
   ga.complex.controller('complexController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexPostService', 'complexDeleteService', 'complexToAptService',
   function ($scope, $location, $window, $timeout, $route, complexGetService, complexPostService, complexDeleteService, complexToAptService) {
 
-      $('#mainPage').removeClass('controlPanel');
+    //removes the controlPanel css class
+    $('#mainPage').removeClass('controlPanel');
+
+    //login session storage
     var sessionItem = sessionStorage.getItem('Login');
     if (sessionItem !== "true") {
       window.location.href = '#/login';
     }
+
+    //pagination settings 
     $scope.filteredComplexes = [];
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
@@ -25,7 +28,8 @@
 
       $scope.filteredComplexes = $scope.complexes.slice(begin, end);
     };
-
+    
+    //Gets all complexes and filters them by a set number
     $scope.get = function () {
       complexGetService.get(function (response) {
         var x = $scope.numPerPage;
@@ -34,11 +38,13 @@
       })
     }
 
+    //clicking on any complex brings you to the apartment module
     $scope.go = function (complex, path) {
       complexToAptService.set(complex);
       $location.path(path);
     }
 
+    //from the bootstrap modal, it takes in information to place into the service
     $scope.model = {
       Name: null,
       Address: null,
@@ -52,7 +58,6 @@
           // 1 second delay, might not need this long, but it works.
           $route.reload();
         }, 1000);
-        //$route.reload();
       });
     };
 
@@ -60,10 +65,7 @@
       complexToAptService.set(data);
     }
 
-    $scope.refresh = function () {
-      $route.reload();
-    }
-
+    //removes a complex. if there are apartments with people in them that exist in an apartment, it raises an error
     $scope.removeComplex = function () {
       var x = complexToAptService.get();
       complexDeleteService.removeTheComplex(x, function (result) {
@@ -71,7 +73,6 @@
           // 1 second delay, might not need this long, but it works.
           $route.reload();
         }, 1000);
-        //$route.reload();
       }, function (result) {
 
 
@@ -79,8 +80,5 @@
         setTimeout(function () { $('#failRemoveComplex').fadeOut(5000); }, 10000);
       });
     };
-
-
-
   }]);
 })(window.ahApp);

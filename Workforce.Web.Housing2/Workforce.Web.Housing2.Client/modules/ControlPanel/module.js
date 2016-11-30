@@ -1,20 +1,26 @@
-﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
-
-(function (ga) {
+﻿(function (ga) {
     'use strict';
 
     ga.controlPanel = angular.module('ahPanel', ['ui.bootstrap', 'ngMessages']);
 
-    
+    /*The control panel was my rendition of mixing together the previous modules into a single page application.
+      Probably might have some areas that need redoing, but out of the pages, I think it's gotten the best work.
+      
+      I wish the next person the best of luck as they decipher my craziness. Forgive me for the mess.  --Marc
+    */
 
     ga.controlPanel.controller('panelController', ['$scope', '$rootScope', '$location', '$window', 'complexGetService', 'complexToAptService',
     function ($scope, $rootScope, $location, $window, complexGetService, complexToAptService) {
 
+        //This session storage checks to see if we retained our login.  
         var sessionItem = sessionStorage.getItem('Login');
         if (sessionItem !== "true") {
-            window.location.href = '#/login';
+            window.location.href = '#/login'; //if there is no session, then it goes back to the login page.  
         }
         
+        /*Next area contains information on pagination.  Could be redone to load a new part of the api rather than loading everything at once. 
+          NOTE: Refer to AngularUI for notes on this pagination configuration.  
+        */
         $scope.filteredComplexes = [];
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
@@ -30,25 +36,25 @@
         };
         
 
+        //Call to the api is done here, to obtain the complexes.  
         $scope.get = function () {
             complexGetService.get(function (response) {
                 var x = $scope.numPerPage;
                 $scope.complexes = response.data;
                 $scope.filteredComplexes = $scope.complexes.slice(0, x);
-                $rootScope.$broadcast('complexObtained', {});
-                
             })
         }
 
         $scope.chosen = function (complex) {
-            complexToAptService.set(complex);
-            $rootScope.$broadcast('complexPicked', {});
+            complexToAptService.set(complex); //saves our complex for future use.  
+            $rootScope.$broadcast('complexPicked', {}); //Clicking on a complex causes the module to broadcast to the others, letting them know a complex has been chosen
         }
 
     }]);
 
     ga.controlPanel.controller('panelAptController', ['$scope', '$rootScope', 'aptGetService', 'filterAptService', 'complexToAptService', 'aptToRoomService', function ($scope, $rootScope, aptGetService, filterAptService, complexToAptService, aptToRoomService) {
         
+        /*Same idea with complex pagination.  Paginates the pages. */
         $scope.filteredApartments = [];
         $scope.aptCurrentPage = 1;
         $scope.numPerPage = 3;
@@ -64,10 +70,8 @@
             $scope.filteredApartments = $scope.apts.slice(begin, end);
         };
 
-        //$scope.$on('complexObtained', function () {
-        //    $scope.aptGet();
-        //});
-
+        /*Once a complex is picked, this function fires, so we grab all apartments from that base complex
+          NOTE: it follows the same idea as complexes */
         $scope.$on('complexPicked', function () {
             var x = complexToAptService.get();
             $('#complexName').html(x.Name);
@@ -75,10 +79,11 @@
                 var x = $scope.numPerPage;
                 $scope.apts = response.data;
                 $scope.filteredApartments = $scope.apts.slice(0, x);
-                $rootScope.$broadcast('apartmentObtained', {});
             })
         });
 
+        /*When an associate moves into an apartment, the get api is called once again to refresh the apartments.
+          NOTE: Needs editting to retain the page you were on previously, because it reverts to the first page.  */
         $scope.$on('assocMovedIn', function () {
             var x = complexToAptService.get();
             filterAptService.get(x, function (response) {
@@ -88,6 +93,7 @@
             })
         });
 
+        //Same idea as above with assocMovedIn
         $scope.$on('assocRemoved', function () {
             var x = complexToAptService.get();
             filterAptService.get(x, function (response) {
@@ -96,16 +102,8 @@
                 $scope.filteredApartments = $scope.apts.slice(0, x);
             })
         });
-    
-        $scope.aptGet = function () {
-            aptGetService.get(function (response) {
-                var x = $scope.numPerPage;
-                $scope.apts = response.data;
-                $scope.filteredApartments = $scope.apts.slice(0, x);
-                $rootScope.$broadcast('apartmentObtained', {});
-            })
-        }
 
+        //Once an apartment is chosen, it broadcasts this to the next module.  
         $scope.aptChoose = function (apt) {
             aptToRoomService.set(apt);
             $rootScope.$broadcast('aptPicked', {});
@@ -115,6 +113,7 @@
     ga.controlPanel.controller('panelAssocController', ['$scope', '$rootScope', '$route', 'associateGetService', 'aptToRoomService', 'associatePostService', function ($scope, $rootScope, $route, associateGetService, aptToRoomService, associatePostService) {
 
 
+        //When an apt is picked, the associate list pops up.  
         $scope.$on('aptPicked', function () {
             $('#chooseAptFirst').html('');
             var x = $scope.filteredAssociates;
@@ -123,6 +122,7 @@
             }
         });
 
+        //Pagination yet again.
         $scope.filteredAssociates = [];
         $scope.assocCurrentPage = 1;
         $scope.numPerPage = 5;
@@ -138,7 +138,14 @@
             $scope.filteredAssociates = $scope.associates.slice(begin, end);
         };
 
+        /*
+            Gets all associates based on parameters set in the model.
+        */
         $scope.assocGet = function () {
+            /*For the love of God and all things almighty, do not delete the -1s, since 
+              it pulls all associates not living in ANY apartment.  Apparently 0 doesn't work as a correct value, which is super dumb.
+              Anyways, if you want a correct list, please keep this the way it is.  
+            */
             $scope.getModel = {
                 RoomID: -1,
                 AssociateID: -1
@@ -147,12 +154,14 @@
                 var x = $scope.numPerPage;
                 $scope.associates = response.data;
                 $scope.filteredAssociates = $scope.associates.slice(0, x);
-            }, function (response) {
+            }, function (response) { //We didn't need this part, but if a response is needed should it fail, you can log into console here.  
             })
         }
 
-        
-
+        /*
+            Primary role of the associate list, it takes the roomID from the apttoroom service and the associate's id passed in and posts that to the room
+            This in turn sticks the associate in the room, and refreshes several modules based on information received.  
+        */
         $scope.moveIn = function (data)
         {
             var x = aptToRoomService.get();
@@ -174,12 +183,15 @@
                 }, function (response) {
                 })
             }, function (result) {
-
+                //Should the order fail, an error message appears.  You might want to figure out a tweak to differentiate between gender, and capacity
+                //Since it only tells you there's an error.
                 setTimeout(function () { $('#failAddAssoc').fadeIn(200); });
                 setTimeout(function () { $('#failAddAssoc').fadeOut(3000); }, 2000);
             });
         }
 
+        //When an associate is removed from a room, the associate list will refresh
+        //NOTE: There needs to be a way to retain the page you're on if you're not on the first page of associates.  Gonna go rip my hair out.  
         $scope.$on('assocRemoved', function () {
             $scope.getModel = {
                 RoomID: -1,
@@ -197,6 +209,7 @@
 
     ga.controlPanel.controller('panelRoomController', ['$scope', '$rootScope', '$route', 'aptToRoomService', 'associateByAptService', 'associateDeleteService', function ($scope, $rootScope, $route, aptToRoomService, associateByAptService, associateDeleteService) {
         
+        /*Presents a list of the associates within a specific apartment.  */
         $scope.$on('complexPicked', function () {
             $('#roomNumber').html('Choose an Apartment');
             $('#assocRoom').empty();
@@ -204,6 +217,7 @@
 
         });
 
+        /*Whenever an apartment is picked, we change the name of the text to equal that room nmber*/
         $scope.$on('aptPicked', function () {
             var x = aptToRoomService.get();
             $('#roomNumber').html('Apt #: ' + x.RoomNumber);
@@ -220,6 +234,7 @@
             
         });
 
+        /*When delete is called, it takes the associate's id and the room id and then refreshes the page. */
         $scope.moveOut = function (data) {
             var y = aptToRoomService.get();
 

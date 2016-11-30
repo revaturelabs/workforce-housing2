@@ -1,11 +1,11 @@
 ﻿<div class="row">
     <section class="col-sm-12 col-md-12 col-lg-12">
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-6 col-lg-9">
             <h1>
                 Associates
             </h1>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-3">
             <div class="row">
                 <section class="col-md-2 col-lg-6">
                     <h1>
@@ -22,7 +22,7 @@
 
 </div>
 <div class="row">
-    <section class="col-md-9 col-lg-9">
+    <section class="col-sm-12 col-md-12 col-lg-12">
         <hr />
     </section>
 
@@ -30,8 +30,8 @@
 <div class="container-fluid">
     <div class="row">
         <span data-ng-init="list()"></span>
-        <section class="col-sm-12 col-md-12 col-lg-10">
-            <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="list in filteredAssociates">
+        <section class="col-sm-12 col-md-12 col-lg-12">
+            <section class="col-sm-12 col-md-6 col-lg-6" data-ng-repeat="list in filteredAssociates">
 
                 <div ng-switch on="list.Gender">
                     <div ng-switch-when="Female">
@@ -93,7 +93,7 @@
         </section>
 
         <div class="row">
-            <section class="col-md-9 col-lg-9">
+            <section class="col-sm-12 col-md-12 col-lg-12 text-center">
                 <ul uib-pagination total-items="listAssoc.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
             </section>
         </div>

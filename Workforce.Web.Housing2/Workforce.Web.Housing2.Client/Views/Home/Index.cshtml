@@ -1,10 +1,10 @@
-﻿<!-- Side bars and main field -->
+﻿<!--In order to create the angular page, you need to give it an app-->
 <div class="container-fluid" data-ng-app="ahApp">
   <div class="row">
     <form>
 
-      <!-- Apartments we'll be seeing -->
-      <div id="mainPage" class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 main controlPanel" data-ng-view>    
+      <!-- Sets up the formation for the rest of the other pages. Jquery is used to remove the controlPanel class if the page isn't set to control panel  -->
+      <div id="mainPage" class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 main controlPanel" data-ng-view>    
       </div>
 
     </form>

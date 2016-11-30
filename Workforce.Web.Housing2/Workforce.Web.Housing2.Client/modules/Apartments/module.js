@@ -1,16 +1,21 @@
-﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
-
-(function (ga) {
+﻿(function (ga) {
   'use strict';
 
   ga.apartment = angular.module('ahApartment', ['ui.bootstrap']);
 
+    /*
+        Refer to the complex module.  The apartment module is very similar to that of the complex module.  These modules are separated to allow for 
+        a more "module" application.  That way, if you need to delete something, you just have to delete a module rather than parts of code here and there.
+        This is more of a standard.  
 
+        Good luck, I hope my code doens't kill you --Marc
+    */
 
   ga.apartment.controller('apartmentController', ['$scope', '$location', '$window', '$timeout', '$route', 'complexGetService', 'complexToAptService', 'aptToRoomService',
     'filterAptService', 'aptPostService', 'roomDeleteService', function ($scope, $location, $window, $timeout, $route, complexGetService, complexToAptService, aptToRoomService, filterAptService,
       aptPostService, roomDeleteService) {
-        $('#mainPage').removeClass('controlPanel');
+
+      $('#mainPage').removeClass('controlPanel');
       var sessionItem = sessionStorage.getItem('Login');
       if (sessionItem !== "true") {
         window.location.href = '#/login';
@@ -27,11 +32,6 @@
         $scope.complexes = response.data;
 
     });
-
-    //var y = complexToAptService.get();
-    //$scope.getModel = {
-    //    HotelID: y.HotelID
-    //}
 
     $scope.get = function () {
         var y = complexToAptService.get();

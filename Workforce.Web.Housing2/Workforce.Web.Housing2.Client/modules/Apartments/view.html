@@ -15,7 +15,7 @@
         <section class="col-sm-1 col-md-1 col-lg-1">
           <h1>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-              <span class="glyphicon glyphicon-plus"></span> Add Apartment
+              <span class="glyphicon glyphicon-plus"></span> New Apartment
             </button>
           </h1>
         </section>
@@ -27,7 +27,7 @@
 
 </div>
 <div class="row">
-  <section class="col-md-8 col-lg-9">
+  <section class="col-md-12 col-lg-12">
     <hr />
   </section>
 
@@ -36,8 +36,8 @@
 <div class="container-fluid">
   <div class="row">
     <span data-ng-init="get()"></span>
-    <section class="col-sm-12 col-md-12 col-lg-10">
-      <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="apt in filteredApartments">
+    <section class="col-sm-12 col-md-12 col-lg-12">
+      <section class="col-sm-12 col-md-6 col-lg-6" data-ng-repeat="apt in filteredApartments">
 
         <div ng-if="apt.CurrentCapacity === 0">
           <div class="panel panel-success">
@@ -92,7 +92,7 @@
 
     </section>
     <div class="row">
-      <section class="col-md-9 col-lg-9">
+      <section class="col-sm-12 col-md-12 col-lg-12 text-center">
         <ul uib-pagination total-items="apts.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
       </section>
     </div>
@@ -110,28 +110,12 @@
           <h2 class="modal-title center text-uppercase" id="myModalLabel">Add a New Apartment at {{info}}</h2>
         </div>
         <div class="modal-body">
-
-          <!--<div class="form-group">
-              <label for="complexHere">Apartment Complex</label>
-              <div>
-                  <select class="form-control" data-ng-model="model.Hotel">
-                      <option data-ng-repeat="complex in complexes">{{complex.Name}}</option>
-                      <option>Hotel</option>
-                  </select>
-              </div>
-          </div>-->
           <div class="form-group">
             <label for="roomNumberHere">Room Number:</label>
             <div>
               <input type="text" class="form-control" data-ng-model="model.RoomNumber" id="roomNum" name="model.RoomNumber" placeholder="Room Number">
             </div>
           </div>
-          <!--<div class="form-group">
-              <label for="currentCapacity">Current Capacity</label>
-              <div>
-                  <input type="number" class="form-control" data-ng-model="model.CurrentCapacity" id="MaxCap" name="model.CurrentCapacity" placeholder="Current Capacity">
-              </div>
-          </div>-->
           <div class="form-group">
             <label for="maxCapacity">Max Capacity:</label>
             <div>

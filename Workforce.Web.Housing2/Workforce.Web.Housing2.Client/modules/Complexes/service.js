@@ -1,6 +1,8 @@
 ﻿(function (ga) {
     'use strict';
 
+    /*Refer to the control panel's service to get a better understanding on these services.  */
+
     ga.complex.factory('complexGetService', ['$http', function ($http) {
         var url = '/workforce-housing-rest/api/housingcomplex';
         return {

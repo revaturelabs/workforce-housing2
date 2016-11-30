@@ -20,7 +20,7 @@
         sessionStorage.setItem("Login", "true");
         var lb = document.getElementById('lo');
         lb.style.visibility = 'visible';
-        location = '#/complexes';
+        location = '#/controlpanel';
       }
       else {
         fname.value = '';

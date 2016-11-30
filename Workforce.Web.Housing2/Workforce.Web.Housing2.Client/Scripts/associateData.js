@@ -3,7 +3,7 @@
 
     ga.angular.factory('traineeDataGrab', [function () {
 
-
+        //gets and sets information on a specific associate. 
         function set(data) {
             sessionStorage.setItem('aTrainee', JSON.stringify(data)); //stringified.  needs to be parse       
         }

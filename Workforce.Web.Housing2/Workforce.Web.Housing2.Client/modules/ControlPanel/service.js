@@ -1,6 +1,20 @@
 ﻿(function (ga) {
     'use strict';
 
+    /*
+        Each service used in this module. There are a few gets as well as some posts done in this field.
+        API Calls:
+            Get Service for complex
+            Get Service for associates
+            Get Service for apartments
+            Post Service for Associates
+            Delete Service for Associates
+
+            The factories themselves are services that can be called upon.
+            For a few, there are parameters that are brought in to designate what information to get from the database.
+
+            Make sure to call these services in the module you're working on in order for angular to understand what you're using.  
+    */
     ga.controlPanel.factory('complexGetService', ['$http', function ($http) {
         var url = '/workforce-housing-rest/api/housingcomplex';
         return {

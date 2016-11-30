@@ -1,4 +1,6 @@
 ﻿(function (ga) {
+
+    //main login page.  
   'use strict';
   ga.login.factory('loginService', ['$http', function ($http) {
     var url = '/workforce-associate-rest/api/accounts/getToken';
