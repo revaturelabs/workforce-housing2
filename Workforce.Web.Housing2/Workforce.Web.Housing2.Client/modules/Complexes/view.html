@@ -1,39 +1,22 @@
 ﻿<div class="row">
   <section class="col-sm-12 col-md-12 col-lg-12">
-    <div class="col-md-6 col-lg-8">
+    <div class="col-sm-12 col-md-6 col-lg-10">
       <h1>
         Apartment Complexes
       </h1>
-      <!--<h1>
-          <button type="button" class="btn btn-default btn-sm" data-ng-click="refresh()">
-              <span class="glyphicon glyphicon-repeat"></span> Refresh
-          </button>
-          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-              <span class="glyphicon glyphicon-plus"></span> Add a New Complex
-          </button>
-
-      </h1>-->
     </div>
-    <div class="col-md-6 col-lg-4">
+    <div class="col-sm-12 col-md-6 col-lg-2">
       <div class="row">
         <section class="col-md-2 col-lg-2">
 
           <h1>
 
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-              <span class="glyphicon glyphicon-plus"></span> Add Apartment Complex
+              <span class="glyphicon glyphicon-plus"></span> New Complex
             </button>
 
           </h1>
         </section>
-        <!--<section class="col-md-2 col-lg-6">
-            <h1>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#chartModal">
-                    <span class="glyphicon glyphicon-plus"></span> View Chart
-                </button>
-
-            </h1>
-        </section>-->
       </div>
     </div>
 
@@ -41,7 +24,7 @@
 
 </div>
 <div class="row">
-  <section class="col-md-9 col-lg-9">
+  <section class="col-md-12 col-lg-12">
     <hr />
   </section>
 
@@ -97,7 +80,7 @@
 
     </section>
     <div class="row">
-      <section class="col-md-9 col-lg-9">
+      <section class="col-sm-12 col-md-12 col-lg-12 text-center">
         <ul uib-pagination total-items="complexes.length" boundary-links="true" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
       </section>
     </div>
