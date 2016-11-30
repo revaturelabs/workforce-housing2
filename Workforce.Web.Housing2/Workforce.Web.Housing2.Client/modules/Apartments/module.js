@@ -28,11 +28,6 @@
 
     });
 
-    //var y = complexToAptService.get();
-    //$scope.getModel = {
-    //    HotelID: y.HotelID
-    //}
-
     $scope.get = function () {
         var y = complexToAptService.get();
         filterAptService.get(y, function (response) {

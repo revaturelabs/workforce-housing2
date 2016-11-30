@@ -1,6 +1,10 @@
 ﻿(function (ga) {
     'use strict';
 
+    /*
+        Refer to the control panel's service script.
+    */
+
     ga.apartment.factory('filterAptService', ['$http', function ($http) {
         var url = '/workforce-housing-rest/api/filteraptsbycomplex/';
         return {
