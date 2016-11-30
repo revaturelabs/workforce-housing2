@@ -3,9 +3,9 @@
 
   ga.angular.factory('aptToRoomService', [function () {
 
-
+    //grabs an apt and saves it so we can access rooms.  
     function set(data) {
-      sessionStorage.setItem('aRoom', JSON.stringify(data)); //stringified.  needs to be parse       
+      sessionStorage.setItem('aRoom', JSON.stringify(data)); //stringified.  needs to be parsed    
     }
 
     function get() {

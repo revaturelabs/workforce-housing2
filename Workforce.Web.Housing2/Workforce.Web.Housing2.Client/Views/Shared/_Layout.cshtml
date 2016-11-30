@@ -5,22 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!--Generalized style sheets always go first.  Ensures normalization-->
   <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
   <link href="~/Content/carousel.css" rel="stylesheet" />
   <link href="~/Content/dashboard.css" rel="stylesheet" />
-  <link href="~/Content/style.css" rel="stylesheet" />
+  <link href="~/Content/style.css" rel="stylesheet" /> <!--This style sheet comes from the Revature site itself.  Do not attempt to modify unless necessary-->
   <link href="~/Content/d3AptCap.css" rel="stylesheet" />
-  <link href="~/Content/myContent.css" rel="stylesheet" />
+  <link href="~/Content/myContent.css" rel="stylesheet" /> <!-- Make modifications in this style sheet-->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="icon" />
   <link href="~/Content/responsive.css" rel="stylesheet" />
 
   <title>Revature | Housing </title>
 
   <link href="https://revature.com/imgs/favicon_192.png" rel="icon" type="image/x-icon">
-  <script src="https://use.typekit.net/pvo4jdm.js"></script>
+  <script src="https://use.typekit.net/pvo4jdm.js"></script> 
   <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-
-  <style type="text/css">
+    <!-- While text is loading, it will not be seen until it finishes loading.  Text is customized.  -->
+  <style type="text/css"> 
     .wf-loading {
       visibility: hidden;
     }
@@ -72,6 +73,9 @@
     </div>
   </div>
   @RenderBody()
+
+    <!-- Every module will need be included from each page, as well as the services included with it. -->
+    <!-- There will be cdn's used here and there to grab information straight from an online server.-->
   <script src="~/Scripts/jquery-1.9.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
   <script src="~/Scripts/bootstrap.min.js"></script>
