@@ -34,11 +34,11 @@
 
 
     <span data-ng-init="get()"></span>
-    <section class="col-sm-12 col-md-12 col-lg-10">
+    <section class="col-sm-12 col-md-12 col-lg-12">
       <div id="failRemoveComplex" class="alert alert-danger display-none">
         <strong>Failed to remove apartment complex.</strong> This is most likely due to it containing an associate / associates.
       </div>
-      <section class="col-sm-12 col-md-5 col-lg-5" data-ng-repeat="complex in filteredComplexes">
+      <section class="col-sm-12 col-md-6 col-lg-6" data-ng-repeat="complex in filteredComplexes">
         <div class="panel panel-info">
           <div class="panel-heading">
             <a href="" style="color:black;" data-ng-click="go(complex, ('/apartments'))"> <h3 class="panel-title">{{complex.Name}} </h3> </a>
