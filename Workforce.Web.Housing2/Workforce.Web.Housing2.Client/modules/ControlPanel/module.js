@@ -1,12 +1,12 @@
-﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
-
-(function (ga) {
+﻿(function (ga) {
     'use strict';
 
     ga.controlPanel = angular.module('ahPanel', ['ui.bootstrap', 'ngMessages']);
 
     /*The control panel was my rendition of mixing together the previous modules into a single page application.
-      Probably might have some areas that need redoing, but out of the pages, I think it's gotten the best work.  
+      Probably might have some areas that need redoing, but out of the pages, I think it's gotten the best work.
+      
+      I wish the next person the best of luck as they decipher my craziness. Forgive me for the mess.  --Marc
     */
 
     ga.controlPanel.controller('panelController', ['$scope', '$rootScope', '$location', '$window', 'complexGetService', 'complexToAptService',

@@ -1,6 +1,4 @@
-﻿/// <reference path="C:\Revature\1607-jul25-net\1607-workforce-web\Workforce.Web.Grace\Workforce.Web.Grace.Client\Scripts/app.js" />
-
-(function (ga) {
+﻿(function (ga) {
   'use strict';
 
   ga.complex = angular.module('ahComplex', ['ui.bootstrap', 'ngMessages']);
